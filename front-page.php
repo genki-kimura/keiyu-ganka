@@ -38,6 +38,10 @@
 
 		<!-- Swiper スクリプト -->
 		<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+		<!-- ページ下部で読み込む旧Swiper(v4)にグローバルを上書きされる前に、v11のコンストラクタを退避 -->
+		<script>
+			window.SwiperV11 = window.Swiper;
+		</script>
 
 		<script>
 			let pcSwiper;
@@ -172,85 +176,266 @@
 			}
 		}
 	</style>
-	<div class="bnr">
-		<div class="bnr__inner bnr__inner-flex-wrap">
-			<a href="/cataract/" class="bnr__link">
-				<img src="<?php echo get_template_directory_uri(); ?>/img/btn01.webp" alt="白内障手術についてはこちら" loading="lazy" decoding="async">
-			</a>
-			<a href="/cataract/multifocal/" class="bnr__link">
-				<img src="<?php echo get_template_directory_uri(); ?>/img/btn02.webp" alt="多焦点眼内レンズについてはこちら" loading="lazy" decoding="async">
-			</a>
-			<a href="/pediatric/orthokeratology/" class="bnr__link">
-				<img src="<?php echo get_template_directory_uri(); ?>/img/btn03.webp" alt="オルソケラトロジーについてはこちら" loading="lazy" decoding="async">
-			</a>
-			<a href="/pediatric#a01" class="bnr__link">
-				<img src="<?php echo get_template_directory_uri(); ?>/img/btn04.webp" alt="学校検診で指摘された方はこちら️" loading="lazy" decoding="async">
-			</a>
-		</div>
-	</div>
-<!-- 	<div class="bnr-slider pc">
-		<div class="bnr__inner">
-			<a href="/cataract/multifocal/clareon-vivity/" class="bnr__link" style="box-shadow: 0 0 8px gray;">
-				<img class="" src="http://ophthalmology.adachikeiyu.com/wp-content/uploads/2025/12/clareonvivity-1.png" alt="Clareon Vivity（クラレオンビビティ）" loading="lazy" decoding="async">
-			</a>
-			<a href="/cataract/multifocal/clareon-panoptix/" class="bnr__link" style="box-shadow: 0 0 8px gray;">
-				<img class="" src="http://ophthalmology.adachikeiyu.com/wp-content/uploads/2025/12/panoptix.png" alt="Clareon PanOptix（クラレオンパンオプティクス）" loading="lazy" decoding="async">
-			</a>
-			<a href="/cataract/multifocal/fine-vision/" class="bnr__link" style="box-shadow: 0 0 8px gray;">
-				<img class="" src="http://ophthalmology.adachikeiyu.com/wp-content/uploads/2026/01/Fine-Vision.jpg" alt="Fine Vision（ファインビジョン）" loading="lazy" decoding="async">
-			</a>
-		</div>
-	</div> -->
+	<?php
+	/**
+	 * MV下バナースライダーのデータ定義
+	 * 各バナーのリンク先・画像ファイル名・代替テキスト・画像実寸を保持する。
+	 *
+	 * @var array<int, array{href:string, img:string, alt:string, w:int, h:int}> $keiyu_bnr_items
+	 */
+	$keiyu_bnr_items = [
+		['href' => '/cataract/', 'img' => 'btn01.webp', 'alt' => '白内障手術についてはこちら', 'w' => 1104, 'h' => 480],
+		['href' => '/cataract/multifocal/', 'img' => 'btn02.webp', 'alt' => '多焦点眼内レンズについてはこちら', 'w' => 1104, 'h' => 480],
+		['href' => '/pediatric/orthokeratology/', 'img' => 'btn03.webp', 'alt' => 'オルソケラトロジーについてはこちら', 'w' => 1104, 'h' => 480],
+		['href' => '/pediatric#a01', 'img' => 'btn04.webp', 'alt' => '学校検診で指摘された方はこちら', 'w' => 1104, 'h' => 480],
+		['href' => '/ipcl/', 'img' => 'IPCL.webp', 'alt' => 'IPCL（有水晶体眼内レンズ）による視力矯正手術はこちら', 'w' => 2208, 'h' => 960],
+	];
 
-	<!-- SP用：多焦点眼内レンズバナーのスライダー表示 -->
-<!-- 	<div class="bnr-slider sp">
-		<div class="swiper bnr-swiper">
-			<div class="swiper-wrapper">
-				<div class="swiper-slide">
-					<a href="/cataract/multifocal/clareon-vivity/" class="bnr__link" style="box-shadow: 0 0 8px gray;">
-						<img src="http://ophthalmology.adachikeiyu.com/wp-content/uploads/2025/12/clareonvivity-1.png" alt="Clareon Vivity（クラレオンビビティ）" loading="lazy" decoding="async">
-					</a>
-				</div>
-				<div class="swiper-slide">
-					<a href="/cataract/multifocal/clareon-panoptix/" class="bnr__link" style="box-shadow: 0 0 8px gray;">
-						<img src="http://ophthalmology.adachikeiyu.com/wp-content/uploads/2025/12/panoptix.png" alt="Clareon PanOptix（クラレオンパンオプティクス）" loading="lazy" decoding="async">
-					</a>
-				</div>
-				<div class="swiper-slide">
-					<a href="/cataract/multifocal/fine-vision/" class="bnr__link" style="box-shadow: 0 0 8px gray;">
-						<img src="http://ophthalmology.adachikeiyu.com/wp-content/uploads/2026/01/Fine-Vision.jpg" alt="Fine Vision（ファインビジョン）" loading="lazy" decoding="async">
-					</a>
+	/** @var string $keiyu_tpl_uri テーマディレクトリURI */
+	$keiyu_tpl_uri = get_template_directory_uri();
+
+	/** @var int $keiyu_bnr_repeat スライド複製回数（枚数不足によるループの隙間を防ぐため2周分を描画） */
+	$keiyu_bnr_repeat = 2;
+
+	/** @var array<int, int> $keiyu_acuity_angles ランドルト環（視標）の開口部の向き（度）。あらゆる方向を向くよう分散 */
+	$keiyu_acuity_angles = [0, 90, 180, 270, 45];
+	?>
+	<!-- MV下バナースライダー（左右矢印＋視標ページネーション） -->
+	<div class="bnr">
+		<div class="bnr-swiper__wrap">
+			<button type="button" class="bnr-swiper__arrow bnr-swiper__arrow--prev" aria-label="前のバナーを表示"></button>
+			<div class="swiper bnr-swiper" id="bnrSlider">
+				<div class="swiper-wrapper">
+					<?php for ($keiyu_r = 0; $keiyu_r < $keiyu_bnr_repeat; $keiyu_r++): ?>
+						<?php foreach ($keiyu_bnr_items as $keiyu_item): ?>
+							<div class="swiper-slide"<?php echo $keiyu_r > 0 ? ' aria-hidden="true"' : ''; ?>>
+								<a href="<?php echo esc_url($keiyu_item['href']); ?>" class="bnr__link"<?php echo $keiyu_r > 0 ? ' tabindex="-1"' : ''; ?>>
+									<img src="<?php echo esc_url($keiyu_tpl_uri . '/img/' . $keiyu_item['img']); ?>"
+										alt="<?php echo $keiyu_r > 0 ? '' : esc_attr($keiyu_item['alt']); ?>"
+										width="<?php echo (int) $keiyu_item['w']; ?>" height="<?php echo (int) $keiyu_item['h']; ?>"
+										loading="lazy" decoding="async">
+								</a>
+							</div>
+						<?php endforeach; ?>
+					<?php endfor; ?>
 				</div>
 			</div>
-			<div class="swiper-button-next"></div>
-			<div class="swiper-button-prev"></div>
-			<div class="swiper-pagination"></div>
+			<button type="button" class="bnr-swiper__arrow bnr-swiper__arrow--next" aria-label="次のバナーを表示"></button>
 		</div>
-	</div> -->
+
+		<!-- ページネーション（視力検査の視標＝ランドルト環。選択中は紺色の画像に切り替わる） -->
+		<div class="bnr-swiper__pagination" role="tablist" aria-label="バナーの選択">
+			<?php foreach ($keiyu_bnr_items as $keiyu_i => $keiyu_item): ?>
+				<button type="button" class="bnr-swiper__dot<?php echo 0 === $keiyu_i ? ' is-active' : ''; ?>"
+					data-index="<?php echo (int) $keiyu_i; ?>"
+					style="transform: rotate(<?php echo (int) $keiyu_acuity_angles[$keiyu_i % count($keiyu_acuity_angles)]; ?>deg);"
+					aria-label="<?php echo (int) ($keiyu_i + 1); ?>枚目のバナーへ"<?php echo 0 === $keiyu_i ? ' aria-current="true"' : ''; ?>></button>
+			<?php endforeach; ?>
+		</div>
+	</div>
+
+	<style>
+		/* MV下バナースライダー */
+		.page-top .bnr {
+			padding: 24px 0 40px;
+			background-color: #fff;
+		}
+
+		/* 矢印＋トラックの行 */
+		.page-top .bnr-swiper__wrap {
+			display: flex;
+			align-items: center;
+			gap: 16px;
+			max-width: 1120px;
+			width: calc(100% - 40px);
+			margin: 0 auto;
+		}
+
+		/* スライダー本体（残り幅いっぱい・はみ出しをクリップ） */
+		.page-top .bnr-swiper {
+			flex: 1 1 0;
+			min-width: 0;
+			overflow: hidden;
+		}
+
+		.page-top .bnr-swiper .swiper-wrapper {
+			display: flex;
+			align-items: stretch;
+			box-sizing: content-box;
+		}
+
+		.page-top .bnr-swiper .swiper-slide {
+			flex-shrink: 0;
+			height: auto;
+			box-sizing: border-box;
+		}
+
+		.page-top .bnr-swiper .bnr__link {
+			display: block;
+			/* index.css の旧レイアウト用ルール（width:44% / max-width:552px）を打ち消し、スライド幅いっぱいに表示する */
+			width: 100%;
+			max-width: none;
+			border-radius: 3px;
+			overflow: hidden;
+		}
+
+		.page-top .bnr-swiper .bnr__link img {
+			display: block;
+			width: 100%;
+			height: auto;
+			border-radius: 3px;
+		}
+
+		/* 左右の矢印（丸背景なしのシェブロン） */
+		.page-top .bnr-swiper__arrow {
+			flex: 0 0 auto;
+			width: 16px;
+			height: 16px;
+			padding: 0;
+			border: 0;
+			background: transparent;
+			cursor: pointer;
+			position: relative;
+		}
+
+		.page-top .bnr-swiper__arrow::before {
+			content: "";
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			width: 9px;
+			height: 9px;
+			border-top: 2px solid #333333;
+			border-right: 2px solid #333333;
+		}
+
+		.page-top .bnr-swiper__arrow--next::before {
+			transform: translate(-70%, -50%) rotate(45deg);
+		}
+
+		.page-top .bnr-swiper__arrow--prev::before {
+			transform: translate(-30%, -50%) rotate(-135deg);
+		}
+
+		/* ページネーション（視標＝ランドルト環の画像） */
+		.page-top .bnr-swiper__pagination {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 12px;
+			margin-top: 24px;
+		}
+
+		.page-top .bnr-swiper__dot {
+			width: 16px;
+			height: 16px;
+			padding: 0;
+			border: 0;
+			cursor: pointer;
+			background: transparent url("<?php echo esc_url($keiyu_tpl_uri); ?>/img/pager-ring.png") center / contain no-repeat;
+		}
+
+		/* 選択中：紺色の視標画像に切り替え */
+		.page-top .bnr-swiper__dot.is-active {
+			background-image: url("<?php echo esc_url($keiyu_tpl_uri); ?>/img/pager-ring-active.png");
+		}
+
+		@media only screen and (max-width: 768px) {
+			.page-top .bnr {
+				padding: 20px 0 24px;
+			}
+
+			.page-top .bnr-swiper__wrap {
+				width: calc(100% - 30px);
+				gap: 8px;
+			}
+
+			.page-top .bnr-swiper__pagination {
+				margin-top: 16px;
+			}
+		}
+	</style>
 
 	<script>
-		// SP時のみバナーを1枚ずつ表示するスライダー
+		/**
+		 * MV下バナースライダーの初期化
+		 * - 表示: PC(900px〜)は中央3枚＋左右半分ずつ / タブレット(600〜)は2.4枚 / SPは1.2枚（いずれも中央寄せ）。
+		 * - スライドはPHP側で2周分描画済みのため、少ないバナー数でもループの隙間が出ない。
+		 * - 旧Swiper(v4)ではなく退避しておいたv11で初期化する（v4はbreakpointsがmax-width基準のため）。
+		 * - ページネーションは自前のボタン（視標画像）をrealIndexと同期させて制御する。
+		 */
 		document.addEventListener('DOMContentLoaded', function () {
-			if (window.innerWidth <= 768) {
-				new Swiper('.bnr-swiper', {
-					loop: true,
-					slidesPerView: 1,
-					spaceBetween: 16,
-					autoplay: {
-						delay: 3000, // スライド間の待ち時間（3秒のまま）
-						disableOnInteraction: false,
+			var SwiperCtor = window.SwiperV11 || window.Swiper;
+			var bnrEl = document.querySelector('.bnr-swiper');
+
+			if (typeof SwiperCtor === 'undefined' || !bnrEl) {
+				return;
+			}
+
+			var dots = Array.prototype.slice.call(
+				document.querySelectorAll('.bnr-swiper__pagination .bnr-swiper__dot')
+			);
+			var originalCount = dots.length;
+
+			var bnrSwiper = new SwiperCtor(bnrEl, {
+				loop: true,
+				centeredSlides: true,
+				slidesPerView: 1.2,
+				spaceBetween: 12,
+				speed: 600,
+				autoplay: {
+					delay: 4000,
+					disableOnInteraction: false,
+				},
+				navigation: {
+					nextEl: '.bnr-swiper__arrow--next',
+					prevEl: '.bnr-swiper__arrow--prev',
+				},
+				breakpoints: {
+					600: {
+						slidesPerView: 2.4,
+						spaceBetween: 16,
 					},
-					speed: 500, // スライドが動くアニメーション時間（1秒に延長）
-					navigation: {
-						nextEl: '.bnr-swiper .swiper-button-next',
-						prevEl: '.bnr-swiper .swiper-button-prev',
+					900: {
+						slidesPerView: 4,
+						spaceBetween: 24,
 					},
-					pagination: {
-						el: '.bnr-swiper .swiper-pagination',
-						clickable: true,
-					},
+				},
+			});
+
+			/**
+			 * 現在表示中のバナーに対応するドットを選択状態にする
+			 * @return {void}
+			 */
+			function updateDots() {
+				if (0 === originalCount) {
+					return;
+				}
+
+				var active = bnrSwiper.realIndex % originalCount;
+
+				dots.forEach(function (dot, index) {
+					var isActive = index === active;
+					dot.classList.toggle('is-active', isActive);
+
+					if (isActive) {
+						dot.setAttribute('aria-current', 'true');
+					} else {
+						dot.removeAttribute('aria-current');
+					}
 				});
 			}
+
+			bnrSwiper.on('slideChange', updateDots);
+			updateDots();
+
+			// ドットクリックで該当バナーへ移動
+			dots.forEach(function (dot) {
+				dot.addEventListener('click', function () {
+					var targetIndex = parseInt(dot.getAttribute('data-index'), 10) || 0;
+					bnrSwiper.slideToLoop(targetIndex);
+				});
+			});
 		});
 	</script>
 

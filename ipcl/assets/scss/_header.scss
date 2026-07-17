@@ -1,0 +1,37 @@
+@use "../../../scss/setting" as *;
+
+/* ========================================
+  header（IPCLページ限定上書き）
+======================================== */
+
+header.header {
+  background-color: #fff;
+}
+
+a.header__l-link {
+  width: auto;
+}
+
+header.header div.header__logo {
+  background: url(../img/logo_ipcl.webp) no-repeat center / 100%;
+}
+
+header.header h1.header__name {
+  color: #171717;
+}
+
+header.header a.global__link {
+  color: #171717;
+}
+
+header.header a.global__link:hover {
+  border-bottom: solid 1px #171717;
+}
+
+header.header div.header__links {
+  display: none;
+}
+
+header.header div#nav_toggle {
+  background-color: #19275B;
+}

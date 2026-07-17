@@ -1,0 +1,49 @@
+@charset "UTF-8";
+
+/* ヘッダー上書き */
+@use "./header";
+
+/* 共通コンポーネント */
+@use "./c-btn";
+@use "./c-section-title";
+
+/* セクション */
+@use "./p-ipcl-fv";
+@use "./p-ipcl-toc";
+@use "./ipcl-cta";
+@use "./p-ipcl-about";
+@use "./p-ipcl-features";
+@use "./p-ipcl-comparison";
+@use "./p-ipcl-merit";
+@use "./p-ipcl-record";
+@use "./p-ipcl-candidates";
+@use "./p-ipcl-clinic-features";
+@use "./p-ipcl-specialist";
+@use "./p-ipcl-flow";
+@use "./p-ipcl-notes";
+@use "./p-ipcl-fees";
+@use "./p-ipcl-loan";
+@use "./p-ipcl-faq";
+@use "./p-ipcl-articles";
+
+/* ユーティリティ（IPCLページ内のみ） */
+@use "../../../scss/setting" as *;
+
+.pc-only {
+  display: block;
+  @include mq("sp") {
+    display: none !important;
+  }
+}
+
+.sp-only {
+  display: none !important;
+  @include mq("sp") {
+    display: block !important;
+  }
+}
+
+a,
+button {
+  transition: all 0.3s;
+}

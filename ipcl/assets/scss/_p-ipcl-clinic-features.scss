@@ -1,0 +1,484 @@
+@use "../../../scss/setting" as *;
+
+/* ========================================
+  p-ipclClinicFeatures（当院のIPCL手術の特徴）
+======================================== */
+.p-ipclClinicFeatures {
+  background-color: #fff;
+  padding-block: rem(64);
+  position: relative;
+  overflow: hidden;
+
+  @include mq("sp") {
+    padding-block: rem(40);
+    padding-inline: rem(24);
+  }
+}
+
+/* 背景SVG装飾 */
+.p-ipclClinicFeatures__svgBg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 77%;
+  pointer-events: none;
+
+  @include mq("sp") {
+    height: 107%;
+    width: 230%;
+    left: -45%;
+  }
+}
+
+.p-ipclClinicFeatures__svgBgImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+.p-ipclClinicFeatures__svgBgImg--pc {
+  display: block;
+
+  @include mq("sp") {
+    display: none;
+  }
+}
+
+.p-ipclClinicFeatures__svgBgImg--sp {
+  display: none;
+
+  @include mq("sp") {
+    display: block;
+  }
+}
+
+/* インナー */
+.p-ipclClinicFeatures__inner {
+  max-width: rem(1200);
+  padding-inline: rem(20);
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: rem(24);
+  position: relative;
+  z-index: 1;
+
+  @include mq("sp") {
+    padding-inline: 0;
+  }
+}
+
+/* ----------------------------------------
+  見出し
+---------------------------------------- */
+.p-ipclClinicFeatures__head {
+  display: flex;
+  flex-direction: column;
+  gap: rem(8);
+  align-items: center;
+}
+
+.p-ipclClinicFeatures__title {
+  font-family: $zen-old-mincho;
+  font-size: rem(32);
+  font-weight: 500;
+  background-image: linear-gradient(174.5deg, $color-ipcl-grad-light 22.483%, $color-ipcl-grad-dark 83.943%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+  white-space: nowrap;
+
+  @include mq("sp") {
+    font-size: rem(20);
+  }
+}
+
+.p-ipclClinicFeatures__subRow {
+  display: flex;
+  gap: rem(8);
+  align-items: center;
+}
+
+.p-ipclClinicFeatures__subLine {
+  display: block;
+  width: rem(24);
+  height: 0;
+  border-top: 1px solid $color-ipcl-sub;
+}
+
+.p-ipclClinicFeatures__subText {
+  font-family: $noto-sans;
+  font-size: rem(11);
+  font-weight: 300;
+  color: $color-ipcl-sub;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  line-height: 2.2;
+}
+
+/* ----------------------------------------
+  リード文
+---------------------------------------- */
+.p-ipclClinicFeatures__lead {
+  font-family: $noto-sans;
+  font-size: rem(14);
+  font-weight: 300;
+  color: $color-ipcl-body;
+  text-align: center;
+  letter-spacing: 0.12em;
+  line-height: 2;
+  max-width: rem(928);
+  margin-inline: auto;
+
+  @include mq("sp") {
+    max-width: 100%;
+  }
+}
+
+.p-ipclClinicFeatures__underline {
+  text-decoration: underline;
+}
+
+/* ========================================
+  Feature List
+======================================== */
+.p-ipclClinicFeatures__list {
+  display: flex;
+  flex-direction: column;
+  gap: rem(56);
+  padding-top: rem(16);
+  width: 100%;
+
+  @include mq("sp") {
+    gap: rem(40);
+    max-width: rem(420);
+    margin-inline: auto;
+  }
+}
+
+/* Feature Item（PC: 高さ固定 / SP: 高さauto・カードはrelative） */
+.p-ipclClinicFeatures__item {
+  position: relative;
+  height: rem(297);
+
+  @include mq("sp") {
+    height: auto;
+  }
+}
+
+/* F1のみ高さ386px */
+.p-ipclClinicFeatures__item--tall {
+  height: rem(386);
+
+  @include mq("sp") {
+    height: auto;
+  }
+}
+
+/* F3 ダークカード */
+.p-ipclClinicFeatures__item--dark {
+  // height: rem(285);
+
+  @include mq("sp") {
+    height: auto;
+  }
+}
+
+/* ========================================
+  写真フレーム
+======================================== */
+.p-ipclClinicFeatures__photo {
+  position: absolute;
+  top: 0;
+  width: rem(444);
+  height: rem(295);
+  overflow: hidden;
+  border-radius: rem(4);
+  box-shadow: 0 0 rem(44) rgba(0, 0, 0, 0.04);
+
+  @include mq("sp") {
+    left: rem(-24);
+    right: auto;
+    width: calc(100% + #{rem(48)});
+    height: auto;
+    border-radius: 0;
+  }
+}
+
+.p-ipclClinicFeatures__photo--left {
+  left: 0;
+
+  @include mq("sp") {
+    left: rem(-24);
+  }
+}
+
+.p-ipclClinicFeatures__photo--right {
+  right: 0;
+
+  @include mq("sp") {
+    right: auto;
+  }
+}
+
+.p-ipclClinicFeatures__photoImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.p-ipclClinicFeatures__photoImg--pc {
+  display: block;
+
+  @include mq("sp") {
+    display: none;
+  }
+}
+
+.p-ipclClinicFeatures__photoImg--sp {
+  display: none;
+
+  @include mq("sp") {
+    display: block;
+  }
+}
+
+/* ========================================
+  テキストカード
+======================================== */
+.p-ipclClinicFeatures__card {
+  position: absolute;
+  top: rem(40);
+  width: min(calc(100vw / 1200 * 800), 800px);
+  background-color: #fff;
+  box-shadow: 0 0 rem(22) rgba(0, 0, 0, 0.04);
+  border-radius: rem(4);
+  padding-block: rem(32);
+  padding-inline: rem(40);
+  display: flex;
+  flex-direction: column;
+  gap: rem(17);
+
+  /* SP: absolute解除 → relative + margin-topで写真とオーバーラップ */
+  @include mq("sp") {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    width: 100%;
+    margin-top: rem(137);
+    padding: rem(32);
+  }
+}
+
+.p-ipclClinicFeatures__card--left {
+  left: 0;
+}
+
+.p-ipclClinicFeatures__card--right {
+  right: 0;
+}
+
+/* F5のみ幅760px */
+.p-ipclClinicFeatures__card--narrow {
+  width: min(calc(100vw / 1200 * 760), 760px);
+
+  @include mq("sp") {
+    width: 100%;
+  }
+}
+
+/* カードタイトル */
+.p-ipclClinicFeatures__cardTitle {
+  font-family: $zen-old-mincho;
+  font-size: rem(20);
+  font-weight: 500;
+  color: $color-ipcl-gold;
+  letter-spacing: 0.12em;
+  line-height: 1.8;
+
+  @include mq("sp") {
+    font-size: rem(18);
+    line-height: 1.6;
+  }
+}
+
+/* カード本文 */
+.p-ipclClinicFeatures__cardBody {
+  font-family: $noto-sans;
+  font-size: rem(14);
+  font-weight: 300;
+  color: $color-ipcl-body;
+  letter-spacing: 0.12em;
+  line-height: 2;
+
+  @include mq("sp") {
+    line-height: 1.8;
+  }
+}
+
+.p-ipclClinicFeatures__cardBody p {
+  margin-bottom: 0;
+}
+
+/* ----------------------------------------
+  ボタン（F1のみ）
+---------------------------------------- */
+.p-ipclClinicFeatures__cardBtnWrap {
+  padding-top: rem(8);
+}
+
+.p-ipclClinicFeatures__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: rem(8);
+  width: rem(280);
+  height: rem(64);
+  background-image: linear-gradient(112deg, $color-ipcl-grad-light 1.992%, $color-ipcl-grad-dark 96.948%);
+  border: 0.3px solid #fff;
+  border-radius: rem(1.3);
+  padding-block: rem(16);
+  padding-inline: rem(24) rem(32);
+  position: relative;
+  text-decoration: none;
+
+  @include mq("sp") {
+    width: 100%;
+  }
+}
+
+.p-ipclClinicFeatures__btnText {
+  font-family: $zen-old-mincho;
+  font-size: rem(16);
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.p-ipclClinicFeatures__btnArrow {
+  position: absolute;
+  right: rem(33);
+  top: 50%;
+  transform: translateY(-50%);
+  width: rem(25);
+  height: rem(35);
+
+  @include mq("sp") {
+    right: min(calc(100vw / 375 * 33), 33px);
+    width: min(calc(100vw / 375 * 25), 25px);
+    height: min(calc(100vw / 375 * 35), 35px);
+  }
+}
+
+/* ========================================
+  ダークカード（Feature 3）
+======================================== */
+.p-ipclClinicFeatures__darkCard {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: rem(800);
+  width: 100%;
+  height: rem(285);
+  background-image: linear-gradient(104.53deg, $color-ipcl-grad-light 1.992%, $color-ipcl-grad-dark 96.948%);
+  border: 0.3px solid #fff;
+  border-radius: rem(1.3);
+  padding-block: rem(16);
+  padding-inline: rem(40);
+  display: flex;
+  flex-direction: column;
+  gap: rem(8);
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  @include mq("sp") {
+    position: relative;
+    left: auto;
+    transform: none;
+    width: 100%;
+    height: auto;
+    gap: rem(11);
+    padding-block: rem(32);
+    padding-inline: rem(40);
+  }
+}
+
+/* ダークオーバーレイ */
+.p-ipclClinicFeatures__darkOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(34, 39, 39, 0.88) 50%, #000);
+  pointer-events: none;
+}
+
+/* ダークカードタイトル */
+.p-ipclClinicFeatures__darkTitle {
+  font-family: $zen-old-mincho;
+  font-size: rem(20);
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: 0.12em;
+  line-height: 1.8;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+
+  @include mq("sp") {
+    font-size: min(calc(100vw / 375 * 20), 20px);
+  }
+}
+
+/* ダークカード本文 */
+.p-ipclClinicFeatures__darkBody {
+  font-family: $noto-sans;
+  font-size: rem(14);
+  font-weight: 400;
+  color: #fff;
+  letter-spacing: 0.18em;
+  line-height: 2;
+  position: relative;
+  z-index: 1;
+
+  @include mq("sp") {
+    line-height: 1.9;
+  }
+}
+
+/* 内側装飾ボーダー */
+.p-ipclClinicFeatures__darkBorder {
+  position: absolute;
+  inset: rem(12);
+  border: 1px solid #fff;
+  pointer-events: none;
+
+  @include mq("sp") {
+    inset: rem(16);
+  }
+}
+
+/* 装飾円（右下）*/
+.p-ipclClinicFeatures__darkEllipse {
+  position: absolute;
+  bottom: rem(-132);
+  right: rem(-139);
+  width: rem(272);
+  height: rem(272);
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.p-ipclClinicFeatures__darkEllipse img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}

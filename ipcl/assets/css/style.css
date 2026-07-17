@@ -1,0 +1,6260 @@
+@charset "UTF-8";
+/*-変数定義 font
+------------------------------*/
+/*-変数定義 color (IPCL)
+------------------------------*/
+/*--------------------------
+font-size
+---------------------------*/
+/*行間計算*/
+/*--------------------------
+content-width
+---------------------------*/
+/* ========================================
+  header（IPCLページ限定上書き）
+======================================== */
+header.header {
+  background-color: #fff;
+}
+
+a.header__l-link {
+  width: auto;
+}
+
+header.header div.header__logo {
+  background: url(../img/logo_ipcl.webp) no-repeat center/100%;
+}
+
+header.header h1.header__name {
+  color: #171717;
+}
+
+header.header a.global__link {
+  color: #171717;
+}
+
+header.header a.global__link:hover {
+  border-bottom: solid 1px #171717;
+}
+
+header.header div.header__links {
+  display: none;
+}
+
+header.header div#nav_toggle {
+  background-color: #19275B;
+}
+
+/* ========================================
+  c-btn（共通ボタン）
+======================================== */
+.c-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 23.25rem;
+  max-width: 100%;
+  height: 5rem;
+  padding-block: 1rem;
+  padding-inline: 1.5rem 2rem;
+  background-color: #fff;
+  border-radius: 0.125rem;
+  text-decoration: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  /* ぼかし光彩: 白いグローをボタン外周に表示（overflow:hiddenを使わない） */
+  box-shadow: 0 0 2.25rem rgba(255, 255, 255, 0.5);
+}
+@media screen and (max-width:767px) {
+  .c-btn {
+    width: 100%;
+    height: 4.25rem;
+  }
+}
+
+.c-btn__label {
+  position: relative;
+  z-index: 10;
+  font-family: "Zen Old Mincho", serif;
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #9B7714;
+  letter-spacing: 0.07em;
+  line-height: 1;
+  white-space: nowrap;
+  font-feature-settings: "liga" 0;
+}
+@media screen and (max-width:767px) {
+  .c-btn__label {
+    font-size: 1rem;
+  }
+}
+
+.c-btn__arrow {
+  position: absolute;
+  right: 1.0625rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3.6875rem;
+  height: 1.5625rem;
+  z-index: 10;
+}
+@media screen and (max-width:767px) {
+  .c-btn__arrow {
+    width: min(11.4666666667vw, 43px);
+    height: 1.125rem;
+  }
+}
+
+.c-btn__arrow img {
+  width: 100%;
+  height: auto;
+}
+
+@media (any-hover: hover) {
+  .c-btn:hover {
+    opacity: 0.85;
+  }
+}
+.c-btn:focus-visible {
+  outline: 2px solid #9B7714;
+  outline-offset: 2px;
+}
+
+/* ========================================
+  c-sectionTitle（セクションタイトル 共通パーツ）
+  使い方: 各セクションの先頭に配置
+======================================== */
+.c-sectionTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+@media screen and (max-width:767px) {
+  .c-sectionTitle {
+    width: fit-content;
+    max-width: 100%;
+    flex-wrap: wrap;
+  }
+}
+
+.c-sectionTitle__ja {
+  font-family: "Zen Old Mincho", serif;
+  font-size: 2rem;
+  font-weight: 500;
+  background-image: linear-gradient(167.42deg, #D9BB7B 22.483%, #8D6F30 83.943%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+@media screen and (max-width:767px) {
+  .c-sectionTitle__ja {
+    font-size: 1.25rem;
+  }
+}
+
+.c-sectionTitle__sub {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1 0 0;
+  min-width: 0;
+}
+@media screen and (max-width:767px) {
+  .c-sectionTitle__sub {
+    flex: unset;
+    margin-left: auto;
+  }
+}
+
+/* 区切りライン（CSSで再現） */
+.c-sectionTitle__line {
+  display: block;
+  width: 1.5rem;
+  flex-shrink: 0;
+  border-top: 1px solid #807d77;
+}
+
+.c-sectionTitle__en {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 300;
+  color: #807d77;
+  letter-spacing: 0.4em;
+  line-height: 2.2;
+  text-transform: uppercase;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.p-ipclFv-wrap {
+  overflow: hidden;
+}
+
+/* ========================================
+  p-ipclFv（メインビジュアル / FV）
+======================================== */
+.p-ipclFv {
+  position: relative;
+  width: 100%;
+  height: 45rem;
+  background-color: #ebedee;
+  z-index: 1;
+  /* 768-1199px: 1200px時のスケールで高さ固定（1200px未満でパキっとならないように） */
+  /* 1200-1600px: 縦横比を保ってvwで追従（1400pxがカンプ基準） */
+  /* 1601px+: 1600px時の高さで固定 */
+}
+@media (min-width: 768px) and (max-width: 1199px) {
+  .p-ipclFv {
+    height: 617.1428571429px;
+  }
+}
+@media (min-width: 1200px) and (max-width: 1600px) {
+  .p-ipclFv {
+    height: 51.4285714286vw;
+  }
+}
+@media (min-width: 1601px) {
+  .p-ipclFv {
+    height: 822.8571428571px;
+  }
+}
+@media screen and (max-width:767px) {
+  .p-ipclFv {
+    height: 41.4375rem;
+  }
+}
+
+/* ---- コンテンツラッパー（スケール対象） ---- */
+.p-ipclFv__content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 87.5rem;
+  height: 45rem;
+  transform-origin: top left;
+  transform: scale(var(--fv-content-scale, 1));
+  /* 1601px+: コンテンツを中央寄せ（水平余白だけ広がる） */
+  /* SP: 1400px固定を解除して正しい座標系に */
+}
+@media (min-width: 1601px) {
+  .p-ipclFv__content {
+    left: calc((100vw - 1600px) / 2);
+  }
+}
+@media screen and (max-width:767px) {
+  .p-ipclFv__content {
+    width: 100%;
+    height: 41.4375rem;
+  }
+}
+
+/* ---- 背景レイヤー ---- */
+.p-ipclFv__bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.p-ipclFv__bgSlider {
+  position: absolute;
+  inset: 0;
+}
+
+.p-ipclFv__bgPhoto {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 2s ease;
+}
+.p-ipclFv__bgPhoto.is-active {
+  opacity: 1;
+}
+
+.p-ipclFv__bgOverlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(34, 39, 39, 0.93);
+}
+
+/* ---- フォトエリア ---- */
+.p-ipclFv__photoArea {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFv__photoArea {
+    top: 5rem;
+  }
+}
+
+/* PC: グループ画像 */
+.p-ipclFv__photoImg--pc {
+  position: absolute;
+  /* 768-1199px: 右端固定・1200px基準でスケール */
+  right: 0;
+  top: 152.5714285714px;
+  width: 549.4285714286px;
+  height: auto;
+  /* 1200-1600px: vwで追従・左基点 */
+  /* 1601px+: contentのセンタリングに合わせた左位置 */
+}
+@media (min-width: 1200px) and (max-width: 1600px) {
+  .p-ipclFv__photoImg--pc {
+    left: 53vw;
+    right: auto;
+    top: 12.7142857143vw;
+    width: 45.7857142857vw;
+  }
+}
+@media (min-width: 1601px) {
+  .p-ipclFv__photoImg--pc {
+    left: calc((100vw - 1600px) / 2 + 848px);
+    right: auto;
+    top: 203.4285714286px;
+    width: 732.5714285714px;
+  }
+}
+@media screen and (max-width:767px) {
+  .p-ipclFv__photoImg--pc {
+    display: none;
+  }
+}
+
+/* SP: グループ画像（@2x書き出し） */
+.p-ipclFv__photoImg--sp {
+  display: none;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFv__photoImg--sp {
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 2.375rem;
+    width: 22.75rem;
+    height: auto;
+  }
+}
+
+/* ---- お知らせバー ---- */
+.p-ipclFv__noticebar {
+  position: absolute;
+  top: 7.25rem;
+  left: 0;
+  width: 100%;
+  height: 3.4375rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to right, rgba(217, 187, 123, 0.51), rgba(217, 187, 123, 0));
+}
+@media (min-width: 768px) and (max-width: 1199px) {
+  .p-ipclFv__noticebar {
+    top: 99.4285714286px;
+    height: 47.1428571429px;
+  }
+}
+@media (min-width: 1200px) and (max-width: 1600px) {
+  .p-ipclFv__noticebar {
+    top: 8.2857142857vw;
+    height: 3.9285714286vw;
+  }
+}
+@media (min-width: 1601px) {
+  .p-ipclFv__noticebar {
+    top: 132.5714285714px;
+    height: 62.8571428571px;
+  }
+}
+@media screen and (max-width:767px) {
+  .p-ipclFv__noticebar {
+    top: 6.5rem;
+    height: auto;
+    padding-block: 0.9375rem;
+    padding-inline: 1rem;
+    display: block;
+  }
+}
+
+.p-ipclFv__noticeText {
+  font-family: "Zen Old Mincho", serif;
+  font-size: 1.1875rem;
+  font-weight: 400;
+  color: #ffffff;
+  letter-spacing: 0.18em;
+  line-height: 1.19;
+  white-space: nowrap;
+}
+@media (min-width: 768px) and (max-width: 1199px) {
+  .p-ipclFv__noticeText {
+    font-size: 16.2857142857px;
+  }
+}
+@media (min-width: 1200px) and (max-width: 1600px) {
+  .p-ipclFv__noticeText {
+    font-size: 1.3571428571vw;
+  }
+}
+@media (min-width: 1601px) {
+  .p-ipclFv__noticeText {
+    font-size: 21.7142857143px;
+  }
+}
+
+.p-ipclFv__noticeSpLine1 {
+  display: block;
+  font-family: "Zen Old Mincho", serif;
+  font-size: 0.6875rem;
+  font-weight: 400;
+  color: #ffffff;
+  letter-spacing: 0.08em;
+  line-height: 1.19;
+}
+
+.p-ipclFv__noticeSpLine2 {
+  display: block;
+  font-family: "Zen Old Mincho", serif;
+  font-size: 0.6875rem;
+  font-weight: 400;
+  color: #ffffff;
+  letter-spacing: 0.08em;
+  padding-left: 4.875rem;
+  margin-top: 0.125rem;
+}
+
+/* ---- キャッチコピー行1（次世代型…）---- */
+/* PC: 1行 */
+.p-ipclFv__catch1 {
+  position: absolute;
+  left: 7.4375rem;
+  top: 13.9375rem;
+  font-family: "Zen Old Mincho", serif;
+  font-size: 1.125rem;
+  font-weight: 400;
+  color: #edd193;
+  letter-spacing: 0.13em;
+  line-height: 1.19;
+  white-space: nowrap;
+  transform: skewX(-15deg) scaleY(0.97);
+  transform-origin: left center;
+}
+
+/* SP: 2行 */
+.p-ipclFv__catch1Sp {
+  display: none;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFv__catch1Sp {
+    display: block;
+    position: absolute;
+    left: 1.4375rem;
+    top: 18rem;
+  }
+}
+
+.p-ipclFv__catch1SpLine1 {
+  display: block;
+  font-family: "Zen Old Mincho", serif;
+  font-size: 0.625rem;
+  font-weight: 400;
+  color: #edd193;
+  letter-spacing: 0.13em;
+  line-height: 1.7;
+  white-space: nowrap;
+  transform: skewX(-15deg) scaleY(0.97);
+  transform-origin: left center;
+}
+
+.p-ipclFv__catch1SpLine2 {
+  display: block;
+  font-family: "Zen Old Mincho", serif;
+  font-size: 0.71875rem;
+  font-weight: 400;
+  color: #edd193;
+  letter-spacing: 0.13em;
+  line-height: 1.7;
+  white-space: nowrap;
+  transform: skewX(-15deg) scaleY(0.97);
+  transform-origin: left center;
+}
+
+/* ---- メインタイトル「IPCL」---- */
+.p-ipclFv__title {
+  position: absolute;
+  left: 7.75rem;
+  top: 17rem;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 8.625rem;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  line-height: 1;
+  background: linear-gradient(164.84deg, #D9BB7B 22.5%, #8D6F30 83.9%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  filter: drop-shadow(0.5rem 0.5rem 0.25rem rgba(0, 0, 0, 0.18));
+}
+@media screen and (max-width:767px) {
+  .p-ipclFv__title {
+    font-size: 6rem;
+    left: 1.5rem;
+    top: 11.4375rem;
+  }
+}
+
+/* ---- サブタイトル（装飾線 + 英語テキスト）---- */
+.p-ipclFv__subtitle {
+  position: absolute;
+  left: 7.75rem;
+  top: 25.375rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 25.25rem;
+}
+
+.p-ipclFv__subtitleLine {
+  display: block;
+  width: 2.8125rem;
+  flex-shrink: 0;
+  border-top: 1px solid #cdac66;
+}
+
+.p-ipclFv__subtitleText {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: #cdac66;
+  letter-spacing: 0.4em;
+  line-height: 2.2;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ---- キャッチコピー行2（裸眼で…）PC専用 ---- */
+.p-ipclFv__catch2 {
+  position: absolute;
+  left: 7rem;
+  top: 28.6875rem;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 1.4375rem;
+  font-weight: 400;
+  color: #ffffff;
+  letter-spacing: 0.36em;
+  line-height: 2;
+  white-space: nowrap;
+  transform: skewX(-20deg) scaleY(0.94);
+  transform-origin: left center;
+  text-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+}
+@media screen and (max-width:767px) {
+  .p-ipclFv__catch2 {
+    left: auto;
+    right: 1.9rem;
+    top: 32.375rem;
+    font-size: min(3.7333333333vw, 14px);
+    letter-spacing: 0.22em;
+    white-space: nowrap;
+  }
+}
+
+/* ---- サブキャッチ（翌朝…）---- */
+.p-ipclFv__subCatch {
+  position: absolute;
+  left: 23.6875rem;
+  top: 31.875rem;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #ffffff;
+  letter-spacing: 0.22em;
+  line-height: 2;
+  white-space: nowrap;
+  transform: skewX(-20deg) scaleY(0.94);
+  transform-origin: left center;
+  text-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.7);
+}
+@media screen and (max-width:767px) {
+  .p-ipclFv__subCatch {
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 0.625rem;
+    font-weight: 300;
+    letter-spacing: 0.16em;
+    left: auto;
+    right: 1.3rem;
+    top: 34.25rem;
+    transform: skewX(-20deg) scaleY(0.94);
+  }
+}
+
+/* ---- CTAボタン ---- */
+.p-ipclFv__ctaBtn {
+  position: absolute;
+  left: 7.125rem;
+  top: 35.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 21.25rem;
+  height: 4.5rem;
+  padding-block: 1rem;
+  padding-inline: 1.5rem 2rem;
+  background: linear-gradient(113.56deg, #D9BB7B 1.99%, #8D6F30 96.95%);
+  border: 0.3px solid #ffffff;
+  border-radius: 0.08125rem;
+  text-decoration: none;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFv__ctaBtn {
+    left: 50%;
+    top: auto;
+    bottom: 1.3125rem;
+    transform: translateX(-50%);
+    width: min(87.2vw, 327px);
+    height: 3.75rem;
+  }
+}
+
+.p-ipclFv__ctaBtnText {
+  font-family: "Zen Old Mincho", serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #ffffff;
+  letter-spacing: 0.04em;
+  font-feature-settings: "liga" 0;
+  white-space: nowrap;
+}
+
+.p-ipclFv__ctaBtnArrow {
+  position: absolute;
+  right: 1.0625rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3.6875rem;
+  height: 1.5625rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFv__ctaBtnArrow {
+    right: min(4.5333333333vw, 17px);
+    width: min(15.808vw, 59.28px);
+    height: 1.539375rem;
+  }
+}
+
+/* ========================================
+  p-ipclToc（目次 / アンカーナビゲーション）
+======================================== */
+.p-ipclToc {
+  background-color: #fff;
+  /* padding-bottom禁止のため padding-block(64) + padding-top(80) で上書き */
+  padding-block: 4rem;
+  padding-top: 5rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclToc {
+    padding-block: 2rem;
+    padding-inline: 1.5rem;
+  }
+}
+
+.p-ipclToc__inner {
+  max-width: 72.5rem;
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclToc__inner {
+    padding-inline: 0;
+  }
+}
+
+/* 見出し「目次」 */
+.p-ipclToc__heading span {
+  font-family: "Zen Old Mincho", serif;
+  font-size: 1.625rem;
+  font-weight: 500;
+  background-image: linear-gradient(152.31deg, #D9BB7B 22.483%, #8D6F30 83.943%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+  width: 100%;
+}
+@media screen and (max-width:767px) {
+  .p-ipclToc__heading span {
+    font-size: 1.25rem;
+  }
+}
+
+/* アイテムグリッド */
+.p-ipclToc__list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 1.5rem;
+  row-gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+@media (max-width: 999px) {
+  .p-ipclToc__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    margin-top: 1rem;
+  }
+}
+
+/* アイテム全体（aタグ） */
+.p-ipclToc__link {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  text-decoration: none;
+}
+@media screen and (max-width:767px) {
+  .p-ipclToc__link {
+    height: 2.75rem;
+  }
+}
+
+/* テキストエリア（左側）- 左/上/下ボーダー */
+.p-ipclToc__text {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-block: 1rem;
+  padding-inline: 1.5rem;
+  border-top: 1px solid #cdac66;
+  border-left: 1px solid #cdac66;
+  border-bottom: 1px solid #cdac66;
+  min-width: 0;
+  background-color: #fff;
+}
+
+/* 日本語テキスト */
+.p-ipclToc__ja {
+  font-family: "Zen Old Mincho", serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #222222;
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+@media screen and (max-width:767px) {
+  .p-ipclToc__ja {
+    font-size: 0.875rem;
+  }
+}
+
+/* セパレーターライン */
+.p-ipclToc__sep {
+  display: block;
+  flex: 0 0 1.5rem;
+  width: 1.5rem;
+  align-self: center;
+  border-top: 1px solid #cdac66;
+}
+@media screen and (max-width:767px) {
+  .p-ipclToc__sep {
+    display: none;
+  }
+}
+
+/* 英語サブテキスト */
+.p-ipclToc__en {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 300;
+  color: #cdac66;
+  letter-spacing: 0.4em;
+  line-height: 2.2;
+  text-transform: uppercase;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+@media screen and (max-width:767px) {
+  .p-ipclToc__en {
+    display: none;
+  }
+}
+
+/* 矢印ボタン（右側） */
+.p-ipclToc__arrow {
+  width: 3.625rem;
+  max-width: 100%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(144.78deg, #D9BB7B 44.589%, #8D6F30 107.4%);
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 1rem;
+  color: #fff;
+  line-height: 1;
+}
+
+/* SP: メリット・デメリット（4番目）特殊ケース */
+@media screen and (max-width:767px) {
+  .p-ipclToc__item:nth-child(4) .p-ipclToc__ja {
+    font-size: 0.75rem;
+    line-height: 1.3;
+  }
+}
+
+@media screen and (max-width:767px) {
+  .p-ipclToc__item:nth-child(4) .p-ipclToc__en {
+    white-space: normal;
+    line-height: 1.6;
+  }
+}
+
+.p-ipclToc__link:focus-visible {
+  outline: 2px solid #cdac66;
+  outline-offset: 2px;
+}
+
+/* ========================================
+  p-ipclCta（CTAセクション）
+======================================== */
+.p-ipclCta {
+  position: relative;
+  overflow: hidden;
+  padding-block: 4rem;
+  background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.1) 100%), linear-gradient(168.81deg, rgb(217, 187, 123) 22.483%, rgb(141, 111, 48) 83.943%);
+}
+@media screen and (max-width:767px) {
+  .p-ipclCta {
+    padding-block: 2.5rem;
+    background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.1) 100%), linear-gradient(144.03deg, rgb(217, 187, 123) 22.483%, rgb(141, 111, 48) 83.943%);
+  }
+}
+
+/* ----------------------------------------
+  背景装飾レイヤー
+---------------------------------------- */
+.p-ipclCta__bg {
+  position: absolute;
+  left: 0;
+  top: -25.3125rem;
+  width: 100%;
+  height: 76.6875rem;
+  pointer-events: none;
+}
+@media screen and (max-width:767px) {
+  .p-ipclCta__bg {
+    top: 0;
+    height: 100%;
+  }
+}
+
+/* 背景テクスチャ（mix-blend-mode: multiply, opacity: 15%） */
+.p-ipclCta__bgTexture {
+  position: absolute;
+  inset: 0;
+  background-image: url("../img/cta-bg-texture.webp");
+  background-size: cover;
+  background-position: center;
+  mix-blend-mode: multiply;
+  opacity: 0.15;
+}
+
+/* 楕円37（左側・大） */
+.p-ipclCta__bgE37 {
+  position: absolute;
+  left: -9.8125rem;
+  top: 24.25rem;
+  width: 35.0625rem;
+  height: 35.0625rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  mix-blend-mode: lighten;
+}
+@media screen and (max-width:767px) {
+  .p-ipclCta__bgE37 {
+    left: -6.0625rem;
+    top: auto;
+    bottom: -2.5rem;
+    width: 22.25rem;
+    height: 22.25rem;
+  }
+}
+
+.p-ipclCta__bgE37Inner {
+  width: 24.8125rem;
+  height: 24.8125rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclCta__bgE37Inner {
+    width: 15.75rem;
+    height: 15.75rem;
+  }
+}
+
+/* 楕円41（右側・中） */
+.p-ipclCta__bgE41 {
+  position: absolute;
+  right: 1.8125rem;
+  top: 29.4375rem;
+  width: 15.9375rem;
+  height: 15.9375rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  mix-blend-mode: lighten;
+}
+@media screen and (max-width:767px) {
+  .p-ipclCta__bgE41 {
+    left: auto;
+    right: -1rem;
+    top: -7.5rem;
+    width: 10.125rem;
+    height: 10.125rem;
+  }
+}
+
+.p-ipclCta__bgE41Inner {
+  width: 14.875rem;
+  height: 14.875rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclCta__bgE41Inner {
+    width: 9.4375rem;
+    height: 9.4375rem;
+  }
+}
+
+/* 楕円39 左 */
+.p-ipclCta__bgE39L {
+  position: absolute;
+  left: -4.8125rem;
+  top: 36.625rem;
+  width: 12.5rem;
+  height: 12.5rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclCta__bgE39L {
+    left: -2.875rem;
+    top: auto;
+    bottom: 1.625rem;
+    width: 7.9375rem;
+    height: 7.9375rem;
+  }
+}
+
+/* 楕円39 右（反転） */
+.p-ipclCta__bgE39R {
+  position: absolute;
+  right: -5rem;
+  top: 36.625rem;
+  width: 12.5rem;
+  height: 12.5rem;
+  transform: scaleY(-1);
+}
+@media screen and (max-width:767px) {
+  .p-ipclCta__bgE39R {
+    left: auto;
+    right: -5rem;
+    top: 1.875rem;
+    width: 7.9375rem;
+    height: 7.9375rem;
+  }
+}
+
+/* ----------------------------------------
+  コンテンツ
+---------------------------------------- */
+.p-ipclCta__inner {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 87.5rem;
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+.p-ipclCta__titleBlock {
+  width: 100%;
+  text-align: center;
+}
+
+.p-ipclCta__title {
+  text-align: center;
+}
+@media screen and (max-width:767px) {
+  .p-ipclCta__title {
+    text-align: left;
+  }
+}
+
+.p-ipclCta__title span {
+  display: inline-block;
+  font-family: "Zen Old Mincho", serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+@media screen and (max-width:767px) {
+  .p-ipclCta__title span {
+    font-size: 1.5rem;
+    white-space: normal;
+    text-align: left;
+    padding-left: 0.53125rem;
+  }
+}
+@media screen and (max-width: 374.98px) {
+  .p-ipclCta__title span {
+    font-size: 1.25rem;
+  }
+}
+
+.p-ipclCta__body {
+  width: 100%;
+  text-align: center;
+  margin-top: 2.5rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclCta__body {
+    margin-top: 1rem;
+  }
+}
+
+.p-ipclCta__text {
+  text-align: center;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: 0.15em;
+  line-height: 2;
+  max-width: 58rem;
+  margin-inline: auto;
+}
+@media screen and (max-width:767px) {
+  .p-ipclCta__text {
+    font-size: 0.875rem;
+    font-weight: 300;
+    text-align: left;
+    max-width: 100%;
+  }
+}
+
+.p-ipclCta .c-btn {
+  margin-top: 2.5rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclCta .c-btn {
+    margin-top: 1rem;
+  }
+}
+
+/* ========================================
+  p-ipclAbout（IPCLとは）
+======================================== */
+.p-ipclAbout {
+  background-color: #faf8f4;
+  padding-block: 4rem;
+  overflow: hidden;
+}
+@media screen and (max-width:767px) {
+  .p-ipclAbout {
+    padding-block: 2.5rem;
+  }
+}
+
+.p-ipclAbout__inner {
+  max-width: 75rem;
+  padding-inline: 1.25rem;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+}
+@media screen and (max-width:767px) {
+  .p-ipclAbout__inner {
+    padding-inline: 1.5rem;
+  }
+}
+
+/* コンテンツ行: 左テキスト + 右視覚エリア */
+.p-ipclAbout__body {
+  display: flex;
+  gap: 2.5rem;
+  align-items: flex-start;
+  margin-top: 1.5rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclAbout__body {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+/* テキストエリア */
+.p-ipclAbout__textArea {
+  flex: 1 0 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.p-ipclAbout__lead {
+  font-family: "Zen Old Mincho", serif;
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #a28444;
+  letter-spacing: 0.12em;
+  line-height: 1.8;
+  width: 100%;
+}
+@media screen and (max-width:767px) {
+  .p-ipclAbout__lead {
+    text-align: left;
+    font-size: 1rem;
+  }
+}
+
+.p-ipclAbout__desc {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.p-ipclAbout__descText {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: #333333;
+  letter-spacing: 0.12em;
+  line-height: 2;
+}
+
+/* 視覚装飾エリア（レンズ画像 + ロゴ） */
+.p-ipclAbout__visual {
+  position: relative;
+  width: 17.625rem;
+  align-self: stretch;
+  flex-shrink: 0;
+}
+@media screen and (max-width:767px) {
+  .p-ipclAbout__visual {
+    width: 100%;
+    height: 19.5rem;
+    align-self: auto;
+  }
+}
+
+/* レンズ画像（回転・絶対配置・オーバーフロー） */
+.p-ipclAbout__lensWrap {
+  position: absolute;
+  left: -6.5625rem;
+  top: -10.5625rem;
+  width: 33.5rem;
+  height: 33.125rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 1;
+}
+@media screen and (max-width:767px) {
+  .p-ipclAbout__lensWrap {
+    left: 50%;
+    top: -1.625rem;
+    transform: translateX(-50%);
+    width: 23.8125rem;
+    height: 23.625rem;
+  }
+}
+
+.p-ipclAbout__lensImg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* IPCLロゴ */
+.p-ipclAbout__logo {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 0;
+  width: 3.375rem;
+  height: 3rem;
+  z-index: 2;
+}
+
+.p-ipclAbout__logo img {
+  width: 100%;
+  height: auto;
+}
+
+/* ========================================
+  p-ipclFeatures（IPCLの5つの特徴）
+======================================== */
+.p-ipclFeatures {
+  background-color: #fff;
+  padding-block: 4rem;
+  position: relative;
+  overflow: hidden;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFeatures {
+    padding-block: 2.5rem;
+  }
+}
+
+/* 背景装飾 */
+.p-ipclFeatures__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.p-ipclFeatures__bgImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.p-ipclFeatures__bgImg--pc {
+  display: block;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFeatures__bgImg--pc {
+    display: none;
+  }
+}
+
+.p-ipclFeatures__bgImg--sp {
+  display: none;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFeatures__bgImg--sp {
+    display: block;
+  }
+}
+
+.p-ipclFeatures__inner {
+  max-width: 75rem;
+  padding-inline: 1.25rem;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFeatures__inner {
+    padding-inline: 1.5rem;
+  }
+}
+
+/* カードグリッド */
+.p-ipclFeatures__cards {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5rem;
+}
+
+/* 各行（Row1: 3カラム / Row2: 2カラム中央寄せ） */
+.p-ipclFeatures__row {
+  display: flex;
+  gap: 2.5rem;
+  align-items: flex-start;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFeatures__row {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+
+.p-ipclFeatures__row + .p-ipclFeatures__row {
+  margin-top: 2.5rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFeatures__row + .p-ipclFeatures__row {
+    margin-top: 1.5rem;
+  }
+}
+
+.p-ipclFeatures__row--center {
+  justify-content: center;
+}
+
+/* カードアイテム（バッジ + カード本体の縦スタック） */
+.p-ipclFeatures__item {
+  flex: 1 0 0;
+  min-width: 0;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  isolation: isolate;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFeatures__item {
+    flex: 0 0 100%;
+    width: 100%;
+    align-self: auto;
+  }
+}
+
+/* Row2 の固定幅アイテム（360px） */
+.p-ipclFeatures__item--fixed {
+  flex: 1;
+  max-width: 22.5rem;
+  align-self: stretch;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFeatures__item--fixed {
+    flex: 0 0 100%;
+    max-width: 100%;
+    width: 100%;
+    align-self: auto;
+  }
+}
+
+/* Point バッジ（カードと重なるよう -48px のネガティブマージン） */
+.p-ipclFeatures__badge {
+  display: flex;
+  align-items: center;
+  padding-inline-start: 0.5rem;
+  margin-bottom: -3rem;
+  position: relative;
+  z-index: 2;
+}
+
+.p-ipclFeatures__badgeInner {
+  background-color: #a28444;
+  width: 4.125rem;
+  height: 4.375rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.125rem;
+  padding-block: 0.5rem;
+}
+
+.p-ipclFeatures__badgeLabel {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 400;
+  color: #fff;
+  letter-spacing: 0.4em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.p-ipclFeatures__badgeNum {
+  font-family: "Zen Old Mincho", serif;
+  font-size: 1.75rem;
+  font-weight: 400;
+  color: #fff;
+  line-height: 1;
+}
+
+/* カード本体 */
+.p-ipclFeatures__card {
+  background-color: #fff;
+  box-shadow: 0 0 1.375rem rgba(83, 64, 25, 0.04);
+  border-radius: 0.25rem;
+  padding-block: 4rem 2rem;
+  padding-inline: 1.5rem;
+  flex-grow: 1;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.p-ipclFeatures__cardBody {
+  display: flex;
+  flex-direction: column;
+}
+
+.p-ipclFeatures__cardTitle {
+  font-family: "Zen Old Mincho", serif;
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #a28444;
+  letter-spacing: 0.12em;
+  line-height: 1.3;
+  width: 100%;
+}
+
+.p-ipclFeatures__cardText {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: #333333;
+  letter-spacing: 0.12em;
+  line-height: 2;
+}
+
+/* Point01のみ: cardText が cardBody の直接子要素の場合 */
+.p-ipclFeatures__cardBody > .p-ipclFeatures__cardText {
+  margin-top: 0.75rem;
+}
+
+/* Point02〜05: cardDesc ラッパーの margin-top */
+.p-ipclFeatures__cardDesc {
+  margin-top: 0.75rem;
+}
+
+/* hover */
+@media (any-hover: hover) {
+  .p-ipclFeatures__item:hover .p-ipclFeatures__card {
+    box-shadow: 0 0 1.375rem rgba(83, 64, 25, 0.12);
+    transition: box-shadow 0.2s ease;
+  }
+}
+/* ========================================
+  p-ipclComparison（IPCLとICLの違い）
+======================================== */
+.p-ipclComparison {
+  padding-block: 4rem;
+  position: relative;
+  overflow: hidden;
+}
+@media screen and (max-width:767px) {
+  .p-ipclComparison {
+    padding-block: 2.5rem;
+  }
+}
+
+/* 装飾マーク */
+.p-ipclComparison__markTop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 0;
+  width: 24.6875rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclComparison__markTop {
+    display: none;
+  }
+}
+
+.p-ipclComparison__markBottom {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  pointer-events: none;
+  z-index: 0;
+  width: 16.25rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclComparison__markBottom {
+    display: none;
+  }
+}
+
+/* 背景装飾画像 */
+.p-ipclComparison__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.p-ipclComparison__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* インナー */
+.p-ipclComparison__inner {
+  max-width: 75rem;
+  padding-inline: 1.25rem;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+}
+@media screen and (max-width:767px) {
+  .p-ipclComparison__inner {
+    padding-inline: 1.5rem;
+  }
+}
+
+/* ----------------------------------------
+  見出し（中央揃え・両側ライン）
+---------------------------------------- */
+.p-ipclComparison__heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  text-align: center;
+}
+
+.p-ipclComparison__title {
+  font-family: "Zen Old Mincho", serif;
+  font-size: 2rem;
+  font-weight: 500;
+  background-image: linear-gradient(173.13deg, #D9BB7B 22.483%, #8D6F30 83.943%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+@media screen and (max-width:767px) {
+  .p-ipclComparison__title {
+    font-size: 1.25rem;
+  }
+}
+
+/* ライン−テキスト−ラインの行 */
+.p-ipclComparison__subRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.p-ipclComparison__subLine {
+  display: block;
+  width: 1.5rem;
+  flex-shrink: 0;
+  border-top: 1px solid #807d77;
+}
+
+.p-ipclComparison__subText {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 300;
+  color: #807d77;
+  letter-spacing: 0.4em;
+  line-height: 2.2;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ----------------------------------------
+  本文テキスト
+---------------------------------------- */
+.p-ipclComparison__textBlock {
+  margin-top: 1.5rem;
+  max-width: 58rem;
+  margin-inline: auto;
+}
+
+.p-ipclComparison__text {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: #333333;
+  letter-spacing: 0.18em;
+  line-height: 2;
+  max-width: 58rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclComparison__text {
+    max-width: 100%;
+  }
+}
+
+/* ----------------------------------------
+  比較テーブル
+---------------------------------------- */
+.p-ipclComparison__tableWrap {
+  margin-top: 1.5rem;
+  max-width: 48.75rem;
+  margin-inline: auto;
+}
+@media screen and (max-width:767px) {
+  .p-ipclComparison__tableWrap {
+    max-width: 100%;
+    background-color: #fff;
+    border-radius: 0.625rem;
+    padding-block: 1.5rem;
+    padding-inline: 0.75rem;
+  }
+}
+
+/* PC: テーブルヘッダー行 */
+.p-ipclComparison__tableHeader {
+  display: grid;
+  grid-template-columns: 13.75rem 20rem 15rem;
+}
+@media screen and (max-width: 899px) {
+  .p-ipclComparison__tableHeader {
+    grid-template-columns: 24.4716351502vw 35.595105673vw 26.6963292547vw;
+  }
+}
+@media screen and (max-width:767px) {
+  .p-ipclComparison__tableHeader {
+    display: none;
+  }
+}
+
+.p-ipclComparison__thLabel {
+  height: 15rem;
+}
+
+.p-ipclComparison__thIpcl {
+  height: 12.375rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 2.0625rem;
+}
+
+.p-ipclComparison__thIcl {
+  height: 15rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 7.1875rem;
+}
+
+.p-ipclComparison__thImg {
+  display: block;
+}
+
+.p-ipclComparison__thIpcl .p-ipclComparison__thImg {
+  width: 8.5rem;
+}
+
+.p-ipclComparison__thIcl .p-ipclComparison__thImg {
+  width: 5.6875rem;
+}
+
+.p-ipclComparison__thName {
+  font-family: "Zen Old Mincho", serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  margin-top: 0.625rem;
+}
+
+.p-ipclComparison__thName--ipcl {
+  background-image: linear-gradient(158.06deg, #D9BB7B 22.483%, #8D6F30 83.943%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  font-size: 2rem;
+}
+
+.p-ipclComparison__thName--icl {
+  color: #4b4b4b;
+}
+
+/* PC: テーブルボディ（ラベル + データ列） */
+.p-ipclComparison__tableBody {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+@media screen and (max-width:767px) {
+  .p-ipclComparison__tableBody {
+    gap: 1.5rem;
+  }
+}
+
+.p-ipclComparison__tableBody::before {
+  content: "";
+  position: absolute;
+  top: -2.5rem;
+  left: 13.75rem;
+  width: 20rem;
+  height: calc(100% + 5rem);
+  box-shadow: 0 0 2.75rem rgba(0, 0, 0, 0.04);
+  z-index: 2;
+}
+@media screen and (max-width: 899px) {
+  .p-ipclComparison__tableBody::before {
+    left: 24.4716351502vw;
+    width: 35.595105673vw;
+  }
+}
+@media screen and (max-width:767px) {
+  .p-ipclComparison__tableBody::before {
+    display: none;
+  }
+}
+
+/* 各行 */
+.p-ipclComparison__row {
+  display: grid;
+  grid-template-columns: 13.75rem 20rem 15rem;
+}
+@media screen and (max-width: 899px) {
+  .p-ipclComparison__row {
+    grid-template-columns: 24.4716351502vw 35.595105673vw 26.6963292547vw;
+  }
+}
+@media screen and (max-width:767px) {
+  .p-ipclComparison__row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.625rem;
+  }
+}
+
+/* ペアラッパー（PC: display:contents / SP: flex-row） */
+.p-ipclComparison__rowPair {
+  display: contents;
+}
+@media screen and (max-width:767px) {
+  .p-ipclComparison__rowPair {
+    display: flex;
+    width: 100%;
+    height: 8.3125rem;
+  }
+}
+
+/* ラベルセル */
+.p-ipclComparison__rowLabel {
+  grid-column: 1;
+  height: 5.625rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 1.5rem;
+  background-color: #fff;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: #333333;
+  letter-spacing: 0.12em;
+  line-height: 2;
+  white-space: nowrap;
+  overflow: hidden;
+}
+@media screen and (max-width:767px) {
+  .p-ipclComparison__rowLabel {
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    line-height: 2;
+    height: auto;
+    text-align: center;
+    background-color: transparent;
+    padding-inline: 0;
+  }
+}
+
+/* ラベルセルの区切りボーダー（PC: 上側、初回除く） */
+.p-ipclComparison__row + .p-ipclComparison__row .p-ipclComparison__rowLabel {
+  position: relative;
+}
+
+.p-ipclComparison__row + .p-ipclComparison__row .p-ipclComparison__rowLabel::before {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  content: "";
+  width: calc(100% - 3rem);
+  height: 0.5px;
+  background-color: #dddddd;
+}
+@media screen and (max-width:767px) {
+  .p-ipclComparison__row + .p-ipclComparison__row .p-ipclComparison__rowLabel::before {
+    display: none;
+  }
+}
+
+/* IPCL セル（PC: 中央ゴールドカード） */
+.p-ipclComparison__cellIpcl {
+  grid-column: 2;
+  height: 5.625rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 2.5rem;
+  background-color: #fffefc;
+  border-left: 1px solid #cdac66;
+  border-right: 1px solid #cdac66;
+}
+@media screen and (max-width:767px) {
+  .p-ipclComparison__cellIpcl {
+    flex: 1 0 0;
+    min-width: 0;
+    height: 100%;
+    background-color: #fefaf2;
+    border-left: none;
+    border-right: none;
+    border-radius: 0.25rem 0 0 0.25rem;
+    padding-inline: 0.75rem;
+    padding-block: 0.75rem;
+    flex-direction: column;
+    gap: 0.5rem;
+    justify-content: center;
+    overflow: hidden;
+  }
+}
+
+/* IPCL セル内の SP ラベル */
+.p-ipclComparison__cellTag {
+  font-family: "Zen Old Mincho", serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.p-ipclComparison__cellTag--ipcl {
+  background-image: linear-gradient(158.3deg, #D9BB7B 22.483%, #8D6F30 83.943%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  display: none;
+}
+@media screen and (max-width:767px) {
+  .p-ipclComparison__cellTag--ipcl {
+    display: block;
+  }
+}
+
+.p-ipclComparison__cellTag--icl {
+  font-family: "Zen Old Mincho", serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #4b4b4b;
+  letter-spacing: 0.08em;
+  display: none;
+}
+@media screen and (max-width:767px) {
+  .p-ipclComparison__cellTag--icl {
+    display: block;
+  }
+}
+
+/* IPCL セル内の値ボックス（SP のみ） */
+.p-ipclComparison__cellValueBox {
+  display: none;
+}
+@media screen and (max-width:767px) {
+  .p-ipclComparison__cellValueBox {
+    display: flex;
+    background-color: #fff;
+    box-shadow: 0 0 1.375rem rgba(0, 0, 0, 0.04);
+    border-radius: 0.25rem;
+    padding-block: 1rem;
+    padding-inline: 0.75rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    min-height: 0;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* IPCL セルテキスト（PC のみ） */
+.p-ipclComparison__cellIpclText {
+  font-family: "Zen Old Mincho", serif;
+  font-size: 1.0625rem;
+  font-weight: 500;
+  color: #9B7714;
+  letter-spacing: 0.12em;
+  line-height: 1.5;
+  text-align: center;
+  white-space: nowrap;
+}
+@media screen and (max-width:767px) {
+  .p-ipclComparison__cellIpclText {
+    display: none;
+  }
+}
+
+/* SP では値ボックス内のテキスト */
+.p-ipclComparison__cellIpclBox {
+  font-family: "Zen Old Mincho", serif;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #9B7714;
+  letter-spacing: 0.08em;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.p-ipclComparison__cellIpclBoxSub {
+  display: inline-block;
+  margin-top: 0.25rem;
+  font-size: 0.625rem;
+}
+
+/* ICL セル */
+.p-ipclComparison__cellIcl {
+  grid-column: 3;
+  height: 5.625rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 1.5rem;
+  background-color: #fff;
+}
+@media screen and (max-width:767px) {
+  .p-ipclComparison__cellIcl {
+    flex: 1 0 0;
+    min-width: 0;
+    height: 100%;
+    background-color: #f6f5f5;
+    border-radius: 0 0.25rem 0.25rem 0;
+    padding-inline: 0.75rem;
+    padding-block: 0.75rem;
+    flex-direction: column;
+    gap: 0.5rem;
+    justify-content: center;
+    overflow: hidden;
+  }
+}
+
+.p-ipclComparison__cellIclText {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: #333333;
+  letter-spacing: 0.12em;
+  line-height: 1.5;
+  text-align: center;
+  white-space: nowrap;
+}
+@media screen and (max-width:767px) {
+  .p-ipclComparison__cellIclText {
+    display: none;
+  }
+}
+
+/* SP では値ボックス内のテキスト */
+.p-ipclComparison__cellIclBox {
+  font-family: "Zen Old Mincho", serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: #333333;
+  letter-spacing: 0.08em;
+  line-height: 1.3;
+  text-align: center;
+}
+
+/* ボーダー（PC: ラベル・ICL の上区切り） */
+.p-ipclComparison__row + .p-ipclComparison__row .p-ipclComparison__cellIcl {
+  position: relative;
+}
+
+.p-ipclComparison__row + .p-ipclComparison__row .p-ipclComparison__cellIcl::before {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  content: "";
+  width: calc(100% - 3rem);
+  height: 0.5px;
+  background-color: #dddddd;
+}
+@media screen and (max-width:767px) {
+  .p-ipclComparison__row + .p-ipclComparison__row .p-ipclComparison__cellIcl::before {
+    display: none;
+  }
+}
+
+/* IPCL ボーダー（区切り用） */
+.p-ipclComparison__row + .p-ipclComparison__row .p-ipclComparison__cellIpcl {
+  position: relative;
+}
+
+.p-ipclComparison__row + .p-ipclComparison__row .p-ipclComparison__cellIpcl::before {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  content: "";
+  width: calc(100% - 3rem);
+  height: 0.5px;
+  background-color: #dddddd;
+}
+@media screen and (max-width:767px) {
+  .p-ipclComparison__row + .p-ipclComparison__row .p-ipclComparison__cellIpcl::before {
+    display: none;
+  }
+}
+
+/* ラベル列: 白背景の角丸（左側）*/
+.p-ipclComparison__row:first-child .p-ipclComparison__rowLabel {
+  border-top-left-radius: 0.25rem;
+}
+
+.p-ipclComparison__row:last-child .p-ipclComparison__rowLabel {
+  border-bottom-left-radius: 0.25rem;
+  border-bottom-right-radius: 0;
+}
+
+/* ICL 列: 白背景の角丸（右側） */
+.p-ipclComparison__row:first-child .p-ipclComparison__cellIcl {
+  border-top-right-radius: 0.25rem;
+}
+
+.p-ipclComparison__row:last-child .p-ipclComparison__cellIcl {
+  border-bottom-right-radius: 0.25rem;
+}
+
+/* IPCL カード: 上部・下部ボーダー + 角丸 */
+.p-ipclComparison__row:first-child .p-ipclComparison__cellIpcl {
+  border-top: 1px solid #cdac66;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclComparison__row:first-child .p-ipclComparison__cellIpcl {
+    border-top: none;
+  }
+}
+
+.p-ipclComparison__row:last-child .p-ipclComparison__cellIpcl {
+  border-bottom: 1px solid #cdac66;
+  border-bottom-left-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclComparison__row:last-child .p-ipclComparison__cellIpcl {
+    border-bottom: none;
+  }
+}
+
+.p-ipclComparison__cellIpcl--top {
+  margin-top: -2.5rem;
+  height: calc(100% + 2.5rem);
+  padding-top: 1.5rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclComparison__cellIpcl--top {
+    margin-top: 0;
+    height: 100%;
+    padding-top: 0.75rem;
+  }
+}
+
+.p-ipclComparison__cellIpcl--bottom {
+  margin-bottom: -2.5rem;
+  height: calc(100% + 2.5rem);
+  padding-bottom: 2.625rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclComparison__cellIpcl--bottom {
+    margin-bottom: 0;
+    height: 100%;
+    padding-bottom: 0.75rem;
+  }
+}
+
+/* ----------------------------------------
+  下部テキスト
+---------------------------------------- */
+.p-ipclComparison__textBottom {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: #333333;
+  letter-spacing: 0.18em;
+  line-height: 2;
+  margin-top: 3.75rem;
+  max-width: 58rem;
+  margin-inline: auto;
+}
+@media screen and (max-width:767px) {
+  .p-ipclComparison__textBottom {
+    max-width: 100%;
+    margin-top: 1.375rem;
+    line-height: 1.7;
+  }
+}
+
+/* ========================================
+  p-ipclMerit（IPCLのメリット・デメリット）
+======================================== */
+.p-ipclMerit {
+  background-color: #fff;
+  /* padding-bottom禁止のため padding-block(64) + padding-top(82) で上書き */
+  padding-block: 4rem;
+  padding-top: 5.125rem;
+  position: relative;
+  overflow: hidden;
+}
+@media screen and (max-width:767px) {
+  .p-ipclMerit {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+}
+
+/* 装飾: 右側の楕円 */
+.p-ipclMerit__ellipse {
+  position: absolute;
+  right: -6.625rem;
+  top: 60.8125rem;
+  width: 18.125rem;
+  height: 18.125rem;
+  pointer-events: none;
+  z-index: 0;
+}
+@media screen and (max-width:767px) {
+  .p-ipclMerit__ellipse {
+    display: none;
+  }
+}
+
+.p-ipclMerit__ellipse img {
+  width: 100%;
+  height: auto;
+}
+
+/* インナー */
+.p-ipclMerit__inner {
+  max-width: 75rem;
+  padding-inline: 1.25rem;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+}
+@media screen and (max-width:767px) {
+  .p-ipclMerit__inner {
+    padding-inline: 1.5rem;
+  }
+}
+
+/* ----------------------------------------
+  セクションタイトル（c-sectionTitle を流用）
+---------------------------------------- */
+/* ----------------------------------------
+  本文テキスト
+---------------------------------------- */
+.p-ipclMerit__intro {
+  margin-top: 1.5rem;
+}
+
+.p-ipclMerit__introText {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: #333333;
+  letter-spacing: 0.18em;
+  line-height: 2;
+}
+
+/* ----------------------------------------
+  2カラム（メリット / デメリット）
+---------------------------------------- */
+.p-ipclMerit__columns {
+  display: flex;
+  gap: 2.5rem;
+  align-items: flex-start;
+  margin-top: 4.375rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclMerit__columns {
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+}
+
+/* 各列（メリット / デメリット共通） */
+.p-ipclMerit__col {
+  flex: 1 0 0;
+  min-width: 0;
+  border-radius: 0.5rem;
+  /* padding-bottom禁止のため padding-block(24) + padding-top(32) で上書き */
+  padding-block: 1.5rem;
+  padding-top: 2rem;
+  padding-inline: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+@media screen and (max-width:767px) {
+  .p-ipclMerit__col {
+    width: 100%;
+    /* padding-bottom禁止のため padding-block(16) + padding-top(24) で上書き */
+    padding-block: 1rem;
+    padding-top: 1.5rem;
+    padding-inline: 1rem;
+  }
+}
+
+.p-ipclMerit__col--merit {
+  background-color: #fefaf2;
+}
+
+.p-ipclMerit__col--demerit {
+  background-color: #f6f5f5;
+}
+
+/* 列ヘッダー（タイトル + サブライン） */
+.p-ipclMerit__colHead {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.p-ipclMerit__colTitle {
+  font-family: "Zen Old Mincho", serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+
+.p-ipclMerit__colTitle--merit {
+  color: #a28444;
+}
+
+.p-ipclMerit__colTitle--demerit {
+  color: #333333;
+}
+
+/* サブライン行（line - テキスト - line） */
+.p-ipclMerit__colSubRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.p-ipclMerit__colSubLine {
+  display: block;
+  width: 1.5rem;
+  flex-shrink: 0;
+  border-top: 1px solid #807d77;
+}
+
+.p-ipclMerit__colSubText {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 300;
+  color: #807d77;
+  letter-spacing: 0.4em;
+  line-height: 2.2;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* カードリスト */
+.p-ipclMerit__cards {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclMerit__cards {
+    margin-top: 1rem;
+  }
+}
+
+.p-ipclMerit__card {
+  background-color: #fff;
+  border-radius: 0.25rem;
+  padding-block: 2rem;
+  padding-inline: 1.5rem;
+  box-shadow: 0 0 1.375rem rgba(83, 64, 25, 0.04);
+}
+@media screen and (max-width:767px) {
+  .p-ipclMerit__card {
+    padding-block: 1.5rem;
+    padding-inline: 1.25rem;
+  }
+}
+
+.p-ipclMerit__card--demerit {
+  box-shadow: 0 0 1.375rem rgba(0, 0, 0, 0.04);
+}
+
+.p-ipclMerit__card + .p-ipclMerit__card {
+  margin-top: 1.5rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclMerit__card + .p-ipclMerit__card {
+    margin-top: 1rem;
+  }
+}
+
+/* ----------------------------------------
+  アコーディオン（SP専用）
+---------------------------------------- */
+/* トグルボタン: PCはブロック要素として機能 */
+.p-ipclMerit__cardToggle {
+  display: block;
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 0;
+  text-align: left;
+  cursor: default;
+}
+@media screen and (max-width:767px) {
+  .p-ipclMerit__cardToggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    cursor: pointer;
+  }
+}
+
+/* シェブロンアイコン（SP限定） */
+.p-ipclMerit__cardChevron {
+  display: none;
+}
+@media screen and (max-width:767px) {
+  .p-ipclMerit__cardChevron {
+    display: block;
+    flex-shrink: 0;
+    width: 0.5625rem;
+    height: 0.375rem;
+    border-left: 0.28125rem solid transparent;
+    border-right: 0.28125rem solid transparent;
+    border-top: 0.375rem solid #a28444;
+    transition: transform 0.3s;
+  }
+}
+
+@media screen and (max-width:767px) {
+  .p-ipclMerit__col--demerit .p-ipclMerit__cardChevron {
+    border-top-color: #4b4b4b;
+  }
+}
+
+/* 展開時はシェブロンを上向きに反転 */
+@media screen and (max-width:767px) {
+  .p-ipclMerit__card.is-open .p-ipclMerit__cardChevron {
+    transform: rotate(180deg);
+  }
+}
+
+/* セパレーターライン（PC非表示 / SP展開時のみ表示） */
+.p-ipclMerit__cardSep {
+  display: none;
+}
+
+@media screen and (max-width:767px) {
+  .p-ipclMerit__card.is-open .p-ipclMerit__cardSep {
+    display: block;
+    height: 0.0625rem;
+    background-color: #dddddd;
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+}
+
+/* カード本文領域: PCは常時表示 / SPは折りたたみ */
+.p-ipclMerit__cardBody {
+  margin-top: 0.75rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclMerit__cardBody {
+    display: none;
+    margin-top: 0;
+  }
+}
+
+@media screen and (max-width:767px) {
+  .p-ipclMerit__card.is-open .p-ipclMerit__cardBody {
+    display: block;
+  }
+}
+
+/* カードタイトル */
+.p-ipclMerit__cardTitle {
+  font-family: "Zen Old Mincho", serif;
+  font-size: 1.125rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  line-height: 1.8;
+}
+@media screen and (max-width:767px) {
+  .p-ipclMerit__cardTitle {
+    font-size: 0.875rem;
+    letter-spacing: 0.12em;
+  }
+}
+
+.p-ipclMerit__cardTitle--merit {
+  color: #a28444;
+}
+
+.p-ipclMerit__cardTitle--demerit {
+  color: #4b4b4b;
+}
+
+/* カード本文 */
+.p-ipclMerit__cardDesc {
+  margin-top: 0.75rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclMerit__cardDesc {
+    margin-top: 0;
+  }
+}
+
+.p-ipclMerit__cardText {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: #333333;
+  letter-spacing: 0.1em;
+  line-height: 1.8;
+}
+@media screen and (max-width:767px) {
+  .p-ipclMerit__cardText {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+  }
+}
+
+/* ========================================
+  p-ipclRecord（IPCLの世界での使用実績について）
+======================================== */
+.p-ipclRecord {
+  position: relative;
+  padding-block: 4rem;
+  min-height: 49.8125rem;
+  overflow: hidden;
+}
+@media screen and (max-width:767px) {
+  .p-ipclRecord {
+    padding-block: 3rem;
+    min-height: 60.375rem;
+  }
+}
+
+/* 背景画像（PC/SP切り替え） */
+.p-ipclRecord__bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.p-ipclRecord__bgImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.p-ipclRecord__bgImg--pc {
+  display: block;
+}
+@media screen and (max-width:767px) {
+  .p-ipclRecord__bgImg--pc {
+    display: none;
+  }
+}
+
+.p-ipclRecord__bgImg--sp {
+  display: none;
+}
+@media screen and (max-width:767px) {
+  .p-ipclRecord__bgImg--sp {
+    display: block;
+  }
+}
+
+/* インナー */
+.p-ipclRecord__inner {
+  max-width: 75rem;
+  padding-inline: 1.25rem;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+@media screen and (max-width:767px) {
+  .p-ipclRecord__inner {
+    padding-inline: 1.5rem;
+  }
+}
+
+/* ----------------------------------------
+  ヘッダーブロック
+---------------------------------------- */
+.p-ipclRecord__head {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  padding-right: 14.375rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclRecord__head {
+    margin-left: -0.75rem;
+    width: calc(100% + 1.5rem);
+    padding-right: 0;
+  }
+}
+
+.p-ipclRecord__title {
+  font-family: "Zen Old Mincho", serif;
+  font-size: 2rem;
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.4);
+  text-underline-offset: 0.375rem;
+  white-space: nowrap;
+}
+@media screen and (max-width:767px) {
+  .p-ipclRecord__title {
+    font-size: 1.25rem;
+    letter-spacing: 0.08em;
+    white-space: normal;
+    text-align: center;
+  }
+}
+
+.p-ipclRecord__subRow {
+  position: absolute;
+  right: 0;
+  bottom: -0.125rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclRecord__subRow {
+    position: static;
+    align-self: flex-end;
+    margin-right: 0.75rem;
+  }
+}
+
+.p-ipclRecord__subLine {
+  display: block;
+  width: 1.5rem;
+  flex-shrink: 0;
+  border-top: 1px solid #fff;
+}
+
+.p-ipclRecord__subText {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 300;
+  color: #fff;
+  letter-spacing: 0.4em;
+  line-height: 2.2;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ----------------------------------------
+  コンテンツブロック
+---------------------------------------- */
+.p-ipclRecord__content {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  align-items: center;
+  width: 100%;
+  max-width: 72.5rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclRecord__content {
+    gap: 2rem;
+  }
+}
+
+.p-ipclRecord__lead {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #fff;
+  letter-spacing: 0.18em;
+  line-height: 1.8;
+  text-align: center;
+  max-width: 58rem;
+  position: relative;
+  z-index: 1;
+}
+@media screen and (max-width:767px) {
+  .p-ipclRecord__lead {
+    text-align: left;
+    max-width: 20.1875rem;
+    margin-inline: auto;
+  }
+}
+@media screen and (max-width: 374px) {
+  .p-ipclRecord__lead {
+    margin-left: -0.25rem;
+    width: calc(100% + 0.5rem);
+  }
+}
+
+.p-ipclRecord__lead::after {
+  position: absolute;
+  bottom: -2px;
+  left: -0.875rem;
+  content: "";
+  transform: skewX(-20deg);
+  width: calc(100% + 0.4375rem);
+  height: 1.25rem;
+  background: linear-gradient(to right, rgb(217, 187, 123) 0%, rgba(141, 111, 48, 0.6) 100%);
+  opacity: 0.5;
+  z-index: -1;
+}
+@media screen and (max-width:767px) {
+  .p-ipclRecord__lead::after {
+    display: none;
+  }
+}
+
+@media screen and (max-width:767px) {
+  .p-ipclRecord__lead span {
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: min(4.2666666667vw, 16px);
+    font-weight: 400;
+    color: #fff;
+    letter-spacing: 0.18em;
+    line-height: 2;
+    max-width: 58rem;
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.p-ipclRecord__lead span::after {
+  position: absolute;
+  bottom: -2px;
+  left: -0.25rem;
+  content: "";
+  transform: skewX(-20deg);
+  width: calc(100% + 0.25rem);
+  height: 0.75rem;
+  background: linear-gradient(to right, rgb(217, 187, 123) 0%, rgba(141, 111, 48, 0.6) 100%);
+  opacity: 0.5;
+  z-index: -1;
+}
+
+/* ----------------------------------------
+  実績カード群
+---------------------------------------- */
+.p-ipclRecord__cards {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+@media screen and (max-width: 1199px) {
+  .p-ipclRecord__cards {
+    flex-wrap: wrap;
+    max-width: 35.625rem;
+    row-gap: 1.25rem;
+  }
+}
+@media screen and (max-width:767px) {
+  .p-ipclRecord__cards {
+    flex-wrap: wrap;
+    gap: 1.25rem 0.6875rem;
+    justify-content: center;
+    max-width: 20.4375rem;
+  }
+}
+
+.p-ipclRecord__card {
+  width: 17.1875rem;
+  height: 16.75rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media screen and (max-width:767px) {
+  .p-ipclRecord__card {
+    width: 9.8125rem;
+    height: 9.5625rem;
+  }
+}
+
+/* 月桂冠背景 */
+.p-ipclRecord__cardBg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+}
+
+/* カード内テキストコンテンツ */
+.p-ipclRecord__cardContent {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.p-ipclRecord__cardNum {
+  font-family: "Zen Old Mincho", serif;
+  font-weight: 400;
+  color: #fff;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+}
+
+/* カード1,2: 数値 56px / カード3,4: 48px */
+.p-ipclRecord__card:nth-child(1) .p-ipclRecord__cardNum,
+.p-ipclRecord__card:nth-child(2) .p-ipclRecord__cardNum {
+  font-size: 3.5rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclRecord__card:nth-child(1) .p-ipclRecord__cardNum,
+  .p-ipclRecord__card:nth-child(2) .p-ipclRecord__cardNum {
+    font-size: 2rem;
+  }
+}
+
+.p-ipclRecord__card:nth-child(3) .p-ipclRecord__cardNum,
+.p-ipclRecord__card:nth-child(4) .p-ipclRecord__cardNum {
+  font-size: 3rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclRecord__card:nth-child(3) .p-ipclRecord__cardNum,
+  .p-ipclRecord__card:nth-child(4) .p-ipclRecord__cardNum {
+    font-size: 1.6875rem;
+  }
+}
+
+.p-ipclRecord__cardUnit {
+  font-family: "Zen Old Mincho", serif;
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+}
+
+/* カード1: 単位 32px / カード2-4: 24px */
+.p-ipclRecord__card:nth-child(1) .p-ipclRecord__cardUnit {
+  font-size: 2rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclRecord__card:nth-child(1) .p-ipclRecord__cardUnit {
+    font-size: 1.125rem;
+  }
+}
+
+.p-ipclRecord__card:nth-child(2) .p-ipclRecord__cardUnit,
+.p-ipclRecord__card:nth-child(3) .p-ipclRecord__cardUnit,
+.p-ipclRecord__card:nth-child(4) .p-ipclRecord__cardUnit {
+  font-size: 1.5rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclRecord__card:nth-child(2) .p-ipclRecord__cardUnit,
+  .p-ipclRecord__card:nth-child(3) .p-ipclRecord__cardUnit,
+  .p-ipclRecord__card:nth-child(4) .p-ipclRecord__cardUnit {
+    font-size: 0.875rem;
+  }
+}
+
+.p-ipclRecord__cardLabel {
+  display: inline-block;
+  margin-top: 0.3125rem;
+  font-family: "Zen Old Mincho", serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: 0.04em;
+  line-height: 1.6;
+  text-align: center;
+}
+@media screen and (max-width:767px) {
+  .p-ipclRecord__cardLabel {
+    font-size: 0.5625rem;
+  }
+}
+
+/* ----------------------------------------
+  本文・参考リンク
+---------------------------------------- */
+.p-ipclRecord__body {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: #fff;
+  letter-spacing: 0.18em;
+  line-height: 2;
+  max-width: 58rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclRecord__body {
+    max-width: 100%;
+  }
+}
+
+.p-ipclRecord__links {
+  max-width: 58rem;
+  width: calc(100% - 2.5rem);
+  display: flex;
+  gap: 1.5rem;
+  justify-content: flex-end;
+  position: absolute;
+  right: max(1.25rem, calc((100vw - 72.5rem) / 2));
+  bottom: 3rem;
+  z-index: 2;
+  pointer-events: auto;
+}
+@media screen and (max-width:767px) {
+  .p-ipclRecord__links {
+    width: auto;
+    right: 1.5rem;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+.p-ipclRecord__link {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: #fff;
+  letter-spacing: 0.12em;
+  line-height: 1.8;
+}
+.p-ipclRecord__link a {
+  color: inherit;
+}
+@media screen and (max-width:767px) {
+  .p-ipclRecord__link {
+    font-size: 0.625rem;
+    letter-spacing: 0.08em;
+    word-break: break-all;
+  }
+}
+
+/* ========================================
+  p-ipclCandidates（IPCLとICL どちらが向いているか）
+======================================== */
+.p-ipclCandidates {
+  background-color: #fff;
+  padding-block: 4rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclCandidates {
+    padding-block: 2.5rem;
+    padding-inline: 1.5rem;
+  }
+}
+
+/* インナー */
+.p-ipclCandidates__inner {
+  max-width: 75rem;
+  padding-inline: 1.25rem;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclCandidates__inner {
+    padding-inline: 0;
+  }
+}
+
+/* ----------------------------------------
+  見出しブロック（PC: インライン / SP: 縦並び）
+---------------------------------------- */
+.p-ipclCandidates__head {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  width: 100%;
+}
+@media (max-width: 999px) {
+  .p-ipclCandidates__head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.125rem;
+  }
+}
+
+.p-ipclCandidates__title {
+  font-family: "Zen Old Mincho", serif;
+  font-size: 2rem;
+  font-weight: 500;
+  background-image: linear-gradient(176.6deg, #D9BB7B 22.483%, #8D6F30 83.943%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+@media screen and (max-width:767px) {
+  .p-ipclCandidates__title {
+    font-size: 1.25rem;
+    letter-spacing: 0.08em;
+    white-space: normal;
+    line-height: 1.4;
+  }
+}
+
+/* SP: ダッシュ非表示 / 改行表示 */
+@media screen and (max-width:767px) {
+  .p-ipclCandidates__titleSep {
+    display: none;
+  }
+}
+
+.p-ipclCandidates__titleBr {
+  display: none;
+}
+@media screen and (max-width:767px) {
+  .p-ipclCandidates__titleBr {
+    display: block;
+  }
+}
+
+.p-ipclCandidates__subRow {
+  display: flex;
+  flex: 1 0 0;
+  min-width: 0;
+  gap: 0.5rem;
+  align-items: center;
+}
+@media screen and (max-width:767px) {
+  .p-ipclCandidates__subRow {
+    justify-content: flex-end;
+    width: 100%;
+    flex: none;
+  }
+}
+
+.p-ipclCandidates__subLine {
+  display: block;
+  width: 1.5rem;
+  flex-shrink: 0;
+  border-top: 1px solid #807d77;
+}
+
+.p-ipclCandidates__subText {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 300;
+  color: #807d77;
+  letter-spacing: 0.4em;
+  line-height: 2.2;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* リードテキスト */
+.p-ipclCandidates__lead {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: #333333;
+  letter-spacing: 0.18em;
+  line-height: 2;
+}
+
+/* ----------------------------------------
+  カードエリア外側ラッパー
+---------------------------------------- */
+.p-ipclCandidates__cardArea {
+  padding-top: 1rem;
+  width: 100%;
+}
+
+/* カードラップ（グラデーション背景 + overflow clip） */
+.p-ipclCandidates__cardWrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  padding-block: 3.5rem;
+  padding-inline: 3.5rem;
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.5) 100%), linear-gradient(90deg, #D9BB7B 5%, #abb8c3 95%);
+  z-index: 1;
+}
+@media screen and (max-width:767px) {
+  .p-ipclCandidates__cardWrap {
+    padding-block: 2.5rem;
+    padding-inline: 1.25rem;
+    background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.5) 100%), linear-gradient(180deg, #D9BB7B 5%, #abb8c3 95%);
+  }
+}
+
+.p-ipclCandidates__cardWrap::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+  width: auto;
+  height: 100%;
+  aspect-ratio: 1014/910;
+  background: url(../img/candidates-face-left.webp) no-repeat;
+  background-size: contain;
+  z-index: -1;
+}
+@media screen and (max-width:767px) {
+  .p-ipclCandidates__cardWrap::before {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 654/870;
+    background: url(../img/candidates-face-left-sp.webp) no-repeat;
+    background-size: contain;
+  }
+}
+
+.p-ipclCandidates__cardWrap::after {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  content: "";
+  width: auto;
+  height: 100%;
+  aspect-ratio: 992/890;
+  background: url(../img/candidates-face-right.webp) no-repeat;
+  background-size: contain;
+  z-index: -1;
+}
+@media screen and (max-width:767px) {
+  .p-ipclCandidates__cardWrap::after {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 654/730;
+    background: url(../img/candidates-face-right-sp.webp) no-repeat;
+    background-size: contain;
+  }
+}
+
+/* カード群（PC: flex横並び / SP: flex縦並び） */
+.p-ipclCandidates__cards {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 2.5rem;
+  align-items: flex-start;
+  max-width: 58rem;
+  margin-inline: auto;
+}
+@media screen and (max-width:767px) {
+  .p-ipclCandidates__cards {
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 100%;
+  }
+}
+
+/* カード個別 */
+.p-ipclCandidates__card {
+  flex: 1 0 0;
+  min-width: 0;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 0.25rem;
+  padding-block: 2rem;
+  padding-inline: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  box-shadow: 0 0 2.75rem rgba(0, 0, 0, 0.04);
+  align-self: stretch;
+}
+@media screen and (max-width:767px) {
+  .p-ipclCandidates__card {
+    width: 100%;
+    padding-block: 1rem;
+    padding-inline: 1rem;
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+}
+
+/* カードタイトル */
+.p-ipclCandidates__cardTitle {
+  font-family: "Zen Old Mincho", serif;
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #a28444;
+  letter-spacing: 0.12em;
+  line-height: 1.8;
+  width: 100%;
+}
+
+.p-ipclCandidates__card--icl .p-ipclCandidates__cardTitle {
+  color: #7c858d;
+}
+
+/* リスト */
+.p-ipclCandidates__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.p-ipclCandidates__listItem {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+@media screen and (max-width:767px) {
+  .p-ipclCandidates__listItem {
+    align-items: flex-start;
+  }
+}
+
+.p-ipclCandidates__icon {
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  display: block;
+}
+
+.p-ipclCandidates__listText {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: #333333;
+  letter-spacing: 0.1em;
+  line-height: 1.8;
+  flex: 1 0 0;
+  min-width: 0;
+}
+@media screen and (max-width:767px) {
+  .p-ipclCandidates__listText {
+    letter-spacing: 0.06em;
+  }
+}
+
+/* カードフッター */
+.p-ipclCandidates__cardFooter {
+  width: fit-content;
+  max-width: 100%;
+  margin-top: auto;
+  border-bottom: 1px solid #c5b48f;
+  padding-block: 0.5rem;
+  padding-inline: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.p-ipclCandidates__card--icl .p-ipclCandidates__cardFooter {
+  border-bottom-color: #9fa5ab;
+}
+
+.p-ipclCandidates__footerText {
+  font-family: "Zen Old Mincho", serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #a28444;
+  letter-spacing: 0.06em;
+  line-height: 1.8;
+  display: inline-block;
+  transform: skewX(-10deg);
+}
+@media screen and (max-width:767px) {
+  .p-ipclCandidates__footerText {
+    letter-spacing: 0;
+  }
+}
+
+.p-ipclCandidates__card--icl .p-ipclCandidates__footerText {
+  color: #7c858d;
+  transform: skewX(-15deg);
+}
+
+/* ボトムテキスト */
+.p-ipclCandidates__body {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: #333333;
+  letter-spacing: 0.18em;
+  line-height: 2;
+}
+
+/* ========================================
+  p-ipclClinicFeatures（当院のIPCL手術の特徴）
+======================================== */
+.p-ipclClinicFeatures {
+  background-color: #fff;
+  padding-block: 4rem;
+  position: relative;
+  overflow: hidden;
+}
+@media screen and (max-width:767px) {
+  .p-ipclClinicFeatures {
+    padding-block: 2.5rem;
+    padding-inline: 1.5rem;
+  }
+}
+
+/* 背景SVG装飾 */
+.p-ipclClinicFeatures__svgBg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 77%;
+  pointer-events: none;
+}
+@media screen and (max-width:767px) {
+  .p-ipclClinicFeatures__svgBg {
+    height: 107%;
+    width: 230%;
+    left: -45%;
+  }
+}
+
+.p-ipclClinicFeatures__svgBgImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+.p-ipclClinicFeatures__svgBgImg--pc {
+  display: block;
+}
+@media screen and (max-width:767px) {
+  .p-ipclClinicFeatures__svgBgImg--pc {
+    display: none;
+  }
+}
+
+.p-ipclClinicFeatures__svgBgImg--sp {
+  display: none;
+}
+@media screen and (max-width:767px) {
+  .p-ipclClinicFeatures__svgBgImg--sp {
+    display: block;
+  }
+}
+
+/* インナー */
+.p-ipclClinicFeatures__inner {
+  max-width: 75rem;
+  padding-inline: 1.25rem;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+@media screen and (max-width:767px) {
+  .p-ipclClinicFeatures__inner {
+    padding-inline: 0;
+  }
+}
+
+/* ----------------------------------------
+  見出し
+---------------------------------------- */
+.p-ipclClinicFeatures__head {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.p-ipclClinicFeatures__title {
+  font-family: "Zen Old Mincho", serif;
+  font-size: 2rem;
+  font-weight: 500;
+  background-image: linear-gradient(174.5deg, #D9BB7B 22.483%, #8D6F30 83.943%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+@media screen and (max-width:767px) {
+  .p-ipclClinicFeatures__title {
+    font-size: 1.25rem;
+  }
+}
+
+.p-ipclClinicFeatures__subRow {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.p-ipclClinicFeatures__subLine {
+  display: block;
+  width: 1.5rem;
+  height: 0;
+  border-top: 1px solid #807d77;
+}
+
+.p-ipclClinicFeatures__subText {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 300;
+  color: #807d77;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  line-height: 2.2;
+}
+
+/* ----------------------------------------
+  リード文
+---------------------------------------- */
+.p-ipclClinicFeatures__lead {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: #333333;
+  text-align: center;
+  letter-spacing: 0.12em;
+  line-height: 2;
+  max-width: 58rem;
+  margin-inline: auto;
+}
+@media screen and (max-width:767px) {
+  .p-ipclClinicFeatures__lead {
+    max-width: 100%;
+  }
+}
+
+.p-ipclClinicFeatures__underline {
+  text-decoration: underline;
+}
+
+/* ========================================
+  Feature List
+======================================== */
+.p-ipclClinicFeatures__list {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+  padding-top: 1rem;
+  width: 100%;
+}
+@media screen and (max-width:767px) {
+  .p-ipclClinicFeatures__list {
+    gap: 2.5rem;
+    max-width: 26.25rem;
+    margin-inline: auto;
+  }
+}
+
+/* Feature Item（PC: 高さ固定 / SP: 高さauto・カードはrelative） */
+.p-ipclClinicFeatures__item {
+  position: relative;
+  height: 18.5625rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclClinicFeatures__item {
+    height: auto;
+  }
+}
+
+/* F1のみ高さ386px */
+.p-ipclClinicFeatures__item--tall {
+  height: 24.125rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclClinicFeatures__item--tall {
+    height: auto;
+  }
+}
+
+/* F3 ダークカード */
+@media screen and (max-width:767px) {
+  .p-ipclClinicFeatures__item--dark {
+    height: auto;
+  }
+}
+
+/* ========================================
+  写真フレーム
+======================================== */
+.p-ipclClinicFeatures__photo {
+  position: absolute;
+  top: 0;
+  width: 27.75rem;
+  height: 18.4375rem;
+  overflow: hidden;
+  border-radius: 0.25rem;
+  box-shadow: 0 0 2.75rem rgba(0, 0, 0, 0.04);
+}
+@media screen and (max-width:767px) {
+  .p-ipclClinicFeatures__photo {
+    left: -1.5rem;
+    right: auto;
+    width: calc(100% + 3rem);
+    height: auto;
+    border-radius: 0;
+  }
+}
+
+.p-ipclClinicFeatures__photo--left {
+  left: 0;
+}
+@media screen and (max-width:767px) {
+  .p-ipclClinicFeatures__photo--left {
+    left: -1.5rem;
+  }
+}
+
+.p-ipclClinicFeatures__photo--right {
+  right: 0;
+}
+@media screen and (max-width:767px) {
+  .p-ipclClinicFeatures__photo--right {
+    right: auto;
+  }
+}
+
+.p-ipclClinicFeatures__photoImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.p-ipclClinicFeatures__photoImg--pc {
+  display: block;
+}
+@media screen and (max-width:767px) {
+  .p-ipclClinicFeatures__photoImg--pc {
+    display: none;
+  }
+}
+
+.p-ipclClinicFeatures__photoImg--sp {
+  display: none;
+}
+@media screen and (max-width:767px) {
+  .p-ipclClinicFeatures__photoImg--sp {
+    display: block;
+  }
+}
+
+/* ========================================
+  テキストカード
+======================================== */
+.p-ipclClinicFeatures__card {
+  position: absolute;
+  top: 2.5rem;
+  width: min(66.6666666667vw, 800px);
+  background-color: #fff;
+  box-shadow: 0 0 1.375rem rgba(0, 0, 0, 0.04);
+  border-radius: 0.25rem;
+  padding-block: 2rem;
+  padding-inline: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.0625rem;
+  /* SP: absolute解除 → relative + margin-topで写真とオーバーラップ */
+}
+@media screen and (max-width:767px) {
+  .p-ipclClinicFeatures__card {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    width: 100%;
+    margin-top: 8.5625rem;
+    padding: 2rem;
+  }
+}
+
+.p-ipclClinicFeatures__card--left {
+  left: 0;
+}
+
+.p-ipclClinicFeatures__card--right {
+  right: 0;
+}
+
+/* F5のみ幅760px */
+.p-ipclClinicFeatures__card--narrow {
+  width: min(63.3333333333vw, 760px);
+}
+@media screen and (max-width:767px) {
+  .p-ipclClinicFeatures__card--narrow {
+    width: 100%;
+  }
+}
+
+/* カードタイトル */
+.p-ipclClinicFeatures__cardTitle {
+  font-family: "Zen Old Mincho", serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #a28444;
+  letter-spacing: 0.12em;
+  line-height: 1.8;
+}
+@media screen and (max-width:767px) {
+  .p-ipclClinicFeatures__cardTitle {
+    font-size: 1.125rem;
+    line-height: 1.6;
+  }
+}
+
+/* カード本文 */
+.p-ipclClinicFeatures__cardBody {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: #333333;
+  letter-spacing: 0.12em;
+  line-height: 2;
+}
+@media screen and (max-width:767px) {
+  .p-ipclClinicFeatures__cardBody {
+    line-height: 1.8;
+  }
+}
+
+.p-ipclClinicFeatures__cardBody p {
+  margin-bottom: 0;
+}
+
+/* ----------------------------------------
+  ボタン（F1のみ）
+---------------------------------------- */
+.p-ipclClinicFeatures__cardBtnWrap {
+  padding-top: 0.5rem;
+}
+
+.p-ipclClinicFeatures__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 17.5rem;
+  height: 4rem;
+  background-image: linear-gradient(112deg, #D9BB7B 1.992%, #8D6F30 96.948%);
+  border: 0.3px solid #fff;
+  border-radius: 0.08125rem;
+  padding-block: 1rem;
+  padding-inline: 1.5rem 2rem;
+  position: relative;
+  text-decoration: none;
+}
+@media screen and (max-width:767px) {
+  .p-ipclClinicFeatures__btn {
+    width: 100%;
+  }
+}
+
+.p-ipclClinicFeatures__btnText {
+  font-family: "Zen Old Mincho", serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.p-ipclClinicFeatures__btnArrow {
+  position: absolute;
+  right: 2.0625rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1.5625rem;
+  height: 2.1875rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclClinicFeatures__btnArrow {
+    right: min(8.8vw, 33px);
+    width: min(6.6666666667vw, 25px);
+    height: min(9.3333333333vw, 35px);
+  }
+}
+
+/* ========================================
+  ダークカード（Feature 3）
+======================================== */
+.p-ipclClinicFeatures__darkCard {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 50rem;
+  width: 100%;
+  height: 17.8125rem;
+  background-image: linear-gradient(104.53deg, #D9BB7B 1.992%, #8D6F30 96.948%);
+  border: 0.3px solid #fff;
+  border-radius: 0.08125rem;
+  padding-block: 1rem;
+  padding-inline: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+@media screen and (max-width:767px) {
+  .p-ipclClinicFeatures__darkCard {
+    position: relative;
+    left: auto;
+    transform: none;
+    width: 100%;
+    height: auto;
+    gap: 0.6875rem;
+    padding-block: 2rem;
+    padding-inline: 2.5rem;
+  }
+}
+
+/* ダークオーバーレイ */
+.p-ipclClinicFeatures__darkOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(34, 39, 39, 0.88) 50%, #000);
+  pointer-events: none;
+}
+
+/* ダークカードタイトル */
+.p-ipclClinicFeatures__darkTitle {
+  font-family: "Zen Old Mincho", serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: 0.12em;
+  line-height: 1.8;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+@media screen and (max-width:767px) {
+  .p-ipclClinicFeatures__darkTitle {
+    font-size: min(5.3333333333vw, 20px);
+  }
+}
+
+/* ダークカード本文 */
+.p-ipclClinicFeatures__darkBody {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #fff;
+  letter-spacing: 0.18em;
+  line-height: 2;
+  position: relative;
+  z-index: 1;
+}
+@media screen and (max-width:767px) {
+  .p-ipclClinicFeatures__darkBody {
+    line-height: 1.9;
+  }
+}
+
+/* 内側装飾ボーダー */
+.p-ipclClinicFeatures__darkBorder {
+  position: absolute;
+  inset: 0.75rem;
+  border: 1px solid #fff;
+  pointer-events: none;
+}
+@media screen and (max-width:767px) {
+  .p-ipclClinicFeatures__darkBorder {
+    inset: 1rem;
+  }
+}
+
+/* 装飾円（右下）*/
+.p-ipclClinicFeatures__darkEllipse {
+  position: absolute;
+  bottom: -8.25rem;
+  right: -8.6875rem;
+  width: 17rem;
+  height: 17rem;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.p-ipclClinicFeatures__darkEllipse img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* ========================================
+  p-ipclSpecialist（執刀医）
+======================================== */
+.p-ipclSpecialist {
+  position: relative;
+  background-color: #ebedee;
+  padding-block: 4rem;
+  overflow: hidden;
+}
+@media screen and (max-width:767px) {
+  .p-ipclSpecialist {
+    padding-block: 2.5rem;
+    padding-inline: 1.5rem;
+  }
+}
+
+/* 背景グラデーションオーバーレイ */
+.p-ipclSpecialist__bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(34, 39, 39, 0.88) 50%, #000000 100%);
+  pointer-events: none;
+}
+
+/* インナー */
+.p-ipclSpecialist__inner {
+  max-width: 75rem;
+  padding-inline: 1.25rem;
+  margin-inline: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclSpecialist__inner {
+    padding-inline: 0;
+    gap: 1.25rem;
+  }
+}
+
+/* 見出しエリア */
+.p-ipclSpecialist__head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.p-ipclSpecialist__headText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  align-items: center;
+}
+
+/* 執刀医ラベル */
+.p-ipclSpecialist__headLabel {
+  font-family: "Zen Old Mincho", serif;
+  font-weight: 400;
+  font-size: 1.375rem;
+  letter-spacing: 0.4em;
+  line-height: 2.2;
+  color: #ffffff;
+  text-align: center;
+}
+@media screen and (max-width:767px) {
+  .p-ipclSpecialist__headLabel {
+    font-size: 1rem;
+  }
+}
+
+/* ICL手術のスペシャリストが担当 */
+.p-ipclSpecialist__headTitle {
+  font-family: "Zen Old Mincho", serif;
+  font-weight: 500;
+  font-size: 2rem;
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+  color: #ffffff;
+  text-align: center;
+}
+@media screen and (max-width:767px) {
+  .p-ipclSpecialist__headTitle {
+    font-size: 1.25rem;
+  }
+}
+
+/* Specialist デコレーション行 */
+.p-ipclSpecialist__headDeco {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.p-ipclSpecialist__headLine {
+  display: block;
+  width: 1.5rem;
+  height: 0;
+  border-top: 0.8px solid #ffffff;
+}
+
+.p-ipclSpecialist__headEn {
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 300;
+  font-size: 0.6875rem;
+  letter-spacing: 0.4em;
+  line-height: 2.2;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+/* ----------------------------------------
+  メインコンテンツ
+---------------------------------------- */
+.p-ipclSpecialist__body {
+  display: flex;
+  align-items: flex-start;
+}
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+  .p-ipclSpecialist__body {
+    flex-direction: column;
+    row-gap: 1.875rem;
+    align-items: center;
+  }
+}
+@media screen and (max-width:767px) {
+  .p-ipclSpecialist__body {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+
+/* SP専用: 上部写真コンテナ */
+.p-ipclSpecialist__photoWrap {
+  display: none;
+}
+@media screen and (max-width:767px) {
+  .p-ipclSpecialist__photoWrap {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 18.125rem;
+  }
+}
+
+@media screen and (max-width:767px) {
+  .p-ipclSpecialist__photoMain {
+    width: 14rem;
+    height: 18.0625rem;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+}
+
+/* テキスト情報エリア (PC: 左カラム706px, SP: 縦積み) */
+.p-ipclSpecialist__info {
+  width: 44.125rem;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclSpecialist__info {
+    width: 100%;
+    gap: 1.875rem;
+  }
+}
+
+/* PC専用: 写真エリアコンテナ */
+.p-ipclSpecialist__photoArea {
+  position: relative;
+  flex: 1;
+  min-height: 41.25rem;
+  align-self: stretch;
+}
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+  .p-ipclSpecialist__photoArea {
+    margin-inline: auto;
+    width: 28.125rem;
+  }
+}
+@media screen and (max-width:767px) {
+  .p-ipclSpecialist__photoArea {
+    display: none;
+  }
+}
+
+/* 医師名・プロフィール */
+.p-ipclSpecialist__profile {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclSpecialist__profile {
+    gap: 0.5625rem;
+  }
+}
+
+/* 医師名行 */
+.p-ipclSpecialist__nameRow {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclSpecialist__nameRow {
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 0rem;
+  }
+}
+
+/* 小橋 英長 */
+.p-ipclSpecialist__nameJa {
+  font-family: "Zen Old Mincho", serif;
+  font-weight: 500;
+  font-size: 1.75rem;
+  letter-spacing: 0.12em;
+  line-height: 1.8;
+  color: #ffffff;
+}
+@media screen and (max-width:767px) {
+  .p-ipclSpecialist__nameJa {
+    font-size: 1.5rem;
+  }
+}
+
+/* Kobashi Hidenaga */
+.p-ipclSpecialist__nameEn {
+  font-family: "Meie Script", cursive;
+  font-weight: 400;
+  font-size: 1.875rem;
+  line-height: 1;
+  color: #ffffff;
+  opacity: 0.3;
+}
+@media screen and (max-width:767px) {
+  .p-ipclSpecialist__nameEn {
+    margin-top: 0.6875rem;
+    font-size: 1.125rem;
+    line-height: 1.4;
+  }
+}
+
+/* 医師名下 区切り線 */
+.p-ipclSpecialist__nameDivider {
+  display: block;
+  width: 100%;
+  height: 0;
+  border-top: 0.8px solid #ffffff;
+}
+
+/* プロフィール文 */
+.p-ipclSpecialist__bio {
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 300;
+  font-size: 0.875rem;
+  letter-spacing: 0.12em;
+  line-height: 2;
+  color: #ffffff;
+}
+
+/* SP専用: 認定証サブ写真 */
+.p-ipclSpecialist__photoSubSp {
+  display: none;
+}
+@media screen and (max-width:767px) {
+  .p-ipclSpecialist__photoSubSp {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 354/251;
+    object-fit: cover;
+  }
+}
+
+/* ICL認定医バッジ */
+.p-ipclSpecialist__badge {
+  width: fit-content;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background-color: #ffffff;
+  padding-block: 0.75rem;
+  padding-inline: 1.5rem;
+  border-radius: 0.125rem;
+  overflow: hidden;
+}
+@media screen and (max-width:767px) {
+  .p-ipclSpecialist__badge {
+    gap: 1.1875rem;
+    padding-block: 0.625rem;
+    padding-inline: 1.1875rem;
+  }
+}
+
+.p-ipclSpecialist__badgeIcon {
+  width: 4rem;
+  height: 4rem;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+@media screen and (max-width:767px) {
+  .p-ipclSpecialist__badgeIcon {
+    width: 3.25rem;
+    height: 3.25rem;
+  }
+}
+
+.p-ipclSpecialist__badgeInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclSpecialist__badgeInfo {
+    gap: 0.375rem;
+  }
+}
+
+.p-ipclSpecialist__badgeTitle {
+  font-family: "Zen Old Mincho", serif;
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.04em;
+  line-height: 1.6;
+  color: #333333;
+}
+@media screen and (max-width:767px) {
+  .p-ipclSpecialist__badgeTitle {
+    font-size: 0.6875rem;
+  }
+}
+
+.p-ipclSpecialist__badgeDate {
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 400;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  color: #4b4b4b;
+}
+@media screen and (max-width:767px) {
+  .p-ipclSpecialist__badgeDate {
+    font-size: 0.625rem;
+  }
+}
+
+/* ----------------------------------------
+  経歴・資格・所属学会
+---------------------------------------- */
+.p-ipclSpecialist__career {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* 共通ボックス (経歴・資格・所属学会) */
+.p-ipclSpecialist__careerBox {
+  border: 0.4px solid #ffffff;
+  border-radius: 0.125rem;
+  padding-block: 0.625rem;
+  padding-inline: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.p-ipclSpecialist__qualBox {
+  flex: 1;
+  border: 0.4px solid #ffffff;
+  border-radius: 0.125rem;
+  padding-block: 0.9375rem;
+  padding-inline: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* ボックスヘッダー (経歴・資格・所属学会 タイトル行) */
+.p-ipclSpecialist__boxHead {
+  border-bottom: 0.4px solid #ffffff;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+.p-ipclSpecialist__boxTitle {
+  font-family: "Zen Old Mincho", serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  letter-spacing: 0.2em;
+  line-height: 1.6;
+  color: #ffffff;
+}
+
+/* 経歴リスト: PC=3列flex, SP=縦積み */
+.p-ipclSpecialist__careerList {
+  display: flex;
+  gap: 1rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclSpecialist__careerList {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+.p-ipclSpecialist__careerCol {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.p-ipclSpecialist__careerItem {
+  display: flex;
+  gap: 0.5rem;
+  align-items: baseline;
+}
+
+.p-ipclSpecialist__careerYear {
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 300;
+  font-size: 0.75rem;
+  color: #ffffff;
+  line-height: 1.6;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.p-ipclSpecialist__careerDesc {
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 300;
+  font-size: 0.875rem;
+  color: #ffffff;
+  line-height: 1.6;
+}
+
+.p-ipclSpecialist__careerDesc span {
+  font-size: 0.8125rem;
+}
+
+/* 資格・所属学会行: PC=横並び, SP=縦積み */
+.p-ipclSpecialist__qualRow {
+  display: flex;
+  gap: 1.5rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclSpecialist__qualRow {
+    flex-direction: column;
+  }
+}
+
+/* 資格・学会リスト */
+.p-ipclSpecialist__qualList {
+  list-style: disc;
+  display: flex;
+  flex-direction: column;
+}
+
+.p-ipclSpecialist__qualItem {
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 300;
+  font-size: 0.875rem;
+  color: #ffffff;
+  line-height: 1.6;
+  padding-left: 1.25rem;
+  position: relative;
+}
+.p-ipclSpecialist__qualItem a {
+  color: #ffffff;
+  text-decoration: none;
+}
+.p-ipclSpecialist__qualItem::before {
+  position: absolute;
+  top: 0;
+  left: 0.375rem;
+  content: "・";
+}
+
+/* ----------------------------------------
+  PC専用: 写真（photoArea内の absolute配置）
+  photoArea左端 = info右端(706px) = body左から706px
+  main photo: Figma left 806px → 806-706 = 100px from photoArea left
+  sub photo:  Figma left 745px → 745-706 = 39px from photoArea left
+---------------------------------------- */
+.p-ipclSpecialist__photoMainPc {
+  position: absolute;
+  left: 6.25rem;
+  top: 0;
+  width: 22.0625rem;
+  height: 28.4375rem;
+  object-fit: cover;
+  z-index: 2;
+}
+
+.p-ipclSpecialist__photoSubPc {
+  position: absolute;
+  left: 2.4375rem;
+  top: 25.5rem;
+  width: 22.125rem;
+  height: 15.6875rem;
+  object-fit: cover;
+  z-index: 2;
+}
+
+/* ========================================
+  p-ipclFlow（IPCLの治療の流れ）
+======================================== */
+.p-ipclFlow {
+  background-color: #ffffff;
+  padding-block: 4rem;
+  overflow: hidden;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFlow {
+    padding-block: 2.5rem;
+  }
+}
+
+.p-ipclFlow__inner {
+  max-width: 75rem;
+  padding-inline: 1.25rem;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFlow__inner {
+    padding-inline: 1.5rem;
+  }
+}
+
+/* ----------------------------------------
+  見出し: PC=横並び / SP=縦積み
+---------------------------------------- */
+.p-ipclFlow__head {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  align-items: center;
+  width: 100%;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFlow__head {
+    flex-direction: column;
+    gap: 0.125rem;
+    align-items: flex-start;
+  }
+}
+
+.p-ipclFlow__title {
+  font-family: "Zen Old Mincho", serif;
+  font-weight: 500;
+  font-size: 2rem;
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+  background: linear-gradient(173.22deg, #D9BB7B 22.5%, #8D6F30 83.9%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  flex-shrink: 0;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFlow__title {
+    font-size: 1.25rem;
+  }
+}
+
+.p-ipclFlow__subRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFlow__subRow {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+.p-ipclFlow__subLine {
+  display: block;
+  width: 1.5rem;
+  height: 0;
+  border-top: 0.8px solid #807d77;
+}
+
+.p-ipclFlow__subText {
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 300;
+  font-size: 0.6875rem;
+  letter-spacing: 0.4em;
+  line-height: 2.2;
+  color: #807d77;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ----------------------------------------
+  リードテキスト
+---------------------------------------- */
+.p-ipclFlow__lead {
+  width: 100%;
+}
+
+.p-ipclFlow__leadText {
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 300;
+  font-size: 0.875rem;
+  letter-spacing: 0.12em;
+  line-height: 2;
+  color: #333333;
+}
+
+/* ----------------------------------------
+  スライダーエリア
+---------------------------------------- */
+.p-ipclFlow__swiperWrap {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.625rem;
+  margin-top: 2.625rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFlow__swiperWrap {
+    gap: 1.875rem;
+    margin-top: 1.875rem;
+  }
+}
+
+/* スライダーのoverflow制御ラッパー（前後スライドを見切らせるため section 側の overflow:hidden を回避） */
+.p-ipclFlow__swiperOuter {
+  width: 100%;
+  position: relative;
+  overflow: visible;
+}
+
+.p-ipclFlow__swiper {
+  width: 100%;
+  overflow: visible;
+  /* Swiper デフォルトのoverflow上書き */
+}
+.p-ipclFlow__swiper .swiper-wrapper {
+  align-items: stretch;
+}
+
+/* ----------------------------------------
+  スライドカード（共通）
+---------------------------------------- */
+/* .swiper-slide と連結して詳細度を上げ Swiper の width:100% を確実に上書き */
+.swiper-slide.p-ipclFlow__slide {
+  width: 20rem;
+  height: auto;
+  position: relative;
+  transition: width 0.3s ease;
+  cursor: pointer;
+}
+@media screen and (max-width:767px) {
+  .swiper-slide.p-ipclFlow__slide {
+    width: 18.5rem;
+  }
+}
+
+/* スライド間矢印（spaceBetween:60px のギャップ中央に配置） */
+.p-ipclFlow__slideArrow {
+  position: absolute;
+  right: -2.723125rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1.69625rem;
+  height: 0.18625rem;
+  pointer-events: none;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFlow__slideArrow {
+    right: -1.5rem;
+    width: 1.136875rem;
+    height: 0.125rem;
+  }
+}
+
+.swiper-slide.p-ipclFlow__slide--active {
+  width: 23.75rem;
+  cursor: default;
+}
+@media screen and (max-width:767px) {
+  .swiper-slide.p-ipclFlow__slide--active {
+    width: 18.5rem;
+  }
+}
+
+.p-ipclFlow__card {
+  background-color: #ffffff;
+  border-radius: 0.25rem;
+  border: 0.475px solid transparent;
+  box-shadow: 0 0 1.375rem rgba(0, 0, 0, 0.08);
+  padding: 1.625rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  height: 100%;
+  min-height: 18.25rem;
+  transition: box-shadow 0.3s, padding 0.3s, border-radius 0.3s, border-color 0.3s, opacity 0.3s, margin-block 0.3s, height 0.3s;
+  opacity: 0.5;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFlow__card {
+    padding: 1.75rem 1.25rem;
+  }
+}
+
+.swiper-slide-prev .p-ipclFlow__card,
+.swiper-slide-next .p-ipclFlow__card {
+  opacity: 1;
+}
+@media screen and (max-width:767px) {
+  .swiper-slide-prev .p-ipclFlow__card,
+  .swiper-slide-next .p-ipclFlow__card {
+    opacity: 0.5;
+  }
+}
+
+/* アクティブカード（Step3）: ゴールドボーダー + 大きめシャドウ */
+.p-ipclFlow__card--active {
+  border-color: #cdac66;
+  box-shadow: 0 0 1.625rem rgba(0, 0, 0, 0.08);
+  padding: 2.5rem 2rem;
+  border-radius: 0.296875rem;
+  min-height: auto;
+  opacity: 1;
+  margin-block-start: -1.125rem;
+  margin-block-end: -1.125rem;
+  height: calc(100% + 2.25rem);
+}
+@media screen and (max-width:767px) {
+  .p-ipclFlow__card--active {
+    padding: 1.75rem 1.25rem;
+    border-radius: 0.25rem;
+    min-height: 18.25rem;
+    margin-block-start: -0.375rem;
+    margin-block-end: -0.375rem;
+    height: calc(100% + 0.75rem);
+  }
+}
+
+/* ----------------------------------------
+  カード見出し行（バッジ + タイトル）
+---------------------------------------- */
+.p-ipclFlow__cardHead {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  transition: all 0.3s;
+}
+.p-ipclFlow__card--active .p-ipclFlow__cardHead {
+  align-items: flex-start;
+  gap: 0.59375rem;
+}
+
+/* ステップバッジ（通常: ゴールドボーダー丸） */
+.p-ipclFlow__stepBadge {
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 1px solid #cdac66;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: width 0.3s ease, height 0.3s ease;
+}
+
+/* ステップバッジ（アクティブ: ゴールドグラデーション塗り） */
+.p-ipclFlow__stepBadge--active {
+  width: 2.375rem;
+  height: 2.375rem;
+  border: none;
+  background: linear-gradient(145.5deg, #D9BB7B 22.483%, #8D6F30 83.943%);
+}
+.p-ipclFlow__stepBadge--active .p-ipclFlow__stepNum {
+  font-size: 1.1875rem;
+  color: #ffffff;
+  background: none;
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: #ffffff;
+  background-clip: unset;
+  padding-bottom: 0.0625rem;
+}
+
+.p-ipclFlow__stepNum {
+  font-family: "Zen Old Mincho", serif;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1;
+  background: linear-gradient(132.28deg, #D9BB7B 22.483%, #8D6F30 83.943%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.p-ipclFlow__cardTitle {
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 400;
+  font-size: 1.125rem;
+  letter-spacing: 0.08em;
+  line-height: 1.8;
+  color: #333333;
+  flex: 1;
+}
+.p-ipclFlow__card--active .p-ipclFlow__cardTitle {
+  line-height: 1.5;
+}
+
+/* ----------------------------------------
+  カード本文テキスト
+---------------------------------------- */
+.p-ipclFlow__cardText {
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 300;
+  font-size: 0.875rem;
+  letter-spacing: 0.12em;
+  line-height: 1.8;
+  color: #333333;
+  width: 100%;
+}
+.p-ipclFlow__cardText p {
+  line-height: 1.8;
+}
+
+/* ----------------------------------------
+  スライダーナビゲーション
+---------------------------------------- */
+.p-ipclFlow__navBtn {
+  padding: 0;
+  border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+}
+.p-ipclFlow__navBtn.swiper-button-disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.p-ipclFlow__navBtn--large {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4.375rem;
+  height: 4.375rem;
+}
+.p-ipclFlow__navBtn--large img {
+  width: 4.375rem;
+  height: 4.375rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFlow__navBtn--large {
+    width: 3rem;
+    height: 3rem;
+  }
+  .p-ipclFlow__navBtn--large img {
+    width: 3rem;
+    height: 3rem;
+  }
+}
+
+.p-ipclFlow__navBtn--large.p-ipclFlow__navBtn--prev {
+  left: 0.5rem;
+}
+
+.p-ipclFlow__navBtn--large.p-ipclFlow__navBtn--next {
+  right: 0.5rem;
+}
+
+.p-ipclFlow__navBtn--pagination {
+  width: 1.125rem;
+  height: 0.5625rem;
+  flex-shrink: 0;
+}
+.p-ipclFlow__navBtn--pagination img {
+  width: 1.125rem;
+  height: 0.5625rem;
+}
+
+/* ----------------------------------------
+  カスタムページネーション（番号付きドット）
+---------------------------------------- */
+.p-ipclFlow__paginationWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.25rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFlow__paginationWrap {
+    gap: 1.25rem;
+  }
+}
+
+.p-ipclFlow__pagination {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFlow__pagination {
+    flex-wrap: wrap;
+    justify-content: center;
+    /* 5個 × 26px + 4gap × 16px = 194px でちょうど5個/行 */
+    max-width: 12.125rem;
+  }
+}
+
+.p-ipclFlow__paginationBtn {
+  width: 1.625rem;
+  height: 1.625rem;
+  border-radius: 50%;
+  background-color: #e9e9e9;
+  color: #9b9b9b;
+  font-family: "Zen Old Mincho", serif;
+  font-weight: 600;
+  font-size: 0.75rem;
+  line-height: 1;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s, color 0.3s;
+}
+.p-ipclFlow__paginationBtn.is-active {
+  background: linear-gradient(145.5deg, #D9BB7B 22.483%, #8D6F30 83.943%);
+  color: #ffffff;
+}
+.p-ipclFlow__paginationBtn.is-hidden {
+  display: none;
+}
+
+/* ========================================
+  p-ipclNotes（術後における諸注意）
+======================================== */
+.p-ipclNotes {
+  background-color: #ffffff;
+  padding-block: 4rem;
+  position: relative;
+  overflow: hidden;
+}
+@media screen and (max-width:767px) {
+  .p-ipclNotes {
+    padding-block: 2.5rem;
+    padding-inline: 1.5rem;
+  }
+}
+
+.p-ipclNotes__inner {
+  max-width: 75rem;
+  padding-inline: 1.25rem;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+}
+@media screen and (max-width:767px) {
+  .p-ipclNotes__inner {
+    padding-inline: 0;
+  }
+}
+
+/* ----------------------------------------
+  背景装飾楕円
+---------------------------------------- */
+.p-ipclNotes__bgEllipseSm {
+  position: absolute;
+  width: 18.125rem;
+  height: 18.125rem;
+  pointer-events: none;
+  filter: blur(212px);
+}
+
+.p-ipclNotes__bgEllipseSm--tl {
+  top: 7.1875rem;
+  left: -8.4375rem;
+}
+
+.p-ipclNotes__bgEllipseLg {
+  position: absolute;
+  width: 35.25rem;
+  height: 35.25rem;
+  pointer-events: none;
+  filter: blur(212px);
+}
+
+.p-ipclNotes__bgEllipseLg--l {
+  top: 12.125rem;
+  left: -32.4375rem;
+}
+
+/* ----------------------------------------
+  見出しブロック
+---------------------------------------- */
+.p-ipclNotes__head {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  width: 100%;
+}
+
+.p-ipclNotes__title {
+  font-family: "Zen Old Mincho", serif;
+  font-weight: 500;
+  font-size: 2rem;
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+  background: linear-gradient(173.22deg, #D9BB7B 22.5%, #8D6F30 83.9%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: center;
+}
+@media screen and (max-width:767px) {
+  .p-ipclNotes__title {
+    font-size: 1.25rem;
+    letter-spacing: 0.08em;
+  }
+}
+
+.p-ipclNotes__subRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.p-ipclNotes__subLine {
+  display: block;
+  width: 1.5rem;
+  height: 0;
+  border-top: 0.8px solid #807d77;
+}
+
+.p-ipclNotes__subText {
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 300;
+  font-size: 0.6875rem;
+  letter-spacing: 0.4em;
+  line-height: 2.2;
+  color: #807d77;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ----------------------------------------
+  リードテキスト
+---------------------------------------- */
+.p-ipclNotes__lead {
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 300;
+  font-size: 0.875rem;
+  letter-spacing: 0.12em;
+  line-height: 2;
+  color: #333333;
+  text-align: center;
+}
+
+/* ----------------------------------------
+  テーブルラッパー
+---------------------------------------- */
+.p-ipclNotes__tableWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 58rem;
+}
+
+/* SP専用: スクロール案内バナー */
+.p-ipclNotes__scrollBanner {
+  display: none;
+}
+@media screen and (max-width:767px) {
+  .p-ipclNotes__scrollBanner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 0.25rem;
+    padding-block: 0.625rem;
+    width: 100%;
+    max-width: 20.375rem;
+  }
+}
+
+.p-ipclNotes__scrollIcon {
+  display: block;
+  width: 2.125rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+}
+
+.p-ipclNotes__scrollText {
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 700;
+  font-size: 0.625rem;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+/* スクロールコンテナ（SP: 横スクロール） */
+.p-ipclNotes__tableScroll {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+@media screen and (max-width:767px) {
+  .p-ipclNotes__tableScroll {
+    width: 100vw;
+  }
+}
+
+.p-ipclNotes__tableInner {
+  display: contents;
+}
+@media screen and (max-width:767px) {
+  .p-ipclNotes__tableInner {
+    display: block;
+    margin-inline: auto;
+    width: 37.3125rem;
+    padding-inline: 1.5rem;
+  }
+}
+
+/* ----------------------------------------
+  テーブル
+---------------------------------------- */
+.p-ipclNotes__table {
+  border-collapse: collapse;
+  width: 58rem;
+  min-width: 58rem;
+  table-layout: fixed;
+}
+@media screen and (max-width:767px) {
+  .p-ipclNotes__table {
+    width: 100%;
+    min-width: 100%;
+  }
+}
+
+.p-ipclNotes__th {
+  background-color: #c5b48f;
+  color: #ffffff;
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  letter-spacing: 0.1em;
+  line-height: 1.8;
+  padding-block: 0.5rem;
+  padding-inline: 1rem;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.p-ipclNotes__th--item {
+  width: 18.125rem;
+  border-right: 1px solid #ffffff;
+}
+@media screen and (max-width:767px) {
+  .p-ipclNotes__th--item {
+    width: 41%;
+  }
+}
+
+.p-ipclNotes__tdItem {
+  background-color: #f5f2ef;
+  border: 1px solid #ded7d0;
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  letter-spacing: 0.18em;
+  line-height: 1.8;
+  color: #333333;
+  padding-block: 1.1875rem;
+  padding-inline: 1rem;
+  text-align: center;
+  vertical-align: middle;
+  width: 18.125rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclNotes__tdItem {
+    width: 18.125rem;
+  }
+}
+
+.p-ipclNotes__tdGuide {
+  background-color: #ffffff;
+  border: 1px solid #ded7d0;
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 300;
+  font-size: 0.875rem;
+  letter-spacing: 0.1em;
+  line-height: 1.8;
+  color: #333333;
+  padding-block: 1.1875rem;
+  padding-inline: 1rem;
+  text-align: left;
+  vertical-align: middle;
+}
+
+/* ========================================
+  p-ipclFees（IPCLの費用）
+======================================== */
+.p-ipclFees {
+  background-color: #faf8f4;
+  padding-block: 4rem;
+  position: relative;
+  overflow: hidden;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFees {
+    padding-block: 2.5rem;
+    padding-inline: 1.5rem;
+  }
+}
+
+/* 背景メッシュ画像 */
+.p-ipclFees__bgMesh {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 99.5rem;
+  height: auto;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.p-ipclFees__inner {
+  max-width: 75rem;
+  padding-inline: 1.25rem;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFees__inner {
+    padding-inline: 0;
+  }
+}
+
+/* ----------------------------------------
+  見出しブロック
+---------------------------------------- */
+.p-ipclFees__head {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  width: 100%;
+}
+
+.p-ipclFees__title {
+  font-family: "Zen Old Mincho", serif;
+  font-weight: 700;
+  font-size: 2rem;
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+  background: linear-gradient(169.65deg, #D9BB7B 22.5%, #8D6F30 83.9%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: center;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFees__title {
+    font-size: 1.25rem;
+  }
+}
+
+.p-ipclFees__subRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.p-ipclFees__subLine {
+  display: block;
+  width: 1.5rem;
+  height: 0;
+  border-top: 0.8px solid #807d77;
+}
+
+.p-ipclFees__subText {
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 300;
+  font-size: 0.6875rem;
+  letter-spacing: 0.4em;
+  line-height: 2.2;
+  color: #807d77;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ----------------------------------------
+  リードテキスト
+---------------------------------------- */
+.p-ipclFees__lead {
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 300;
+  font-size: 0.875rem;
+  letter-spacing: 0.12em;
+  line-height: 2;
+  color: #333333;
+  text-align: center;
+}
+
+/* ----------------------------------------
+  料金テーブルエリア
+---------------------------------------- */
+.p-ipclFees__priceArea {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  width: 100%;
+  max-width: 58rem;
+}
+
+/* 料金テーブル */
+.p-ipclFees__priceTable {
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: fixed;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFees__priceTable {
+    display: block;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width:767px) {
+  .p-ipclFees__priceThead {
+    display: none;
+  }
+}
+
+@media screen and (max-width:767px) {
+  .p-ipclFees__priceTbody {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+.p-ipclFees__priceTh {
+  background-color: #c5b48f;
+  color: #ffffff;
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  letter-spacing: 0.1em;
+  line-height: 1.8;
+  padding-block: 0.5rem;
+  padding-inline: 1rem;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.p-ipclFees__priceTh--label {
+  width: 71%;
+  border-right: 1px solid #ffffff;
+}
+
+@media screen and (max-width:767px) {
+  .p-ipclFees__priceTr {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #ffffff;
+    border: 1px solid #ded7d0;
+    padding: 1rem;
+    gap: 0.5rem;
+  }
+}
+
+.p-ipclFees__priceTd {
+  border: 1px solid #ded7d0;
+  background-color: #ffffff;
+  padding-block: 1rem;
+  padding-inline: 1rem;
+  vertical-align: middle;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFees__priceTd {
+    border: none;
+    padding: 0;
+    background: transparent;
+  }
+}
+
+.p-ipclFees__priceTd--label {
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 300;
+  font-size: 0.875rem;
+  letter-spacing: 0.1em;
+  line-height: 1.8;
+  color: #333333;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFees__priceTd--label {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.125rem;
+  }
+}
+
+.p-ipclFees__priceTd--amount {
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  line-height: 1.8;
+  color: #333333;
+  text-align: right;
+  width: 16.75rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFees__priceTd--amount {
+    flex-shrink: 0;
+    width: auto;
+    text-align: right;
+    font-size: 1rem;
+  }
+}
+
+.p-ipclFees__tax {
+  display: block;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  line-height: 1.6;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFees__tax {
+    font-size: 0.625rem;
+    letter-spacing: 0.02em;
+  }
+}
+
+/* 料金タグ */
+.p-ipclFees__priceTag {
+  display: none;
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 400;
+  font-size: 0.625rem;
+  letter-spacing: 0.1em;
+  color: #333333;
+  border-radius: 0.25rem;
+  padding-block: 0.25rem;
+  padding-inline: 0.25rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFees__priceTag {
+    display: inline-block;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+}
+
+.p-ipclFees__priceTag--none {
+  background-color: #f1ede9;
+}
+
+.p-ipclFees__priceTag--astig {
+  background-color: #fffbf0;
+}
+
+.p-ipclFees__priceDegree {
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 300;
+  font-size: 0.875rem;
+  letter-spacing: 0.1em;
+  line-height: 1.8;
+  color: #333333;
+}
+
+/* 注記テキスト */
+.p-ipclFees__priceNote {
+  margin-top: 0.375rem;
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 300;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: #333333;
+  text-align: right;
+  width: 100%;
+}
+
+/* ----------------------------------------
+  安心保証バナー
+---------------------------------------- */
+.p-ipclFees__guarantee {
+  width: 100%;
+  max-width: 58rem;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), linear-gradient(168.77deg, #D9BB7B 22.5%, #8D6F30 83.9%);
+  border-radius: 0.25rem;
+  padding: 1.5rem;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+/* 保証バナー背景装飾（CTA流用） */
+.p-ipclFees__guaranteeBgE37 {
+  position: absolute;
+  top: 99%;
+  left: -4.75rem;
+  transform: translateY(-50%);
+  width: 24.8125rem;
+  height: 24.8125rem;
+  mix-blend-mode: lighten;
+  pointer-events: none;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFees__guaranteeBgE37 {
+    top: 39%;
+  }
+}
+
+.p-ipclFees__guaranteeBgE39L {
+  position: absolute;
+  bottom: -7.3125rem;
+  left: -5rem;
+  width: 12.5rem;
+  height: 12.5rem;
+  mix-blend-mode: lighten;
+  pointer-events: none;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFees__guaranteeBgE39L {
+    bottom: auto;
+    top: 26%;
+    left: -4.6875rem;
+  }
+}
+
+/* 保証バナー見出しブロック */
+.p-ipclFees__guaranteeHead {
+  width: 100%;
+  display: flex;
+  gap: 1.5625rem;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFees__guaranteeHead {
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+}
+
+.p-ipclFees__guaranteeTitle {
+  font-family: "Zen Old Mincho", serif;
+  font-weight: 500;
+  font-size: 1.5rem;
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+  color: #ffffff;
+  text-align: center;
+}
+@media screen and (max-width: 374.98px) {
+  .p-ipclFees__guaranteeTitle {
+    font-size: min(6.4vw, 24px);
+  }
+}
+
+.p-ipclFees__guaranteeSub {
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 300;
+  font-size: 0.875rem;
+  letter-spacing: 0.12em;
+  line-height: 2;
+  color: #ffffff;
+  text-align: center;
+}
+
+/* 保証カードリスト */
+.p-ipclFees__guaranteeCards {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 1rem;
+  position: relative;
+  z-index: 1;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFees__guaranteeCards {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}
+
+/* 保証カード */
+.p-ipclFees__guaranteeCard {
+  flex: 1;
+  background-color: #ffffff;
+  border-radius: 0.25rem;
+  box-shadow: 0 0 2.75rem 0 rgba(83, 64, 25, 0.04);
+  padding-block: 1.75rem;
+  padding-inline: 1.5rem;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFees__guaranteeCard {
+    padding-block: 2rem;
+    padding-inline: 1.25rem;
+  }
+}
+
+.p-ipclFees__guaranteeYear {
+  font-family: "Zen Old Mincho", serif;
+  font-weight: 400;
+  font-size: 1rem;
+  letter-spacing: 0.12em;
+  line-height: 1.5;
+  color: #333333;
+}
+
+.p-ipclFees__guaranteeService {
+  font-family: "Zen Old Mincho", serif;
+  font-weight: 400;
+  font-size: 1.25rem;
+  letter-spacing: 0.12em;
+  line-height: 1.5;
+  color: #333333;
+}
+
+.p-ipclFees__guaranteeFree {
+  font-family: "Zen Old Mincho", serif;
+  font-weight: 400;
+  font-size: 2rem;
+  letter-spacing: 0.12em;
+  line-height: 1.6;
+  color: #9B7714;
+}
+
+/* 保証カード装飾アイコン */
+.p-ipclFees__guaranteeIcon {
+  position: absolute;
+  bottom: -1.125rem;
+  right: 0.125rem;
+  width: 7.3125rem;
+  height: 7.3125rem;
+  pointer-events: none;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFees__guaranteeIcon {
+    bottom: -0.625rem;
+  }
+}
+
+/* ----------------------------------------
+  支払い方法ブロック
+---------------------------------------- */
+.p-ipclFees__payment {
+  width: 100%;
+  max-width: 58rem;
+  border: 1px solid #dddddd;
+  padding-block: 1.5rem;
+  padding-inline: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFees__payment {
+    padding-block: 1.25rem;
+    padding-inline: 1.25rem;
+  }
+}
+
+.p-ipclFees__paymentLabel {
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 300;
+  font-size: 0.875rem;
+  letter-spacing: 0.12em;
+  line-height: 2;
+  color: #333333;
+}
+
+.p-ipclFees__paymentCards {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFees__paymentCards {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+.p-ipclFees__paymentCard {
+  flex: 1;
+  background-color: #ffffff;
+  border-radius: 0.125rem;
+  padding-block: 1.25rem;
+  padding-inline: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFees__paymentCard {
+    padding-inline: 1.5rem;
+    justify-content: flex-start;
+  }
+}
+
+.p-ipclFees__paymentIconWrap {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background-color: #f8f3eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.p-ipclFees__paymentIcon {
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  object-fit: contain;
+}
+
+.p-ipclFees__paymentText {
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  letter-spacing: 0.18em;
+  line-height: 1.8;
+  color: #333333;
+}
+
+/* ========================================
+  p-ipclLoan（医療ローンについて）
+======================================== */
+.p-ipclLoan {
+  background-color: #ffffff;
+  padding-block: 4rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclLoan {
+    padding-block: 2.5rem;
+    padding-inline: 1.5rem;
+  }
+}
+
+.p-ipclLoan__inner {
+  max-width: 75rem;
+  padding-inline: 1.25rem;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclLoan__inner {
+    padding-inline: 0;
+  }
+}
+
+/* ----------------------------------------
+  見出しブロック（PC: 横並び / SP: 縦積み）
+---------------------------------------- */
+.p-ipclLoan__head {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  align-items: center;
+  width: 100%;
+}
+@media screen and (max-width:767px) {
+  .p-ipclLoan__head {
+    flex-direction: column;
+    gap: 0;
+    align-items: flex-start;
+  }
+}
+
+.p-ipclLoan__title {
+  font-family: "Zen Old Mincho", serif;
+  font-weight: 500;
+  font-size: 2rem;
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+  background: linear-gradient(173.5deg, #D9BB7B 22.5%, #8D6F30 83.9%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  flex-shrink: 0;
+}
+@media screen and (max-width:767px) {
+  .p-ipclLoan__title {
+    font-size: 1.25rem;
+  }
+}
+
+.p-ipclLoan__subRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+}
+@media screen and (max-width:767px) {
+  .p-ipclLoan__subRow {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+.p-ipclLoan__subLine {
+  display: block;
+  width: 1.5rem;
+  height: 0;
+  border-top: 0.8px solid #807d77;
+}
+
+.p-ipclLoan__subText {
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 300;
+  font-size: 0.6875rem;
+  letter-spacing: 0.4em;
+  line-height: 2.2;
+  color: #807d77;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ----------------------------------------
+  リードテキスト
+---------------------------------------- */
+.p-ipclLoan__lead {
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 300;
+  font-size: 0.875rem;
+  letter-spacing: 0.12em;
+  line-height: 1.8;
+  color: #333333;
+}
+
+/* ----------------------------------------
+  カードリスト
+---------------------------------------- */
+.p-ipclLoan__cards {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclLoan__cards {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}
+
+.p-ipclLoan__card {
+  flex: 1;
+  background-color: #f8f3eb;
+  border-radius: 0.25rem;
+  box-shadow: 0 0 2.75rem 0 rgba(83, 64, 25, 0.04);
+  min-height: 11.5rem;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 1.5rem;
+}
+@media screen and (max-width:767px) {
+  .p-ipclLoan__card {
+    width: 100%;
+    height: 11.5rem;
+  }
+}
+
+/* カード内ラベル */
+.p-ipclLoan__cardLabel {
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 400;
+  font-size: 1.125rem;
+  letter-spacing: 0.1em;
+  line-height: 1.8;
+  color: #333333;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* カード内数値 + 単位のラッパー */
+.p-ipclLoan__cardNumber {
+  display: flex;
+  align-items: flex-end;
+  line-height: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.p-ipclLoan__cardValue {
+  font-family: "Zen Old Mincho", serif;
+  font-weight: 400;
+  font-size: 5rem;
+  line-height: 0.9;
+  color: #9B7714;
+  letter-spacing: -0.02em;
+}
+
+.p-ipclLoan__cardUnit {
+  font-family: "Zen Old Mincho", serif;
+  font-weight: 500;
+  font-size: 2.125rem;
+  line-height: 1;
+  color: #9B7714;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.625rem;
+  margin-left: 0.25rem;
+}
+
+/* 補足テキスト（オリコ / ジャックス / アプラス） */
+.p-ipclLoan__cardNote {
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  letter-spacing: 0.1em;
+  line-height: 1.8;
+  color: #333333;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* 背景装飾アイコン（opacity: 10%） */
+.p-ipclLoan__cardBgIcon {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  pointer-events: none;
+  width: 10rem;
+  height: auto;
+  object-fit: contain;
+}
+
+.p-ipclLoan__card:first-child .p-ipclLoan__cardBgIcon {
+  width: 9.125rem;
+}
+
+/* ========================================
+  p-ipclFaq（よくある質問）
+======================================== */
+.p-ipclFaq {
+  background-color: #ebedee;
+  background-image: linear-gradient(to bottom, rgba(34, 39, 39, 0.88) 50%, rgb(0, 0, 0) 100%);
+  padding-block: 4rem;
+  position: relative;
+  overflow: hidden;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFaq {
+    padding-block: 2.5rem;
+    padding-inline: 1.5rem;
+  }
+}
+
+.p-ipclFaq__inner {
+  max-width: 75rem;
+  padding-inline: 1.25rem;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  position: relative;
+  z-index: 1;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFaq__inner {
+    padding-inline: 0;
+  }
+}
+
+/* ----------------------------------------
+  見出しブロック（PC: 横並び / SP: 横並び）
+---------------------------------------- */
+.p-ipclFaq__head {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  align-items: center;
+  width: 100%;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFaq__head {
+    gap: 0.5rem;
+    width: fit-content;
+    max-width: 100%;
+    flex-wrap: wrap;
+  }
+}
+
+.p-ipclFaq__title {
+  font-family: "Zen Old Mincho", serif;
+  font-weight: 500;
+  font-size: 2rem;
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+  color: #ffffff;
+  flex-shrink: 0;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFaq__title {
+    font-size: 1.25rem;
+  }
+}
+
+.p-ipclFaq__subRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFaq__subRow {
+    margin-left: auto;
+    flex: unset;
+  }
+}
+
+.p-ipclFaq__subLine {
+  display: block;
+  width: 1.5rem;
+  height: 0;
+  border-top: 0.8px solid rgba(255, 255, 255, 0.5);
+}
+
+.p-ipclFaq__subText {
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 300;
+  font-size: 0.6875rem;
+  letter-spacing: 0.4em;
+  line-height: 2.2;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ----------------------------------------
+  Q&Aリスト
+---------------------------------------- */
+.p-ipclFaq__list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* ----------------------------------------
+  Q&Aアイテム
+---------------------------------------- */
+.p-ipclFaq__item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border-radius: 0.0625rem;
+  overflow: hidden;
+}
+
+/* ----------------------------------------
+  Q行（質問）
+---------------------------------------- */
+.p-ipclFaq__q {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  padding-block: 1.5rem;
+  padding-inline: 2.5rem;
+  cursor: pointer;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFaq__q {
+    padding-block: 1.25rem;
+    padding-inline: 1.25rem;
+    align-items: flex-start;
+  }
+}
+
+.p-ipclFaq__qLabel {
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1.4;
+  background: linear-gradient(136.76deg, #D9BB7B 22.5%, #8D6F30 83.9%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  flex-shrink: 0;
+}
+
+.p-ipclFaq__qText {
+  font-family: "Zen Old Mincho", serif;
+  font-weight: 500;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+  color: #333333;
+  flex: 1;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFaq__qText {
+    font-size: 0.875rem;
+    padding-right: 0.875rem;
+  }
+}
+
+/* 開閉トグルボタン */
+.p-ipclFaq__toggle {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: linear-gradient(145.5deg, #D9BB7B 22.5%, #8D6F30 83.9%);
+  flex-shrink: 0;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+.p-ipclFaq__toggle::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0.75rem;
+  height: 1.5px;
+  background-color: #ffffff;
+  border-radius: 1px;
+}
+.p-ipclFaq__toggle::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1.5px;
+  height: 0.75rem;
+  background-color: #ffffff;
+  border-radius: 1px;
+  transition: transform 0.3s ease;
+}
+
+.p-ipclFaq__item.is-open .p-ipclFaq__toggle {
+  transform: rotate(45deg);
+}
+
+/* ----------------------------------------
+  A欄（回答）
+---------------------------------------- */
+.p-ipclFaq__aWrap {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+
+.p-ipclFaq__item.is-open .p-ipclFaq__aWrap {
+  max-height: 37.5rem;
+}
+
+/* QとAの間の三角形 */
+.p-ipclFaq__aTriangle {
+  margin-left: 2.5rem;
+  width: 0;
+  height: 0;
+  border-left: 0.59375rem solid transparent;
+  border-right: 0.59375rem solid transparent;
+  border-bottom: 0.84375rem solid #f5f3f0;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFaq__aTriangle {
+    margin-left: 2.5rem;
+  }
+}
+
+/* A行本体 */
+.p-ipclFaq__a {
+  background-color: #f5f3f0;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding-block: 1.5rem;
+  padding-inline: 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFaq__a {
+    padding-block: 1.5rem;
+    padding-inline: 1.25rem;
+  }
+}
+.p-ipclFaq__a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16.75rem;
+  height: 20.5rem;
+  background: url("../img/faq-mark.svg") no-repeat center/contain;
+  pointer-events: none;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFaq__a::after {
+    background: url("../img/faq-mark-sp.svg") no-repeat center/contain;
+    width: 11.875rem;
+    height: auto;
+    aspect-ratio: 189/192;
+    transform: unset;
+    top: -75px;
+    right: 7%;
+  }
+}
+
+.p-ipclFaq__aLabel {
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 500;
+  font-size: 1.125rem;
+  line-height: 1;
+  color: #347fca;
+  flex-shrink: 0;
+  padding-top: 0.125rem;
+}
+
+.p-ipclFaq__aBody {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.p-ipclFaq__aText {
+  font-family: "Zen Old Mincho", serif;
+  font-weight: 500;
+  font-size: 1rem;
+  letter-spacing: 0.06em;
+  line-height: 1.6;
+  color: #333333;
+}
+@media screen and (max-width:767px) {
+  .p-ipclFaq__aText {
+    font-size: 0.875rem;
+  }
+}
+
+/* ========================================
+  p-ipclArticles（関連記事一覧）
+======================================== */
+.p-ipclArticles {
+  background-color: #faf8f4;
+  padding-block: 4rem;
+  position: relative;
+  overflow: hidden;
+}
+@media screen and (max-width:767px) {
+  .p-ipclArticles {
+    padding-block: 2.5rem;
+    padding-inline: 1.5rem;
+  }
+}
+
+/* 背景メッシュ */
+.p-ipclArticles__bgMesh {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.p-ipclArticles__inner {
+  max-width: 75rem;
+  padding-inline: 1.25rem;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+@media screen and (max-width:767px) {
+  .p-ipclArticles__inner {
+    padding-inline: 0;
+  }
+}
+
+/* ----------------------------------------
+  見出しブロック（中央揃え）
+---------------------------------------- */
+.p-ipclArticles__head {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  width: 100%;
+}
+
+.p-ipclArticles__title {
+  font-family: "Zen Old Mincho", serif;
+  font-weight: 500;
+  font-size: 2rem;
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+  background: linear-gradient(170.3deg, #D9BB7B 22.5%, #8D6F30 83.9%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: center;
+}
+@media screen and (max-width:767px) {
+  .p-ipclArticles__title {
+    font-size: 1.25rem;
+  }
+}
+
+.p-ipclArticles__subRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.p-ipclArticles__subLine {
+  display: block;
+  width: 1.5rem;
+  height: 0;
+  border-top: 0.8px solid #807d77;
+}
+
+.p-ipclArticles__subText {
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 300;
+  font-size: 0.6875rem;
+  letter-spacing: 0.4em;
+  line-height: 2.2;
+  color: #807d77;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ----------------------------------------
+  記事グリッド
+  PC: 各行 3カード横並び（padding-inline 80px）
+  SP: 縦積み1列
+---------------------------------------- */
+.p-ipclArticles__grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 62.5rem;
+  margin-inline: auto;
+}
+
+/* ----------------------------------------
+  記事カード
+---------------------------------------- */
+.p-ipclArticles__article {
+  width: calc((100% - 3rem) / 3);
+}
+@media screen and (max-width:767px) {
+  .p-ipclArticles__article {
+    width: 100%;
+  }
+}
+
+.p-ipclArticles__card {
+  width: 100%;
+  background-color: #ffffff;
+  filter: drop-shadow(2px 4px 5px rgba(0, 0, 0, 0.08));
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+}
+@media screen and (max-width:767px) {
+  .p-ipclArticles__card {
+    flex: none;
+    width: 100%;
+  }
+}
+
+/* サムネイル画像エリア */
+.p-ipclArticles__cardThumb {
+  width: 100%;
+  aspect-ratio: 620/400;
+  background-color: #f0f0f0;
+  overflow: hidden;
+  position: relative;
+}
+
+.p-ipclArticles__cardImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+/* テキスト行（タイトル + 矢印） */
+.p-ipclArticles__cardBody {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 1rem;
+  padding-inline: 1.5rem;
+}
+
+.p-ipclArticles__cardTitle {
+  font-family: "Zen Old Mincho", serif;
+  font-weight: 500;
+  font-size: 1rem;
+  letter-spacing: 0.06em;
+  line-height: 1.6;
+  color: #333333;
+  flex: 1;
+}
+
+/* カード矢印（→） */
+.p-ipclArticles__cardArrow {
+  flex-shrink: 0;
+  width: 1rem;
+  height: 0.3125rem;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+.p-ipclArticles__cardArrow::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background-color: #5f98a5;
+  transform: translateY(-50%);
+}
+.p-ipclArticles__cardArrow::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 0.3125rem;
+  height: 0.3125rem;
+  border-top: 1.5px solid #5f98a5;
+  border-right: 1.5px solid #5f98a5;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+/* ヘッダー上書き */
+/* 共通コンポーネント */
+/* セクション */
+/* ユーティリティ（IPCLページ内のみ） */
+.pc-only {
+  display: block;
+}
+@media screen and (max-width:767px) {
+  .pc-only {
+    display: none !important;
+  }
+}
+
+.sp-only {
+  display: none !important;
+}
+@media screen and (max-width:767px) {
+  .sp-only {
+    display: block !important;
+  }
+}
+
+a,
+button {
+  transition: all 0.3s;
+}
+
+/*# sourceMappingURL=style.css.map */

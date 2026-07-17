@@ -1,0 +1,231 @@
+@use "../../../scss/setting" as *;
+
+/* ========================================
+  p-ipclCta（CTAセクション）
+======================================== */
+.p-ipclCta {
+  position: relative;
+  overflow: hidden;
+  padding-block: rem(64);
+  background-image:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.1) 100%),
+    linear-gradient(168.81deg, rgb(217, 187, 123) 22.483%, rgb(141, 111, 48) 83.943%);
+
+  @include mq("sp") {
+    padding-block: rem(40);
+    background-image:
+      linear-gradient(90deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.1) 100%),
+      linear-gradient(144.03deg, rgb(217, 187, 123) 22.483%, rgb(141, 111, 48) 83.943%);
+  }
+}
+
+/* ----------------------------------------
+  背景装飾レイヤー
+---------------------------------------- */
+.p-ipclCta__bg {
+  position: absolute;
+  left: 0;
+  top: rem(-405);
+  width: 100%;
+  height: rem(1227);
+  pointer-events: none;
+
+  @include mq("sp") {
+    top: 0;
+    height: 100%;
+  }
+}
+
+/* 背景テクスチャ（mix-blend-mode: multiply, opacity: 15%） */
+.p-ipclCta__bgTexture {
+  position: absolute;
+  inset: 0;
+  background-image: url('../img/cta-bg-texture.webp');
+  background-size: cover;
+  background-position: center;
+  mix-blend-mode: multiply;
+  opacity: 0.15;
+}
+
+/* 楕円37（左側・大） */
+.p-ipclCta__bgE37 {
+  position: absolute;
+  left: rem(-157);
+  top: rem(388);
+  width: rem(561);
+  height: rem(561);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  mix-blend-mode: lighten;
+
+  @include mq("sp") {
+    left: rem(-97);
+    top: auto;
+    bottom: rem(-40);
+    width: rem(356);
+    height: rem(356);
+  }
+}
+
+.p-ipclCta__bgE37Inner {
+  width: rem(397);
+  height: rem(397);
+
+  @include mq("sp") {
+    width: rem(252);
+    height: rem(252);
+  }
+}
+
+/* 楕円41（右側・中） */
+.p-ipclCta__bgE41 {
+  position: absolute;
+  right: rem(29);
+  top: rem(471);
+  width: rem(255);
+  height: rem(255);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  mix-blend-mode: lighten;
+
+  @include mq("sp") {
+    left: auto;
+    right: rem(-16);
+    top: rem(-120);
+    width: rem(162);
+    height: rem(162);
+  }
+}
+
+.p-ipclCta__bgE41Inner {
+  width: rem(238);
+  height: rem(238);
+
+  @include mq("sp") {
+    width: rem(151);
+    height: rem(151);
+  }
+}
+
+/* 楕円39 左 */
+.p-ipclCta__bgE39L {
+  position: absolute;
+  left: rem(-77);
+  top: rem(586);
+  width: rem(200);
+  height: rem(200);
+
+  @include mq("sp") {
+    left: rem(-46);
+    top: auto;
+    bottom: rem(26);
+    width: rem(127);
+    height: rem(127);
+  }
+}
+
+/* 楕円39 右（反転） */
+.p-ipclCta__bgE39R {
+  position: absolute;
+  right: rem(-80);
+  top: rem(586);
+  width: rem(200);
+  height: rem(200);
+  transform: scaleY(-1);
+
+  @include mq("sp") {
+    left: auto;
+    right: rem(-80);
+    top: rem(30);
+    width: rem(127);
+    height: rem(127);
+  }
+}
+
+/* ----------------------------------------
+  コンテンツ
+---------------------------------------- */
+.p-ipclCta__inner {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: rem(1400);
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: rem(24);
+}
+
+.p-ipclCta__titleBlock {
+  width: 100%;
+  text-align: center;
+}
+
+.p-ipclCta__title {
+  text-align: center;
+  @include mq("sp") {
+    text-align: left;
+  }
+}
+
+.p-ipclCta__title span {
+  display: inline-block;
+  font-family: $zen-old-mincho;
+  font-size: rem(32);
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+  white-space: nowrap;
+
+  @include mq("sp") {
+    font-size: rem(24);
+    white-space: normal;
+    text-align: left;
+    padding-left: rem(8.5);
+  }
+
+  @media screen and (max-width: 374.98px) {
+    font-size: rem(20);
+  }
+}
+
+.p-ipclCta__body {
+  width: 100%;
+  text-align: center;
+  margin-top: rem(40);
+
+  @include mq("sp") {
+    margin-top: rem(16);
+  }
+}
+
+.p-ipclCta__text {
+  text-align: center;
+  font-family: $noto-sans;
+  font-size: rem(16);
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: 0.15em;
+  line-height: 2;
+  max-width: rem(928);
+  margin-inline: auto;
+
+  @include mq("sp") {
+    font-size: rem(14);
+    font-weight: 300;
+    text-align: left;
+    max-width: 100%;
+  }
+}
+
+.p-ipclCta .c-btn {
+  margin-top: rem(40);
+
+  @include mq("sp") {
+    margin-top: rem(16);
+  }
+}

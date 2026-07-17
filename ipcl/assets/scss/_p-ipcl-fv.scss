@@ -1,0 +1,449 @@
+@use "../../../scss/setting" as *;
+
+.p-ipclFv-wrap {
+  overflow: hidden;
+}
+
+/* ========================================
+  p-ipclFv（メインビジュアル / FV）
+======================================== */
+
+.p-ipclFv {
+  position: relative;
+  width: 100%;
+  height: rem(720);
+  background-color: $color-ipcl-faq-base;
+  z-index: 1;
+
+  /* 768-1199px: 1200px時のスケールで高さ固定（1200px未満でパキっとならないように） */
+  @media (min-width: 768px) and (max-width: 1199px) {
+    height: calc(720px * 1200 / 1400);
+  }
+
+  /* 1200-1600px: 縦横比を保ってvwで追従（1400pxがカンプ基準） */
+  @media (min-width: 1200px) and (max-width: 1600px) {
+    height: calc(720 / 1400 * 100vw);
+  }
+
+  /* 1601px+: 1600px時の高さで固定 */
+  @media (min-width: 1601px) {
+    height: calc(720px * 1600 / 1400);
+  }
+
+  @include mq("sp") {
+    height: rem(663);
+  }
+}
+
+/* ---- コンテンツラッパー（スケール対象） ---- */
+.p-ipclFv__content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: rem(1400);
+  height: rem(720);
+  transform-origin: top left;
+  transform: scale(var(--fv-content-scale, 1));
+
+  /* 1601px+: コンテンツを中央寄せ（水平余白だけ広がる） */
+  @media (min-width: 1601px) {
+    left: calc((100vw - 1600px) / 2);
+  }
+
+  /* SP: 1400px固定を解除して正しい座標系に */
+  @include mq("sp") {
+    width: 100%;
+    height: rem(663);
+  }
+}
+
+/* ---- 背景レイヤー ---- */
+
+.p-ipclFv__bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.p-ipclFv__bgSlider {
+  position: absolute;
+  inset: 0;
+}
+
+.p-ipclFv__bgPhoto {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 2s ease;
+
+  &.is-active {
+    opacity: 1;
+  }
+}
+
+.p-ipclFv__bgOverlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(34, 39, 39, 0.93);
+}
+
+/* ---- フォトエリア ---- */
+
+.p-ipclFv__photoArea {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  @include mq("sp") {
+    top: rem(80);
+  }
+}
+
+/* PC: グループ画像 */
+.p-ipclFv__photoImg--pc {
+  position: absolute;
+  /* 768-1199px: 右端固定・1200px基準でスケール */
+  right: 0;
+  top: calc(178px * 1200 / 1400);
+  width: calc(641px * 1200 / 1400);
+  height: auto;
+
+  /* 1200-1600px: vwで追従・左基点 */
+  @media (min-width: 1200px) and (max-width: 1600px) {
+    left: calc(742 / 1400 * 100vw);
+    right: auto;
+    top: calc(178 / 1400 * 100vw);
+    width: calc(641 / 1400 * 100vw);
+  }
+
+  /* 1601px+: contentのセンタリングに合わせた左位置 */
+  @media (min-width: 1601px) {
+    left: calc((100vw - 1600px) / 2 + 742px * 1600 / 1400);
+    right: auto;
+    top: calc(178px * 1600 / 1400);
+    width: calc(641px * 1600 / 1400);
+  }
+
+  @include mq("sp") {
+    display: none;
+  }
+}
+
+/* SP: グループ画像（@2x書き出し） */
+.p-ipclFv__photoImg--sp {
+  display: none;
+
+  @include mq("sp") {
+    display: block;
+    position: absolute;
+    right: 0;
+    top: rem(38);
+    width: rem(364);
+    height: auto;
+  }
+}
+
+/* ---- お知らせバー ---- */
+
+.p-ipclFv__noticebar {
+  position: absolute;
+  top: rem(116);
+  left: 0;
+  width: 100%;
+  height: rem(55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to right, rgba($color-ipcl-grad-light, 0.51), rgba($color-ipcl-grad-light, 0));
+
+  @media (min-width: 768px) and (max-width: 1199px) {
+    top: calc(116px * 1200 / 1400);
+    height: calc(55px * 1200 / 1400);
+  }
+
+  @media (min-width: 1200px) and (max-width: 1600px) {
+    top: calc(116 / 1400 * 100vw);
+    height: calc(55 / 1400 * 100vw);
+  }
+
+  @media (min-width: 1601px) {
+    top: calc(116px * 1600 / 1400);
+    height: calc(55px * 1600 / 1400);
+  }
+
+  @include mq("sp") {
+    top: rem(104);
+    height: auto;
+    padding-block: rem(15);
+    padding-inline: rem(16);
+    display: block;
+  }
+}
+
+.p-ipclFv__noticeText {
+  font-family: $zen-old-mincho;
+  font-size: rem(19);
+  font-weight: 400;
+  color: #ffffff;
+  letter-spacing: 0.18em;
+  line-height: 1.19;
+  white-space: nowrap;
+
+  @media (min-width: 768px) and (max-width: 1199px) {
+    font-size: calc(19px * 1200 / 1400);
+  }
+
+  @media (min-width: 1200px) and (max-width: 1600px) {
+    font-size: calc(19 / 1400 * 100vw);
+  }
+
+  @media (min-width: 1601px) {
+    font-size: calc(19px * 1600 / 1400);
+  }
+}
+
+.p-ipclFv__noticeSpLine1 {
+  display: block;
+  font-family: $zen-old-mincho;
+  font-size: rem(11);
+  font-weight: 400;
+  color: #ffffff;
+  letter-spacing: 0.08em;
+  line-height: 1.19;
+}
+
+.p-ipclFv__noticeSpLine2 {
+  display: block;
+  font-family: $zen-old-mincho;
+  font-size: rem(11);
+  font-weight: 400;
+  color: #ffffff;
+  letter-spacing: 0.08em;
+  padding-left: rem(78);
+  margin-top: rem(2);
+}
+
+/* ---- キャッチコピー行1（次世代型…）---- */
+
+/* PC: 1行 */
+.p-ipclFv__catch1 {
+  position: absolute;
+  left: rem(119);
+  top: rem(223);
+  font-family: $zen-old-mincho;
+  font-size: rem(18);
+  font-weight: 400;
+  color: $color-ipcl-fv-catch;
+  letter-spacing: 0.13em;
+  line-height: 1.19;
+  white-space: nowrap;
+  transform: skewX(-15deg) scaleY(0.97);
+  transform-origin: left center;
+}
+
+/* SP: 2行 */
+.p-ipclFv__catch1Sp {
+  display: none;
+
+  @include mq("sp") {
+    display: block;
+    position: absolute;
+    left: rem(23);
+    top: rem(288);
+  }
+}
+
+.p-ipclFv__catch1SpLine1 {
+  display: block;
+  font-family: $zen-old-mincho;
+  font-size: rem(10);
+  font-weight: 400;
+  color: $color-ipcl-fv-catch;
+  letter-spacing: 0.13em;
+  line-height: 1.7;
+  white-space: nowrap;
+  transform: skewX(-15deg) scaleY(0.97);
+  transform-origin: left center;
+}
+
+.p-ipclFv__catch1SpLine2 {
+  display: block;
+  font-family: $zen-old-mincho;
+  font-size: rem(11.5);
+  font-weight: 400;
+  color: $color-ipcl-fv-catch;
+  letter-spacing: 0.13em;
+  line-height: 1.7;
+  white-space: nowrap;
+  transform: skewX(-15deg) scaleY(0.97);
+  transform-origin: left center;
+}
+
+/* ---- メインタイトル「IPCL」---- */
+
+.p-ipclFv__title {
+  position: absolute;
+  left: rem(124);
+  top: rem(272);
+  font-family: $cormorant-garamond;
+  font-size: rem(138);
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  line-height: 1;
+  background: linear-gradient(164.84deg, $color-ipcl-grad-light 22.5%, $color-ipcl-grad-dark 83.9%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  filter: drop-shadow(rem(8) rem(8) rem(4) rgba(0, 0, 0, 0.18));
+
+  @include mq("sp") {
+    font-size: rem(96);
+    left: rem(24);
+    top: rem(183);
+  }
+}
+
+/* ---- サブタイトル（装飾線 + 英語テキスト）---- */
+
+.p-ipclFv__subtitle {
+  position: absolute;
+  left: rem(124);
+  top: rem(406);
+  display: flex;
+  align-items: center;
+  gap: rem(8);
+  width: rem(404);
+}
+
+.p-ipclFv__subtitleLine {
+  display: block;
+  width: rem(45);
+  flex-shrink: 0;
+  border-top: 1px solid $color-ipcl-gold-border;
+}
+
+.p-ipclFv__subtitleText {
+  font-family: $noto-sans;
+  font-size: rem(12);
+  font-weight: 300;
+  color: $color-ipcl-gold-border;
+  letter-spacing: 0.4em;
+  line-height: 2.2;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ---- キャッチコピー行2（裸眼で…）PC専用 ---- */
+
+.p-ipclFv__catch2 {
+  position: absolute;
+  left: rem(112);
+  top: rem(459);
+  font-family: $noto-sans;
+  font-size: rem(23);
+  font-weight: 400;
+  color: #ffffff;
+  letter-spacing: 0.36em;
+  line-height: 2;
+  white-space: nowrap;
+  transform: skewX(-20deg) scaleY(0.94);
+  transform-origin: left center;
+  text-shadow: 0 rem(4) rem(4) rgba(0, 0, 0, 0.25);
+
+  @include mq("sp") {
+    left: auto;
+    right: rem(30.4);
+    top: rem(518);
+    font-size: min(calc(100vw / 375 * 14), 14px);
+    letter-spacing: 0.22em;
+    white-space: nowrap;
+  }
+}
+
+/* ---- サブキャッチ（翌朝…）---- */
+
+.p-ipclFv__subCatch {
+  position: absolute;
+  left: rem(379);
+  top: rem(510);
+  font-family: $noto-sans;
+  font-size: rem(14);
+  font-weight: 400;
+  color: #ffffff;
+  letter-spacing: 0.22em;
+  line-height: 2;
+  white-space: nowrap;
+  transform: skewX(-20deg) scaleY(0.94);
+  transform-origin: left center;
+  text-shadow: 0 rem(4) rem(4) rgba(0, 0, 0, 0.7);
+
+  @include mq("sp") {
+    font-family: $noto-sans;
+    font-size: rem(10);
+    font-weight: 300;
+    letter-spacing: 0.16em;
+    left: auto;
+    right: rem(20.8);
+    top: rem(548);
+    transform: skewX(-20deg) scaleY(0.94);
+  }
+}
+
+/* ---- CTAボタン ---- */
+
+.p-ipclFv__ctaBtn {
+  position: absolute;
+  left: rem(114);
+  top: rem(574);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: rem(8);
+  width: rem(340);
+  height: rem(72);
+  padding-block: rem(16);
+  padding-inline: rem(24) rem(32);
+  background: linear-gradient(113.56deg, $color-ipcl-grad-light 1.99%, $color-ipcl-grad-dark 96.95%);
+  border: 0.3px solid #ffffff;
+  border-radius: rem(1.3);
+  text-decoration: none;
+
+  @include mq("sp") {
+    left: 50%;
+    top: auto;
+    bottom: rem(21);
+    transform: translateX(-50%);
+    width: min(calc(100vw / 375 * 327), 327px);
+    height: rem(60);
+  }
+}
+
+.p-ipclFv__ctaBtnText {
+  font-family: $zen-old-mincho;
+  font-size: rem(16);
+  font-weight: 500;
+  color: #ffffff;
+  letter-spacing: 0.04em;
+  font-feature-settings: "liga" 0;
+  white-space: nowrap;
+}
+
+.p-ipclFv__ctaBtnArrow {
+  position: absolute;
+  right: rem(17);
+  top: 50%;
+  transform: translateY(-50%);
+  width: rem(59);
+  height: rem(25);
+
+  @include mq("sp") {
+    right: min(calc(100vw / 375 * 17), 17px);
+    width: min(calc(100vw / 375 * 59.28), 59.28px);
+    height: rem(24.63);
+  }
+}

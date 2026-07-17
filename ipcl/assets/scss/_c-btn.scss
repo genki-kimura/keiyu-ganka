@@ -1,0 +1,77 @@
+@use "../../../scss/setting" as *;
+
+/* ========================================
+  c-btn（共通ボタン）
+======================================== */
+.c-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: rem(8);
+  width: rem(372);
+  max-width: 100%;
+  height: rem(80);
+  padding-block: rem(16);
+  padding-inline: rem(24) rem(32);
+  background-color: #fff;
+  border-radius: rem(2);
+  text-decoration: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  /* ぼかし光彩: 白いグローをボタン外周に表示（overflow:hiddenを使わない） */
+  box-shadow: 0 0 rem(36) rgba(255, 255, 255, 0.5);
+
+  @include mq("sp") {
+    width: 100%;
+    height: rem(68);
+  }
+}
+
+.c-btn__label {
+  position: relative;
+  z-index: 10;
+  font-family: $zen-old-mincho;
+  font-size: rem(18);
+  font-weight: 500;
+  color: $color-ipcl-main;
+  letter-spacing: 0.07em;
+  line-height: 1;
+  white-space: nowrap;
+  font-feature-settings: "liga" 0;
+
+  @include mq("sp") {
+    font-size: rem(16);
+  }
+}
+
+.c-btn__arrow {
+  position: absolute;
+  right: rem(17);
+  top: 50%;
+  transform: translateY(-50%);
+  width: rem(59);
+  height: rem(25);
+  z-index: 10;
+
+  @include mq("sp") {
+    width: min(calc(100vw / 375 * 43), 43px);
+    height: rem(18);
+  }
+}
+
+.c-btn__arrow img {
+  width: 100%;
+  height: auto;
+}
+
+@media (any-hover: hover) {
+  .c-btn:hover {
+    opacity: 0.85;
+  }
+}
+
+.c-btn:focus-visible {
+  outline: 2px solid $color-ipcl-main;
+  outline-offset: 2px;
+}

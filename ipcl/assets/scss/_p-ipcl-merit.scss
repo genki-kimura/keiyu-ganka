@@ -1,0 +1,332 @@
+@use "../../../scss/setting" as *;
+
+/* ========================================
+  p-ipclMerit（IPCLのメリット・デメリット）
+======================================== */
+.p-ipclMerit {
+  background-color: #fff;
+  /* padding-bottom禁止のため padding-block(64) + padding-top(82) で上書き */
+  padding-block: rem(64);
+  padding-top: rem(82);
+  position: relative;
+  overflow: hidden;
+
+  @include mq("sp") {
+    padding-top: rem(40);
+    padding-bottom: rem(40);
+  }
+}
+
+/* 装飾: 右側の楕円 */
+.p-ipclMerit__ellipse {
+  position: absolute;
+  right: rem(-106);
+  top: rem(973);
+  width: rem(290);
+  height: rem(290);
+  pointer-events: none;
+  z-index: 0;
+
+  @include mq("sp") {
+    display: none;
+  }
+}
+
+.p-ipclMerit__ellipse img {
+  width: 100%;
+  height: auto;
+}
+
+/* インナー */
+.p-ipclMerit__inner {
+  max-width: rem(1200);
+  padding-inline: rem(20);
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+
+  @include mq("sp") {
+    padding-inline: rem(24);
+  }
+}
+
+/* ----------------------------------------
+  セクションタイトル（c-sectionTitle を流用）
+---------------------------------------- */
+
+/* ----------------------------------------
+  本文テキスト
+---------------------------------------- */
+.p-ipclMerit__intro {
+  margin-top: rem(24);
+}
+
+.p-ipclMerit__introText {
+  font-family: $noto-sans;
+  font-size: rem(14);
+  font-weight: 300;
+  color: $color-ipcl-body;
+  letter-spacing: 0.18em;
+  line-height: 2;
+}
+
+/* ----------------------------------------
+  2カラム（メリット / デメリット）
+---------------------------------------- */
+.p-ipclMerit__columns {
+  display: flex;
+  gap: rem(40);
+  align-items: flex-start;
+  margin-top: rem(70);
+
+  @include mq("sp") {
+    flex-direction: column;
+    gap: rem(24);
+    margin-top: rem(24);
+  }
+}
+
+/* 各列（メリット / デメリット共通） */
+.p-ipclMerit__col {
+  flex: 1 0 0;
+  min-width: 0;
+  border-radius: rem(8);
+  /* padding-bottom禁止のため padding-block(24) + padding-top(32) で上書き */
+  padding-block: rem(24);
+  padding-top: rem(32);
+  padding-inline: rem(32);
+  display: flex;
+  flex-direction: column;
+
+  @include mq("sp") {
+    width: 100%;
+    /* padding-bottom禁止のため padding-block(16) + padding-top(24) で上書き */
+    padding-block: rem(16);
+    padding-top: rem(24);
+    padding-inline: rem(16);
+  }
+}
+
+.p-ipclMerit__col--merit {
+  background-color: $color-ipcl-merit-bg;
+}
+
+.p-ipclMerit__col--demerit {
+  background-color: $color-ipcl-demerit-bg;
+}
+
+/* 列ヘッダー（タイトル + サブライン） */
+.p-ipclMerit__colHead {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.p-ipclMerit__colTitle {
+  font-family: $zen-old-mincho;
+  font-size: rem(20);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+
+.p-ipclMerit__colTitle--merit {
+  color: $color-ipcl-gold;
+}
+
+.p-ipclMerit__colTitle--demerit {
+  color: $color-ipcl-body;
+}
+
+/* サブライン行（line - テキスト - line） */
+.p-ipclMerit__colSubRow {
+  display: flex;
+  align-items: center;
+  gap: rem(8);
+}
+
+.p-ipclMerit__colSubLine {
+  display: block;
+  width: rem(24);
+  flex-shrink: 0;
+  border-top: 1px solid $color-ipcl-sub;
+}
+
+.p-ipclMerit__colSubText {
+  font-family: $noto-sans;
+  font-size: rem(11);
+  font-weight: 300;
+  color: $color-ipcl-sub;
+  letter-spacing: 0.4em;
+  line-height: 2.2;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* カードリスト */
+.p-ipclMerit__cards {
+  display: flex;
+  flex-direction: column;
+  margin-top: rem(24);
+
+  @include mq("sp") {
+    margin-top: rem(16);
+  }
+}
+
+.p-ipclMerit__card {
+  background-color: #fff;
+  border-radius: rem(4);
+  padding-block: rem(32);
+  padding-inline: rem(24);
+  box-shadow: 0 0 rem(22) rgba(83, 64, 25, 0.04);
+
+  @include mq("sp") {
+    padding-block: rem(24);
+    padding-inline: rem(20);
+  }
+}
+
+.p-ipclMerit__card--demerit {
+  box-shadow: 0 0 rem(22) rgba(0, 0, 0, 0.04);
+}
+
+.p-ipclMerit__card + .p-ipclMerit__card {
+  margin-top: rem(24);
+
+  @include mq("sp") {
+    margin-top: rem(16);
+  }
+}
+
+/* ----------------------------------------
+  アコーディオン（SP専用）
+---------------------------------------- */
+
+/* トグルボタン: PCはブロック要素として機能 */
+.p-ipclMerit__cardToggle {
+  display: block;
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 0;
+  text-align: left;
+  cursor: default;
+
+  @include mq("sp") {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: rem(8);
+    cursor: pointer;
+  }
+}
+
+/* シェブロンアイコン（SP限定） */
+.p-ipclMerit__cardChevron {
+  display: none;
+
+  @include mq("sp") {
+    display: block;
+    flex-shrink: 0;
+    width: rem(9);
+    height: rem(6);
+    border-left: rem(4.5) solid transparent;
+    border-right: rem(4.5) solid transparent;
+    border-top: rem(6) solid $color-ipcl-gold;
+    transition: transform 0.3s;
+  }
+}
+
+.p-ipclMerit__col--demerit .p-ipclMerit__cardChevron {
+  @include mq("sp") {
+    border-top-color: $color-ipcl-caption;
+  }
+}
+
+/* 展開時はシェブロンを上向きに反転 */
+.p-ipclMerit__card.is-open .p-ipclMerit__cardChevron {
+  @include mq("sp") {
+    transform: rotate(180deg);
+  }
+}
+
+/* セパレーターライン（PC非表示 / SP展開時のみ表示） */
+.p-ipclMerit__cardSep {
+  display: none;
+}
+
+.p-ipclMerit__card.is-open .p-ipclMerit__cardSep {
+  @include mq("sp") {
+    display: block;
+    height: rem(1);
+    background-color: $color-ipcl-cell-border;
+    margin-top: rem(12);
+    margin-bottom: rem(12);
+  }
+}
+
+/* カード本文領域: PCは常時表示 / SPは折りたたみ */
+.p-ipclMerit__cardBody {
+  margin-top: rem(12);
+
+  @include mq("sp") {
+    display: none;
+    margin-top: 0;
+  }
+}
+
+.p-ipclMerit__card.is-open .p-ipclMerit__cardBody {
+  @include mq("sp") {
+    display: block;
+  }
+}
+
+/* カードタイトル */
+.p-ipclMerit__cardTitle {
+  font-family: $zen-old-mincho;
+  font-size: rem(18);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  line-height: 1.8;
+
+  @include mq("sp") {
+    font-size: rem(14);
+    letter-spacing: 0.12em;
+  }
+}
+
+.p-ipclMerit__cardTitle--merit {
+  color: $color-ipcl-gold;
+}
+
+.p-ipclMerit__cardTitle--demerit {
+  color: $color-ipcl-caption;
+}
+
+/* カード本文 */
+.p-ipclMerit__cardDesc {
+  margin-top: rem(12);
+
+  @include mq("sp") {
+    margin-top: 0;
+  }
+}
+
+.p-ipclMerit__cardText {
+  font-family: $noto-sans;
+  font-size: rem(14);
+  font-weight: 300;
+  color: $color-ipcl-body;
+  letter-spacing: 0.1em;
+  line-height: 1.8;
+
+  @include mq("sp") {
+    font-size: rem(12);
+    letter-spacing: 0.1em;
+  }
+}
