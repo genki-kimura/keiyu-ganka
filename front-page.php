@@ -246,8 +246,8 @@
 			display: flex;
 			align-items: center;
 			gap: 16px;
-			max-width: 1120px;
-			width: calc(100% - 40px);
+			max-width: 1440px;
+			width: 98%;
 			margin: 0 auto;
 		}
 
