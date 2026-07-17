@@ -1,0 +1,211 @@
+@charset "UTF-8";
+
+@mixin did {font-family:'Didot','Shippori Mincho',serif;}
+@mixin not {font-family: 'Noto Sans JP', sans-serif;}
+@mixin zenm {font-family:'Zen Old Mincho',serif;}
+@mixin zenk {font-family: 'Zen Kaku Gothic New', sans-serif;}
+@mixin mina {font-family: "Source Han Serif JP", "Noto Serif CJK JP", "游明朝体", "Yu Mincho", YuMincho, serif;}
+@mixin roboto {font-family: 'Roboto', serif;}
+
+@mixin box($width: 1120px){
+	max-width: $width;
+ 	width: calc(100% - 40px);
+	margin: 0 auto;
+	@media only screen and (max-width:768px){
+		width: calc(100% - 30px);
+	}
+}
+
+@mixin flex {
+	@media only screen and (min-width:769px){
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+	}
+}
+
+@mixin flex-st {
+		display: flex;
+		justify-content: start;
+		flex-wrap: wrap;
+}
+@mixin single-ttl {
+	font-size: 40px;
+	line-height: 110%;
+	font-weight: bold;
+	letter-spacing: 0;
+	margin-bottom: 10px;
+	@media only screen and (max-width:768px){
+		font-size: 25px;
+		margin-bottom: 8px;
+	}
+}
+
+@mixin single-sub {
+	font-size: 22px;
+	letter-spacing: 0.25em;
+	font-weight: 500;
+	line-height: 130%;
+	@media only screen and (max-width:768px){
+		font-size: 16px;
+	}
+}
+
+@mixin h2 {
+	font-size: 18px;
+	font-weight: bold;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin-bottom: 16px;
+	@media only screen and (max-width:768px){
+		font-size: 16px;
+	}
+	&::before {
+		content: "";
+		width: 32px;
+		height: 32px;
+		display: inline-block;
+		@media only screen and (max-width:750px){
+			width: 24px;
+			height: 24px;
+		}
+	}
+}
+
+@mixin h3 {
+	@include roboto;
+	font-size: 80px;
+	line-height: 120%;
+	font-weight: 500;
+	@media only screen and (max-width:768px){
+		font-size: 40px;
+	}
+}
+@mixin sub {
+	font-size: 22px;
+	line-height: 120%;
+	font-weight: bold;
+	letter-spacing: 0.4rem;
+	@media only screen and (max-width:768px){
+		font-size: 18px;
+	}
+}
+
+@mixin h4 {
+	font-size: 25px;
+	line-height: 150%;
+	font-weight: bold;
+	@media only screen and (max-width:768px){
+		font-size: 18px;
+	}
+}
+
+
+@mixin btn {
+	content: "";
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+	@media only screen and (max-width:750px){
+	}
+}
+@mixin b-btn {
+	font-size: 14px;
+	width: 240px;
+	letter-spacing: 0;
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 15px;
+	background-color: $db;
+	color: #fff;
+	box-sizing: border-box;
+	margin: 0 auto;
+	@media only screen and (max-width:768px){
+		font-size: 13px;
+		padding: 12px;
+		width: 100%;
+	}
+	&::after {
+		content: "";
+		width: 16px;
+		height: 16px;
+		background: url(../commons/img/icon_l-arw.png) no-repeat center/100%;
+		@media only screen and (max-width:768px){
+		}
+	}
+}
+@mixin in-btn {
+	width: 188px;
+	text-align: center;
+	@media only screen and (max-width:768px){
+		width: 90%;
+	}
+}
+
+@mixin name {
+	font-size: 24px;
+	font-weight: 700;
+	max-width: 1157px;
+	width: 65%;
+	position: absolute;
+	bottom: -55px;
+	right: 0;
+	border-bottom: solid 3px #fff;
+	padding-bottom: 10px;
+	@media only screen and (max-width:750px){
+		width: 50%;
+		bottom: -35px;
+		font-size: 14px;
+		border-bottom: solid 2px #fff;
+		padding-bottom: 2px;
+	}
+}
+
+
+//pxをvwに変換するfunction
+@function _get_vw($size, $viewport: 375) {
+    $rate: calc(100 / $viewport);
+    @return $rate * $size * 1vw;
+  }
+//フォント用のmixin
+@mixin font-vw($font_size: 10, $viewsize: 375) {
+	font-size: $font_size * 1px;
+	font-size: _get_vw($font_size, $viewsize);
+}
+//画像用のmixin
+@mixin img-vw($img_size, $viewsize: 375) {
+	width: $img_size * 1px;
+	width: _get_vw($img_size, $viewsize);
+	}
+	//paddingやmargin用のmixin（widhtやheightでも使える）
+	@mixin p-vw($property, $size, $viewsize: 375) {
+	#{$property}: $size * 1px;
+	#{$property}: _get_vw($size, $viewsize);
+}
+
+$red:#ff0606;
+$orange:#f45303;
+$d-orange:#ff7c56;
+$w-orange:#f8f4e9;
+$ylw:#ffc107;
+$cream:#f8f4e9;
+$on-ylw:#c0a53a;
+$blue:#0071aa;
+$db:#0E173A;//
+$w-b:#dcf2f2;
+$wwb:#ecf5f9;
+$lb:#b3e5fc;
+$green:#00a89c;
+$on-db:#1a273b;
+$lgray:#ddd;//
+$gray:#727272;
+$wglay:#F5F5F5;//
+$d-gray:#4d4d4d;
+$kuro:#333;//
+$bkuro:#19275B;//
+$gold:#9B7714;//
+$gwhite:#cfcfcf;//
+$dk:#212121;

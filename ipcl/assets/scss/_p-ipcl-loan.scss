@@ -1,0 +1,209 @@
+@use "../../../scss/setting" as *;
+
+/* ========================================
+  p-ipclLoan（医療ローンについて）
+======================================== */
+.p-ipclLoan {
+  background-color: #ffffff;
+  padding-block: rem(64);
+
+  @include mq("sp") {
+    padding-block: rem(40);
+    padding-inline: rem(24);
+  }
+}
+
+.p-ipclLoan__inner {
+  max-width: rem(1200);
+  padding-inline: rem(20);
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: rem(24);
+
+  @include mq("sp") {
+    padding-inline: 0;
+  }
+}
+
+/* ----------------------------------------
+  見出しブロック（PC: 横並び / SP: 縦積み）
+---------------------------------------- */
+.p-ipclLoan__head {
+  display: flex;
+  flex-direction: row;
+  gap: rem(8);
+  align-items: center;
+  width: 100%;
+
+  @include mq("sp") {
+    flex-direction: column;
+    gap: 0;
+    align-items: flex-start;
+  }
+}
+
+.p-ipclLoan__title {
+  font-family: $zen-old-mincho;
+  font-weight: 500;
+  font-size: rem(32);
+  letter-spacing: av(80);
+  line-height: 1.6;
+  background: linear-gradient(173.5deg, $color-ipcl-grad-light 22.5%, $color-ipcl-grad-dark 83.9%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  flex-shrink: 0;
+
+  @include mq("sp") {
+    font-size: rem(20);
+  }
+}
+
+.p-ipclLoan__subRow {
+  display: flex;
+  align-items: center;
+  gap: rem(8);
+  flex: 1;
+
+  @include mq("sp") {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+.p-ipclLoan__subLine {
+  display: block;
+  width: rem(24);
+  height: 0;
+  border-top: 0.8px solid $color-ipcl-sub;
+}
+
+.p-ipclLoan__subText {
+  font-family: $noto-sans;
+  font-weight: 300;
+  font-size: rem(11);
+  letter-spacing: av(400);
+  line-height: 2.2;
+  color: $color-ipcl-sub;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ----------------------------------------
+  リードテキスト
+---------------------------------------- */
+.p-ipclLoan__lead {
+  font-family: $noto-sans;
+  font-weight: 300;
+  font-size: rem(14);
+  letter-spacing: av(120);
+  line-height: 1.8;
+  color: $color-ipcl-body;
+}
+
+/* ----------------------------------------
+  カードリスト
+---------------------------------------- */
+.p-ipclLoan__cards {
+  display: flex;
+  flex-direction: row;
+  gap: rem(24);
+
+  @include mq("sp") {
+    flex-direction: column;
+    gap: rem(12);
+  }
+}
+
+.p-ipclLoan__card {
+  flex: 1;
+  background-color: $color-ipcl-icon-bg;
+  border-radius: rem(4);
+  box-shadow: 0 0 rem(44) 0 rgba(83, 64, 25, 0.04);
+  min-height: rem(184);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: rem(4);
+  padding: rem(24);
+
+  @include mq("sp") {
+    width: 100%;
+    height: rem(184);
+  }
+}
+
+/* カード内ラベル */
+.p-ipclLoan__cardLabel {
+  font-family: $noto-sans;
+  font-weight: 400;
+  font-size: rem(18);
+  letter-spacing: av(100);
+  line-height: 1.8;
+  color: $color-ipcl-body;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* カード内数値 + 単位のラッパー */
+.p-ipclLoan__cardNumber {
+  display: flex;
+  align-items: flex-end;
+  line-height: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.p-ipclLoan__cardValue {
+  font-family: $zen-old-mincho;
+  font-weight: 400;
+  font-size: rem(80);
+  line-height: 0.9;
+  color: $color-ipcl-main;
+  letter-spacing: -0.02em;
+}
+
+.p-ipclLoan__cardUnit {
+  font-family: $zen-old-mincho;
+  font-weight: 500;
+  font-size: rem(34);
+  line-height: 1;
+  color: $color-ipcl-main;
+  letter-spacing: -0.02em;
+  margin-bottom: rem(10);
+  margin-left: rem(4);
+}
+
+/* 補足テキスト（オリコ / ジャックス / アプラス） */
+.p-ipclLoan__cardNote {
+  font-family: $noto-sans;
+  font-weight: 400;
+  font-size: rem(14);
+  letter-spacing: av(100);
+  line-height: 1.8;
+  color: $color-ipcl-body;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* 背景装飾アイコン（opacity: 10%） */
+.p-ipclLoan__cardBgIcon {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  pointer-events: none;
+  width: rem(160);
+  height: auto;
+  object-fit: contain;
+}
+
+.p-ipclLoan__card:first-child .p-ipclLoan__cardBgIcon {
+  width: rem(146);
+}

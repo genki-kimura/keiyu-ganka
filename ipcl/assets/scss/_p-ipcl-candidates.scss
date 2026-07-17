@@ -1,0 +1,336 @@
+@use "../../../scss/setting" as *;
+
+/* ========================================
+  p-ipclCandidates（IPCLとICL どちらが向いているか）
+======================================== */
+.p-ipclCandidates {
+  background-color: #fff;
+  padding-block: rem(64);
+
+  @include mq("sp") {
+    padding-block: rem(40);
+    padding-inline: rem(24);
+  }
+}
+
+/* インナー */
+.p-ipclCandidates__inner {
+  max-width: rem(1200);
+  padding-inline: rem(20);
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: rem(24);
+
+  @include mq("sp") {
+    padding-inline: 0;
+  }
+}
+
+/* ----------------------------------------
+  見出しブロック（PC: インライン / SP: 縦並び）
+---------------------------------------- */
+.p-ipclCandidates__head {
+  display: flex;
+  gap: rem(8);
+  align-items: center;
+  width: 100%;
+
+  @media (max-width: 999px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: rem(2);
+  }
+}
+
+.p-ipclCandidates__title {
+  font-family: $zen-old-mincho;
+  font-size: rem(32);
+  font-weight: 500;
+  background-image: linear-gradient(176.60deg, $color-ipcl-grad-light 22.483%, $color-ipcl-grad-dark 83.943%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+  white-space: nowrap;
+  flex-shrink: 0;
+
+  @include mq("sp") {
+    font-size: rem(20);
+    letter-spacing: 0.08em;
+    white-space: normal;
+    line-height: 1.4;
+  }
+}
+
+/* SP: ダッシュ非表示 / 改行表示 */
+.p-ipclCandidates__titleSep {
+  @include mq("sp") {
+    display: none;
+  }
+}
+
+.p-ipclCandidates__titleBr {
+  display: none;
+
+  @include mq("sp") {
+    display: block;
+  }
+}
+
+.p-ipclCandidates__subRow {
+  display: flex;
+  flex: 1 0 0;
+  min-width: 0;
+  gap: rem(8);
+  align-items: center;
+
+  @include mq("sp") {
+    justify-content: flex-end;
+    width: 100%;
+    flex: none;
+  }
+}
+
+.p-ipclCandidates__subLine {
+  display: block;
+  width: rem(24);
+  flex-shrink: 0;
+  border-top: 1px solid $color-ipcl-sub;
+}
+
+.p-ipclCandidates__subText {
+  font-family: $noto-sans;
+  font-size: rem(11);
+  font-weight: 300;
+  color: $color-ipcl-sub;
+  letter-spacing: 0.4em;
+  line-height: 2.2;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* リードテキスト */
+.p-ipclCandidates__lead {
+  font-family: $noto-sans;
+  font-size: rem(14);
+  font-weight: 300;
+  color: $color-ipcl-body;
+  letter-spacing: 0.18em;
+  line-height: 2;
+}
+
+/* ----------------------------------------
+  カードエリア外側ラッパー
+---------------------------------------- */
+.p-ipclCandidates__cardArea {
+  padding-top: rem(16);
+  width: 100%;
+}
+
+/* カードラップ（グラデーション背景 + overflow clip） */
+.p-ipclCandidates__cardWrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: rem(8);
+  padding-block: rem(56);
+  padding-inline: rem(56);
+  background-image:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.5) 100%),
+    linear-gradient(90deg, $color-ipcl-grad-light 5%, $color-ipcl-card-area-end 95%);
+  z-index: 1;
+
+  @include mq("sp") {
+    padding-block: rem(40);
+    padding-inline: rem(20);
+    background-image:
+      linear-gradient(90deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.5) 100%),
+      linear-gradient(180deg, $color-ipcl-grad-light 5%, $color-ipcl-card-area-end 95%);
+  }
+}
+
+.p-ipclCandidates__cardWrap::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+  width: auto;
+  height: 100%;
+  aspect-ratio: 1014 / 910;
+  background: url(../img/candidates-face-left.webp) no-repeat;
+  background-size: contain;
+  z-index: -1;
+
+  @include mq("sp") {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 654 / 870;
+    background: url(../img/candidates-face-left-sp.webp) no-repeat;
+    background-size: contain;
+  }
+}
+
+.p-ipclCandidates__cardWrap::after {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  content: "";
+  width: auto;
+  height: 100%;
+  aspect-ratio: 992 / 890;
+  background: url(../img/candidates-face-right.webp) no-repeat;
+  background-size: contain;
+  z-index: -1;
+
+  @include mq("sp") {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 654 / 730;
+    background: url(../img/candidates-face-right-sp.webp) no-repeat;
+    background-size: contain;
+  }
+}
+
+
+/* カード群（PC: flex横並び / SP: flex縦並び） */
+.p-ipclCandidates__cards {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: rem(40);
+  align-items: flex-start;
+  max-width: rem(928);
+  margin-inline: auto;
+
+  @include mq("sp") {
+    flex-direction: column;
+    gap: rem(24);
+    max-width: 100%;
+  }
+}
+
+/* カード個別 */
+.p-ipclCandidates__card {
+  flex: 1 0 0;
+  min-width: 0;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: rem(4);
+  padding-block: rem(32);
+  padding-inline: rem(32);
+  display: flex;
+  flex-direction: column;
+  gap: rem(16);
+  box-shadow: 0 0 rem(44) rgba(0, 0, 0, 0.04);
+  align-self: stretch;
+
+  @include mq("sp") {
+    width: 100%;
+    padding-block: rem(16);
+    padding-inline: rem(16);
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+}
+
+/* カードタイトル */
+.p-ipclCandidates__cardTitle {
+  font-family: $zen-old-mincho;
+  font-size: rem(18);
+  font-weight: 500;
+  color: $color-ipcl-gold;
+  letter-spacing: 0.12em;
+  line-height: 1.8;
+  width: 100%;
+}
+
+.p-ipclCandidates__card--icl .p-ipclCandidates__cardTitle {
+  color: $color-ipcl-icl-gray;
+}
+
+/* リスト */
+.p-ipclCandidates__list {
+  display: flex;
+  flex-direction: column;
+  gap: rem(8);
+  width: 100%;
+}
+
+.p-ipclCandidates__listItem {
+  display: flex;
+  gap: rem(8);
+  align-items: center;
+
+  @include mq("sp") {
+    align-items: flex-start;
+  }
+}
+
+.p-ipclCandidates__icon {
+  flex-shrink: 0;
+  width: rem(20);
+  height: rem(20);
+  display: block;
+}
+
+.p-ipclCandidates__listText {
+  font-family: $noto-sans;
+  font-size: rem(14);
+  font-weight: 300;
+  color: $color-ipcl-body;
+  letter-spacing: 0.1em;
+  line-height: 1.8;
+  flex: 1 0 0;
+  min-width: 0;
+
+  @include mq("sp") {
+    letter-spacing: 0.06em;
+  }
+}
+
+/* カードフッター */
+.p-ipclCandidates__cardFooter {
+  width: fit-content;
+  max-width: 100%;
+  margin-top: auto;
+  border-bottom: 1px solid $color-ipcl-border-ipcl;
+  padding-block: rem(8);
+  padding-inline: rem(8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.p-ipclCandidates__card--icl .p-ipclCandidates__cardFooter {
+  border-bottom-color: $color-ipcl-border-icl;
+}
+
+.p-ipclCandidates__footerText {
+  font-family: $zen-old-mincho;
+  font-size: rem(14);
+  font-weight: 400;
+  color: $color-ipcl-gold;
+  letter-spacing: 0.06em;
+  line-height: 1.8;
+  display: inline-block;
+  transform: skewX(-10deg);
+
+  @include mq("sp") {
+    letter-spacing: 0;
+  }
+}
+
+.p-ipclCandidates__card--icl .p-ipclCandidates__footerText {
+  color: $color-ipcl-icl-gray;
+  transform: skewX(-15deg);
+}
+
+/* ボトムテキスト */
+.p-ipclCandidates__body {
+  font-family: $noto-sans;
+  font-size: rem(14);
+  font-weight: 300;
+  color: $color-ipcl-body;
+  letter-spacing: 0.18em;
+  line-height: 2;
+}

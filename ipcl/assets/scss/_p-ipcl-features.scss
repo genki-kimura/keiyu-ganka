@@ -1,0 +1,217 @@
+@use "../../../scss/setting" as *;
+
+/* ========================================
+  p-ipclFeatures（IPCLの5つの特徴）
+======================================== */
+.p-ipclFeatures {
+  background-color: #fff;
+  padding-block: rem(64);
+  position: relative;
+  overflow: hidden;
+
+  @include mq("sp") {
+    padding-block: rem(40);
+  }
+}
+
+/* 背景装飾 */
+.p-ipclFeatures__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.p-ipclFeatures__bgImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.p-ipclFeatures__bgImg--pc {
+  display: block;
+
+  @include mq("sp") {
+    display: none;
+  }
+}
+
+.p-ipclFeatures__bgImg--sp {
+  display: none;
+
+  @include mq("sp") {
+    display: block;
+  }
+}
+
+.p-ipclFeatures__inner {
+  max-width: rem(1200);
+  padding-inline: rem(20);
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+
+  @include mq("sp") {
+    padding-inline: rem(24);
+  }
+}
+
+/* カードグリッド */
+.p-ipclFeatures__cards {
+  display: flex;
+  flex-direction: column;
+  margin-top: rem(24);
+}
+
+/* 各行（Row1: 3カラム / Row2: 2カラム中央寄せ） */
+.p-ipclFeatures__row {
+  display: flex;
+  gap: rem(40);
+  align-items: flex-start;
+
+  @include mq("sp") {
+    flex-direction: column;
+    gap: rem(24); // SP縦並びアイテム間は gap で統一
+  }
+}
+
+.p-ipclFeatures__row + .p-ipclFeatures__row {
+  margin-top: rem(40);
+
+  @include mq("sp") {
+    margin-top: rem(24);
+  }
+}
+
+.p-ipclFeatures__row--center {
+  justify-content: center;
+}
+
+/* カードアイテム（バッジ + カード本体の縦スタック） */
+.p-ipclFeatures__item {
+  flex: 1 0 0;
+  min-width: 0;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  isolation: isolate;
+
+  @include mq("sp") {
+    flex: 0 0 100%;
+    width: 100%;
+    align-self: auto;
+  }
+}
+
+/* Row2 の固定幅アイテム（360px） */
+.p-ipclFeatures__item--fixed {
+  flex: 1;
+  max-width: rem(360);
+  align-self: stretch;
+
+  @include mq("sp") {
+    flex: 0 0 100%;
+    max-width: 100%;
+    width: 100%;
+    align-self: auto;
+  }
+}
+
+/* Point バッジ（カードと重なるよう -48px のネガティブマージン） */
+.p-ipclFeatures__badge {
+  display: flex;
+  align-items: center;
+  padding-inline-start: rem(8);
+  margin-bottom: rem(-48);
+  position: relative;
+  z-index: 2;
+}
+
+.p-ipclFeatures__badgeInner {
+  background-color: $color-ipcl-gold;
+  width: rem(66);
+  height: rem(70);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: rem(2);
+  padding-block: rem(8);
+}
+
+.p-ipclFeatures__badgeLabel {
+  font-family: $noto-sans;
+  font-size: rem(11);
+  font-weight: 400;
+  color: #fff;
+  letter-spacing: 0.4em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.p-ipclFeatures__badgeNum {
+  font-family: $zen-old-mincho;
+  font-size: rem(28);
+  font-weight: 400;
+  color: #fff;
+  line-height: 1;
+}
+
+/* カード本体 */
+.p-ipclFeatures__card {
+  background-color: #fff;
+  box-shadow: 0 0 rem(22) rgba(83, 64, 25, 0.04);
+  border-radius: rem(4);
+  padding-block: rem(64) rem(32);
+  padding-inline: rem(24);
+  flex-grow: 1;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.p-ipclFeatures__cardBody {
+  display: flex;
+  flex-direction: column;
+}
+
+.p-ipclFeatures__cardTitle {
+  font-family: $zen-old-mincho;
+  font-size: rem(18);
+  font-weight: 500;
+  color: $color-ipcl-gold;
+  letter-spacing: 0.12em;
+  line-height: 1.3;
+  width: 100%;
+}
+
+.p-ipclFeatures__cardText {
+  font-family: $noto-sans;
+  font-size: rem(14);
+  font-weight: 300;
+  color: $color-ipcl-body;
+  letter-spacing: 0.12em;
+  line-height: 2;
+}
+
+/* Point01のみ: cardText が cardBody の直接子要素の場合 */
+.p-ipclFeatures__cardBody > .p-ipclFeatures__cardText {
+  margin-top: rem(12);
+}
+
+/* Point02〜05: cardDesc ラッパーの margin-top */
+.p-ipclFeatures__cardDesc {
+  margin-top: rem(12);
+}
+
+/* hover */
+@media (any-hover: hover) {
+  .p-ipclFeatures__item:hover .p-ipclFeatures__card {
+    box-shadow: 0 0 rem(22) rgba(83, 64, 25, 0.12);
+    transition: box-shadow 0.2s ease;
+  }
+}

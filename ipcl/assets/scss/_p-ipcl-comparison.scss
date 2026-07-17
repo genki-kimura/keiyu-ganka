@@ -1,0 +1,639 @@
+@use "../../../scss/setting" as *;
+
+/* ========================================
+  p-ipclComparison（IPCLとICLの違い）
+======================================== */
+.p-ipclComparison {
+  padding-block: rem(64);
+  position: relative;
+  overflow: hidden;
+
+  @include mq("sp") {
+    padding-block: rem(40);
+  }
+}
+
+/* 装飾マーク */
+.p-ipclComparison__markTop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 0;
+  width: rem(395);
+
+  @include mq("sp") {
+    display: none;
+  }
+}
+
+.p-ipclComparison__markBottom {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  pointer-events: none;
+  z-index: 0;
+  width: rem(260);
+
+  @include mq("sp") {
+    display: none;
+  }
+}
+
+/* 背景装飾画像 */
+.p-ipclComparison__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.p-ipclComparison__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* インナー */
+.p-ipclComparison__inner {
+  max-width: rem(1200);
+  padding-inline: rem(20);
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+
+  @include mq("sp") {
+    padding-inline: rem(24);
+  }
+}
+
+/* ----------------------------------------
+  見出し（中央揃え・両側ライン）
+---------------------------------------- */
+.p-ipclComparison__heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: rem(8);
+  text-align: center;
+}
+
+.p-ipclComparison__title {
+  font-family: $zen-old-mincho;
+  font-size: rem(32);
+  font-weight: 500;
+  background-image: linear-gradient(173.13deg, $color-ipcl-grad-light 22.483%, $color-ipcl-grad-dark 83.943%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+  white-space: nowrap;
+
+  @include mq("sp") {
+    font-size: rem(20);
+  }
+}
+
+/* ライン−テキスト−ラインの行 */
+.p-ipclComparison__subRow {
+  display: flex;
+  align-items: center;
+  gap: rem(8);
+}
+
+.p-ipclComparison__subLine {
+  display: block;
+  width: rem(24);
+  flex-shrink: 0;
+  border-top: 1px solid $color-ipcl-sub;
+}
+
+.p-ipclComparison__subText {
+  font-family: $noto-sans;
+  font-size: rem(11);
+  font-weight: 300;
+  color: $color-ipcl-sub;
+  letter-spacing: 0.4em;
+  line-height: 2.2;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ----------------------------------------
+  本文テキスト
+---------------------------------------- */
+.p-ipclComparison__textBlock {
+  margin-top: rem(24);
+  max-width: rem(928);
+  margin-inline: auto;
+}
+
+.p-ipclComparison__text {
+  font-family: $noto-sans;
+  font-size: rem(14);
+  font-weight: 300;
+  color: $color-ipcl-body;
+  letter-spacing: 0.18em;
+  line-height: 2;
+  max-width: rem(928);
+
+  @include mq("sp") {
+    max-width: 100%;
+  }
+}
+
+/* ----------------------------------------
+  比較テーブル
+---------------------------------------- */
+.p-ipclComparison__tableWrap {
+  margin-top: rem(24);
+  max-width: rem(780);
+  margin-inline: auto;
+
+  @include mq("sp") {
+    max-width: 100%;
+    background-color: #fff;
+    border-radius: rem(10);
+    padding-block: rem(24);
+    padding-inline: rem(12);
+  }
+}
+
+/* PC: テーブルヘッダー行 */
+.p-ipclComparison__tableHeader {
+  display: grid;
+  grid-template-columns: rem(220) rem(320) rem(240);
+
+  @media screen and (max-width: 899px) {
+    grid-template-columns: calc(100vw / 899 * 220) calc(100vw / 899 * 320) calc(100vw / 899 * 240);
+  }
+
+  @include mq("sp") {
+    display: none;
+  }
+}
+
+.p-ipclComparison__thLabel {
+  height: rem(240);
+}
+
+.p-ipclComparison__thIpcl {
+  height: rem(198);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: rem(33);
+}
+
+.p-ipclComparison__thIcl {
+  height: rem(240);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: rem(115);
+}
+
+.p-ipclComparison__thImg {
+  display: block;
+}
+
+.p-ipclComparison__thIpcl .p-ipclComparison__thImg {
+  width: rem(136);
+}
+
+.p-ipclComparison__thIcl .p-ipclComparison__thImg {
+  width: rem(91);
+}
+
+.p-ipclComparison__thName {
+  font-family: $zen-old-mincho;
+  font-size: rem(24);
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  margin-top: rem(10);
+}
+
+.p-ipclComparison__thName--ipcl {
+  background-image: linear-gradient(158.06deg, $color-ipcl-grad-light 22.483%, $color-ipcl-grad-dark 83.943%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  font-size: rem(32);
+}
+
+.p-ipclComparison__thName--icl {
+  color: $color-ipcl-caption;
+}
+
+/* PC: テーブルボディ（ラベル + データ列） */
+.p-ipclComparison__tableBody {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  @include mq("sp") {
+    gap: rem(24);
+  }
+}
+
+.p-ipclComparison__tableBody::before {
+  content: "";
+  position: absolute;
+  top: rem(-40);
+  left: rem(220);
+  width: rem(320);
+  height: calc(100% + rem(80));
+  box-shadow: 0 0 rem(44) rgba(0, 0, 0, 0.04);
+  z-index: 2;
+
+  @media screen and (max-width: 899px) {
+    left: calc(100vw / 899 * 220);
+    width: calc(100vw / 899 * 320);
+  }
+
+  @include mq("sp") {
+    display: none;
+  }
+}
+
+/* 各行 */
+.p-ipclComparison__row {
+  display: grid;
+  grid-template-columns: rem(220) rem(320) rem(240);
+
+  @media screen and (max-width: 899px) {
+    grid-template-columns: calc(100vw / 899 * 220) calc(100vw / 899 * 320) calc(100vw / 899 * 240);
+  }
+
+  @include mq("sp") {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: rem(10);
+  }
+}
+
+/* ペアラッパー（PC: display:contents / SP: flex-row） */
+.p-ipclComparison__rowPair {
+  display: contents;
+
+  @include mq("sp") {
+    display: flex;
+    width: 100%;
+    height: rem(133);
+  }
+}
+
+/* ラベルセル */
+.p-ipclComparison__rowLabel {
+  grid-column: 1;
+  height: rem(90);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: rem(24);
+  background-color: #fff;
+  font-family: $noto-sans;
+  font-size: rem(14);
+  font-weight: 300;
+  color: $color-ipcl-body;
+  letter-spacing: 0.12em;
+  line-height: 2;
+  white-space: nowrap;
+  overflow: hidden;
+
+  @include mq("sp") {
+    font-family: $noto-sans;
+    font-size: rem(13);
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    line-height: 2;
+    height: auto;
+    text-align: center;
+    background-color: transparent;
+    padding-inline: 0;
+  }
+}
+
+/* ラベルセルの区切りボーダー（PC: 上側、初回除く） */
+.p-ipclComparison__row + .p-ipclComparison__row .p-ipclComparison__rowLabel {
+  position: relative;
+}
+.p-ipclComparison__row + .p-ipclComparison__row .p-ipclComparison__rowLabel::before {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  content: "";
+  width: calc(100% - rem(48));
+  height: 0.5px;
+  background-color: $color-ipcl-cell-border;
+
+  @include mq("sp") {
+    display: none;
+  }
+}
+
+/* IPCL セル（PC: 中央ゴールドカード） */
+.p-ipclComparison__cellIpcl {
+  grid-column: 2;
+  height: rem(90);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: rem(40);
+  background-color: $color-ipcl-ipcl-bg;
+  border-left: 1px solid $color-ipcl-gold-border;
+  border-right: 1px solid $color-ipcl-gold-border;
+
+  @include mq("sp") {
+    flex: 1 0 0;
+    min-width: 0;
+    height: 100%;
+    background-color: $color-ipcl-merit-bg;
+    border-left: none;
+    border-right: none;
+    border-radius: rem(4) 0 0 rem(4);
+    padding-inline: rem(12);
+    padding-block: rem(12);
+    flex-direction: column;
+    gap: rem(8);
+    justify-content: center;
+    overflow: hidden;
+  }
+}
+
+/* IPCL セル内の SP ラベル */
+.p-ipclComparison__cellTag {
+  font-family: $zen-old-mincho;
+  font-size: rem(14);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.p-ipclComparison__cellTag--ipcl {
+  background-image: linear-gradient(158.3deg, $color-ipcl-grad-light 22.483%, $color-ipcl-grad-dark 83.943%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  display: none;
+
+  @include mq("sp") {
+    display: block;
+  }
+}
+
+.p-ipclComparison__cellTag--icl {
+  font-family: $zen-old-mincho;
+  font-size: rem(14);
+  font-weight: 400;
+  color: $color-ipcl-caption;
+  letter-spacing: 0.08em;
+  display: none;
+
+  @include mq("sp") {
+    display: block;
+  }
+}
+
+/* IPCL セル内の値ボックス（SP のみ） */
+.p-ipclComparison__cellValueBox {
+  display: none;
+
+  @include mq("sp") {
+    display: flex;
+    background-color: #fff;
+    box-shadow: 0 0 rem(22) rgba(0, 0, 0, 0.04);
+    border-radius: rem(4);
+    padding-block: rem(16);
+    padding-inline: rem(12);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    min-height: 0;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* IPCL セルテキスト（PC のみ） */
+.p-ipclComparison__cellIpclText {
+  font-family: $zen-old-mincho;
+  font-size: rem(17);
+  font-weight: 500;
+  color: $color-ipcl-main;
+  letter-spacing: 0.12em;
+  line-height: 1.5;
+  text-align: center;
+  white-space: nowrap;
+
+  @include mq("sp") {
+    display: none;
+  }
+}
+
+/* SP では値ボックス内のテキスト */
+.p-ipclComparison__cellIpclBox {
+  font-family: $zen-old-mincho;
+  font-size: rem(13);
+  font-weight: 500;
+  color: $color-ipcl-main;
+  letter-spacing: 0.08em;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.p-ipclComparison__cellIpclBoxSub {
+  display: inline-block;
+  margin-top: rem(4);
+  font-size: rem(10);
+}
+
+/* ICL セル */
+.p-ipclComparison__cellIcl {
+  grid-column: 3;
+  height: rem(90);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: rem(24);
+  background-color: #fff;
+
+  @include mq("sp") {
+    flex: 1 0 0;
+    min-width: 0;
+    height: 100%;
+    background-color: $color-ipcl-demerit-bg;
+    border-radius: 0 rem(4) rem(4) 0;
+    padding-inline: rem(12);
+    padding-block: rem(12);
+    flex-direction: column;
+    gap: rem(8);
+    justify-content: center;
+    overflow: hidden;
+  }
+}
+
+.p-ipclComparison__cellIclText {
+  font-family: $noto-sans;
+  font-size: rem(14);
+  font-weight: 300;
+  color: $color-ipcl-body;
+  letter-spacing: 0.12em;
+  line-height: 1.5;
+  text-align: center;
+  white-space: nowrap;
+
+  @include mq("sp") {
+    display: none;
+  }
+}
+
+/* SP では値ボックス内のテキスト */
+.p-ipclComparison__cellIclBox {
+  font-family: $zen-old-mincho;
+  font-size: rem(12);
+  font-weight: 400;
+  color: $color-ipcl-body;
+  letter-spacing: 0.08em;
+  line-height: 1.3;
+  text-align: center;
+}
+
+/* ボーダー（PC: ラベル・ICL の上区切り） */
+.p-ipclComparison__row + .p-ipclComparison__row .p-ipclComparison__cellIcl {
+  position: relative;
+}
+.p-ipclComparison__row + .p-ipclComparison__row .p-ipclComparison__cellIcl::before {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  content: "";
+  width: calc(100% - rem(48));
+  height: 0.5px;
+  background-color: $color-ipcl-cell-border;
+
+  @include mq("sp") {
+    display: none;
+  }
+}
+
+/* IPCL ボーダー（区切り用） */
+.p-ipclComparison__row + .p-ipclComparison__row .p-ipclComparison__cellIpcl {
+  position: relative;
+}
+.p-ipclComparison__row + .p-ipclComparison__row .p-ipclComparison__cellIpcl::before {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  content: "";
+  width: calc(100% - rem(48));
+  height: 0.5px;
+  background-color: $color-ipcl-cell-border;
+
+  @include mq("sp") {
+    display: none;
+  }
+}
+
+/* ラベル列: 白背景の角丸（左側）*/
+.p-ipclComparison__row:first-child .p-ipclComparison__rowLabel {
+  border-top-left-radius: rem(4);
+}
+
+.p-ipclComparison__row:last-child .p-ipclComparison__rowLabel {
+  border-bottom-left-radius: rem(4);
+  border-bottom-right-radius: 0;
+}
+
+/* ICL 列: 白背景の角丸（右側） */
+.p-ipclComparison__row:first-child .p-ipclComparison__cellIcl {
+  border-top-right-radius: rem(4);
+}
+
+.p-ipclComparison__row:last-child .p-ipclComparison__cellIcl {
+  border-bottom-right-radius: rem(4);
+}
+
+/* IPCL カード: 上部・下部ボーダー + 角丸 */
+.p-ipclComparison__row:first-child .p-ipclComparison__cellIpcl {
+  border-top: 1px solid $color-ipcl-gold-border;
+  border-top-left-radius: rem(4);
+  border-top-right-radius: rem(4);
+
+  @include mq("sp") {
+    border-top: none;
+  }
+}
+
+.p-ipclComparison__row:last-child .p-ipclComparison__cellIpcl {
+  border-bottom: 1px solid $color-ipcl-gold-border;
+  border-bottom-left-radius: rem(4);
+  border-bottom-right-radius: rem(4);
+
+  @include mq("sp") {
+    border-bottom: none;
+  }
+}
+
+.p-ipclComparison__cellIpcl--top {
+  margin-top: rem(-40);
+  height: calc(100% + rem(40));
+  padding-top: rem(24);
+
+  @include mq("sp") {
+    margin-top: 0;
+    height: 100%;
+    padding-top: rem(12);
+  }
+}
+.p-ipclComparison__cellIpcl--bottom {
+  margin-bottom: rem(-40);
+  height: calc(100% + rem(40));
+  padding-bottom: rem(42);
+
+  @include mq("sp") {
+    margin-bottom: 0;
+    height: 100%;
+    padding-bottom: rem(12);
+  }
+}
+
+/* ----------------------------------------
+  下部テキスト
+---------------------------------------- */
+.p-ipclComparison__textBottom {
+  font-family: $noto-sans;
+  font-size: rem(14);
+  font-weight: 300;
+  color: $color-ipcl-body;
+  letter-spacing: 0.18em;
+  line-height: 2;
+  margin-top: rem(60);
+  max-width: rem(928);
+  margin-inline: auto;
+
+  @include mq("sp") {
+    max-width: 100%;
+    margin-top: rem(22);
+    line-height: 1.7;
+  }
+}

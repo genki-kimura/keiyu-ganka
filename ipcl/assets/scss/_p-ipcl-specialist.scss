@@ -1,0 +1,493 @@
+@use "../../../scss/setting" as *;
+
+/* ========================================
+  p-ipclSpecialist（執刀医）
+======================================== */
+.p-ipclSpecialist {
+  position: relative;
+  background-color: #ebedee;
+  padding-block: rem(64);
+  overflow: hidden;
+
+  @include mq("sp") {
+    padding-block: rem(40);
+    padding-inline: rem(24);
+  }
+}
+
+/* 背景グラデーションオーバーレイ */
+.p-ipclSpecialist__bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(34, 39, 39, 0.88) 50%, #000000 100%);
+  pointer-events: none;
+}
+
+/* インナー */
+.p-ipclSpecialist__inner {
+  max-width: rem(1200);
+  padding-inline: rem(20);
+  margin-inline: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: rem(24);
+
+  @include mq("sp") {
+    padding-inline: 0;
+    gap: rem(20);
+  }
+}
+
+/* 見出しエリア */
+.p-ipclSpecialist__head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: rem(8);
+}
+
+.p-ipclSpecialist__headText {
+  display: flex;
+  flex-direction: column;
+  gap: rem(4);
+  align-items: center;
+}
+
+/* 執刀医ラベル */
+.p-ipclSpecialist__headLabel {
+  font-family: $zen-old-mincho;
+  font-weight: 400;
+  font-size: rem(22);
+  letter-spacing: 0.4em;
+  line-height: 2.2;
+  color: #ffffff;
+  text-align: center;
+
+  @include mq("sp") {
+    font-size: rem(16);
+  }
+}
+
+/* ICL手術のスペシャリストが担当 */
+.p-ipclSpecialist__headTitle {
+  font-family: $zen-old-mincho;
+  font-weight: 500;
+  font-size: rem(32);
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+  color: #ffffff;
+  text-align: center;
+
+  @include mq("sp") {
+    font-size: rem(20);
+  }
+}
+
+/* Specialist デコレーション行 */
+.p-ipclSpecialist__headDeco {
+  display: flex;
+  align-items: center;
+  gap: rem(8);
+}
+
+.p-ipclSpecialist__headLine {
+  display: block;
+  width: rem(24);
+  height: 0;
+  border-top: 0.8px solid #ffffff;
+}
+
+.p-ipclSpecialist__headEn {
+  font-family: $noto-sans;
+  font-weight: 300;
+  font-size: rem(11);
+  letter-spacing: 0.4em;
+  line-height: 2.2;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+/* ----------------------------------------
+  メインコンテンツ
+---------------------------------------- */
+.p-ipclSpecialist__body {
+  display: flex;
+  align-items: flex-start;
+
+  @media screen and (min-width: 768px) and (max-width: 1199px) {
+    flex-direction: column;
+    row-gap: rem(30);
+    align-items: center;
+  }
+
+  @include mq("sp") {
+    flex-direction: column;
+    gap: rem(24);
+  }
+}
+
+/* SP専用: 上部写真コンテナ */
+.p-ipclSpecialist__photoWrap {
+  display: none;
+
+  @include mq("sp") {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: rem(290);
+  }
+}
+
+.p-ipclSpecialist__photoMain {
+  @include mq("sp") {
+    width: rem(224);
+    height: rem(289);
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+}
+
+/* テキスト情報エリア (PC: 左カラム706px, SP: 縦積み) */
+.p-ipclSpecialist__info {
+  width: rem(706);
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: rem(32);
+
+  @include mq("sp") {
+    width: 100%;
+    gap: rem(30);
+  }
+}
+
+/* PC専用: 写真エリアコンテナ */
+.p-ipclSpecialist__photoArea {
+  position: relative;
+  flex: 1;
+  min-height: rem(660);
+  align-self: stretch;
+
+  @media screen and (min-width: 768px) and (max-width: 1199px) {
+    margin-inline: auto;
+    width: rem(450);
+  }
+
+  @include mq("sp") {
+    display: none;
+  }
+}
+
+/* 医師名・プロフィール */
+.p-ipclSpecialist__profile {
+  display: flex;
+  flex-direction: column;
+  gap: rem(16);
+
+  @include mq("sp") {
+    gap: rem(9);
+  }
+}
+
+/* 医師名行 */
+.p-ipclSpecialist__nameRow {
+  display: flex;
+  align-items: center;
+  gap: rem(24);
+
+  @include mq("sp") {
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: rem(0);
+  }
+}
+
+/* 小橋 英長 */
+.p-ipclSpecialist__nameJa {
+  font-family: $zen-old-mincho;
+  font-weight: 500;
+  font-size: rem(28);
+  letter-spacing: 0.12em;
+  line-height: 1.8;
+  color: #ffffff;
+
+  @include mq("sp") {
+    font-size: rem(24);
+  }
+}
+
+/* Kobashi Hidenaga */
+.p-ipclSpecialist__nameEn {
+  font-family: $meie-script;
+  font-weight: 400;
+  font-size: rem(30);
+  line-height: 1;
+  color: #ffffff;
+  opacity: 0.30;
+
+  @include mq("sp") {
+    margin-top: rem(11);
+    font-size: rem(18);
+    line-height: 1.4;
+  }
+}
+
+/* 医師名下 区切り線 */
+.p-ipclSpecialist__nameDivider {
+  display: block;
+  width: 100%;
+  height: 0;
+  border-top: 0.8px solid #ffffff;
+}
+
+/* プロフィール文 */
+.p-ipclSpecialist__bio {
+  font-family: $noto-sans;
+  font-weight: 300;
+  font-size: rem(14);
+  letter-spacing: 0.12em;
+  line-height: 2;
+  color: #ffffff;
+}
+
+/* SP専用: 認定証サブ写真 */
+.p-ipclSpecialist__photoSubSp {
+  display: none;
+
+  @include mq("sp") {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 354 / 251;
+    object-fit: cover;
+  }
+}
+
+/* ICL認定医バッジ */
+.p-ipclSpecialist__badge {
+  width: fit-content;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  gap: rem(24);
+  background-color: #ffffff;
+  padding-block: rem(12);
+  padding-inline: rem(24);
+  border-radius: rem(2);
+  overflow: hidden;
+
+  @include mq("sp") {
+    gap: rem(19);
+    padding-block: rem(10);
+    padding-inline: rem(19);
+  }
+}
+
+.p-ipclSpecialist__badgeIcon {
+  width: rem(64);
+  height: rem(64);
+  object-fit: cover;
+  flex-shrink: 0;
+
+  @include mq("sp") {
+    width: rem(52);
+    height: rem(52);
+  }
+}
+
+.p-ipclSpecialist__badgeInfo {
+  display: flex;
+  flex-direction: column;
+  gap: rem(8);
+
+  @include mq("sp") {
+    gap: rem(6);
+  }
+}
+
+.p-ipclSpecialist__badgeTitle {
+  font-family: $zen-old-mincho;
+  font-weight: 700;
+  font-size: rem(14);
+  letter-spacing: 0.04em;
+  line-height: 1.6;
+  color: $color-ipcl-body;
+
+  @include mq("sp") {
+    font-size: rem(11);
+  }
+}
+
+.p-ipclSpecialist__badgeDate {
+  font-family: $noto-sans;
+  font-weight: 400;
+  font-size: rem(12);
+  letter-spacing: 0.04em;
+  line-height: 1;
+  color: $color-ipcl-caption;
+
+  @include mq("sp") {
+    font-size: rem(10);
+  }
+}
+
+/* ----------------------------------------
+  経歴・資格・所属学会
+---------------------------------------- */
+.p-ipclSpecialist__career {
+  display: flex;
+  flex-direction: column;
+  gap: rem(24);
+}
+
+/* 共通ボックス (経歴・資格・所属学会) */
+.p-ipclSpecialist__careerBox {
+  border: 0.4px solid #ffffff;
+  border-radius: rem(2);
+  padding-block: rem(10);
+  padding-inline: rem(24);
+  display: flex;
+  flex-direction: column;
+  gap: rem(12);
+}
+
+.p-ipclSpecialist__qualBox {
+  flex: 1;
+  border: 0.4px solid #ffffff;
+  border-radius: rem(2);
+  padding-block: rem(15);
+  padding-inline: rem(24);
+  display: flex;
+  flex-direction: column;
+  gap: rem(12);
+}
+
+/* ボックスヘッダー (経歴・資格・所属学会 タイトル行) */
+.p-ipclSpecialist__boxHead {
+  border-bottom: 0.4px solid #ffffff;
+  height: rem(32);
+  display: flex;
+  align-items: center;
+}
+
+.p-ipclSpecialist__boxTitle {
+  font-family: $zen-old-mincho;
+  font-weight: 500;
+  font-size: rem(14);
+  letter-spacing: 0.2em;
+  line-height: 1.6;
+  color: #ffffff;
+}
+
+/* 経歴リスト: PC=3列flex, SP=縦積み */
+.p-ipclSpecialist__careerList {
+  display: flex;
+  gap: rem(16);
+
+  @include mq("sp") {
+    flex-direction: column;
+    gap: rem(16);
+  }
+}
+
+.p-ipclSpecialist__careerCol {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: rem(16);
+}
+
+.p-ipclSpecialist__careerItem {
+  display: flex;
+  gap: rem(8);
+  align-items: baseline;
+}
+
+.p-ipclSpecialist__careerYear {
+  font-family: $noto-sans;
+  font-weight: 300;
+  font-size: rem(12);
+  color: #ffffff;
+  line-height: 1.6;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.p-ipclSpecialist__careerDesc {
+  font-family: $noto-sans;
+  font-weight: 300;
+  font-size: rem(14);
+  color: #ffffff;
+  line-height: 1.6;
+}
+
+.p-ipclSpecialist__careerDesc span {
+  font-size: rem(13);
+}
+
+/* 資格・所属学会行: PC=横並び, SP=縦積み */
+.p-ipclSpecialist__qualRow {
+  display: flex;
+  gap: rem(24);
+
+  @include mq("sp") {
+    flex-direction: column;
+  }
+}
+
+/* 資格・学会リスト */
+.p-ipclSpecialist__qualList {
+  list-style: disc;
+  display: flex;
+  flex-direction: column;
+}
+
+.p-ipclSpecialist__qualItem {
+  font-family: $noto-sans;
+  font-weight: 300;
+  font-size: rem(14);
+  color: #ffffff;
+  line-height: 1.6;
+  padding-left: rem(20);
+  position: relative;
+
+  a {
+    color: #ffffff;
+    text-decoration: none;
+  }
+
+  &::before {
+    position: absolute;
+    top: 0;
+    left: rem(6);
+    content: "・";
+  }
+}
+
+/* ----------------------------------------
+  PC専用: 写真（photoArea内の absolute配置）
+  photoArea左端 = info右端(706px) = body左から706px
+  main photo: Figma left 806px → 806-706 = 100px from photoArea left
+  sub photo:  Figma left 745px → 745-706 = 39px from photoArea left
+---------------------------------------- */
+.p-ipclSpecialist__photoMainPc {
+  position: absolute;
+  left: rem(100);
+  top: 0;
+  width: rem(353);
+  height: rem(455);
+  object-fit: cover;
+  z-index: 2;
+}
+
+.p-ipclSpecialist__photoSubPc {
+  position: absolute;
+  left: rem(39);
+  top: rem(408);
+  width: rem(354);
+  height: rem(251);
+  object-fit: cover;
+  z-index: 2;
+}

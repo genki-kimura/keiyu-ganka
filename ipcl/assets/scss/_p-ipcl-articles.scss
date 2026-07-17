@@ -1,0 +1,204 @@
+@use "../../../scss/setting" as *;
+
+/* ========================================
+  p-ipclArticles（関連記事一覧）
+======================================== */
+.p-ipclArticles {
+  background-color: $color-ipcl-bg-warm;
+  padding-block: rem(64);
+  position: relative;
+  overflow: hidden;
+
+  @include mq("sp") {
+    padding-block: rem(40);
+    padding-inline: rem(24);
+  }
+}
+
+/* 背景メッシュ */
+.p-ipclArticles__bgMesh {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.p-ipclArticles__inner {
+  max-width: rem(1200);
+  padding-inline: rem(20);
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: rem(24);
+  align-items: center;
+  position: relative;
+  z-index: 1;
+
+  @include mq("sp") {
+    padding-inline: 0;
+  }
+}
+
+/* ----------------------------------------
+  見出しブロック（中央揃え）
+---------------------------------------- */
+.p-ipclArticles__head {
+  display: flex;
+  flex-direction: column;
+  gap: rem(8);
+  align-items: center;
+  width: 100%;
+}
+
+.p-ipclArticles__title {
+  font-family: $zen-old-mincho;
+  font-weight: 500;
+  font-size: rem(32);
+  letter-spacing: av(80);
+  line-height: 1.6;
+  background: linear-gradient(170.3deg, $color-ipcl-grad-light 22.5%, $color-ipcl-grad-dark 83.9%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: center;
+
+  @include mq("sp") {
+    font-size: rem(20);
+  }
+}
+
+.p-ipclArticles__subRow {
+  display: flex;
+  align-items: center;
+  gap: rem(8);
+}
+
+.p-ipclArticles__subLine {
+  display: block;
+  width: rem(24);
+  height: 0;
+  border-top: 0.8px solid $color-ipcl-sub;
+}
+
+.p-ipclArticles__subText {
+  font-family: $noto-sans;
+  font-weight: 300;
+  font-size: rem(11);
+  letter-spacing: av(400);
+  line-height: 2.2;
+  color: $color-ipcl-sub;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ----------------------------------------
+  記事グリッド
+  PC: 各行 3カード横並び（padding-inline 80px）
+  SP: 縦積み1列
+---------------------------------------- */
+.p-ipclArticles__grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: rem(24);
+  width: 100%;
+  max-width: rem(1000);
+  margin-inline: auto;
+}
+
+
+/* ----------------------------------------
+  記事カード
+---------------------------------------- */
+.p-ipclArticles__article {
+  width: calc((100% - rem(24) * 2) / 3);
+
+  @include mq("sp") {
+    width: 100%;
+  }
+}
+
+.p-ipclArticles__card {
+  width: 100%;
+  background-color: #ffffff;
+  filter: drop-shadow(2px 4px 5px rgba(0, 0, 0, 0.08));
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+
+  @include mq("sp") {
+    flex: none;
+    width: 100%;
+  }
+}
+
+/* サムネイル画像エリア */
+.p-ipclArticles__cardThumb {
+  width: 100%;
+  aspect-ratio: 620 / 400;
+  background-color: #f0f0f0;
+  overflow: hidden;
+  position: relative;
+}
+
+.p-ipclArticles__cardImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+/* テキスト行（タイトル + 矢印） */
+.p-ipclArticles__cardBody {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: rem(16);
+  padding-inline: rem(24);
+}
+
+.p-ipclArticles__cardTitle {
+  font-family: $zen-old-mincho;
+  font-weight: 500;
+  font-size: rem(16);
+  letter-spacing: av(60);
+  line-height: 1.6;
+  color: $color-ipcl-body;
+  flex: 1;
+}
+
+/* カード矢印（→） */
+.p-ipclArticles__cardArrow {
+  flex-shrink: 0;
+  width: rem(16);
+  height: rem(5);
+  position: relative;
+  transition: transform 0.3s ease;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1.5px;
+    background-color: $color-ipcl-articles-arrow;
+    transform: translateY(-50%);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: rem(5);
+    height: rem(5);
+    border-top: 1.5px solid $color-ipcl-articles-arrow;
+    border-right: 1.5px solid $color-ipcl-articles-arrow;
+    transform: translateY(-50%) rotate(45deg);
+  }
+}
