@@ -188,7 +188,7 @@
 		['href' => '/cataract/multifocal/', 'img' => 'btn02.webp', 'alt' => '多焦点眼内レンズについてはこちら', 'w' => 1104, 'h' => 480],
 		['href' => '/pediatric/orthokeratology/', 'img' => 'btn03.webp', 'alt' => 'オルソケラトロジーについてはこちら', 'w' => 1104, 'h' => 480],
 		['href' => '/pediatric#a01', 'img' => 'btn04.webp', 'alt' => '学校検診で指摘された方はこちら', 'w' => 1104, 'h' => 480],
-		['href' => '/ipcl/', 'img' => 'IPCL.webp', 'alt' => 'IPCL（有水晶体眼内レンズ）による視力矯正手術はこちら', 'w' => 2208, 'h' => 960],
+		['href' => '/first/', 'img' => 'beginner.jpg', 'alt' => '初めての方はこちら', 'w' => 2208, 'h' => 960],
 	];
 
 	/** @var string $keiyu_tpl_uri テーマディレクトリURI */
